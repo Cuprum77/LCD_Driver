@@ -25,5 +25,8 @@ fp-info-cache
 *.xml
 *.csv
 
+# Gerber files
+*.kicad_pcb.zip
+
 # Backup Files
 Breakout_1/Breakout_1-backups/
