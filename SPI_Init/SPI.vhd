@@ -11,10 +11,10 @@ use ieee.std_logic_unsigned.all;
 
 entity SPIDriver is
   port(
-    -- ports
+    -- Clock and reset
     clk       : in std_logic; -- 100 MHz
     rst       : in std_logic; -- Reset, active HIGH
-    -- modified spi interface
+    -- SPI ports
     spi_sda   : out std_logic; -- SPI SDA (Data)
     spi_scl   : out std_logic; -- SPI SCL (Clock)
     spi_cs    : out std_logic; -- SPI CS (Chip Select)
@@ -25,12 +25,11 @@ entity SPIDriver is
     data      : in std_logic_vector(31 downto 0); -- Bits to be sent
     bit_width : in std_logic_vector(2 downto 0)   -- Number of bits to send
   );
-end entity SPIDriver;
-
+end entity;
 
 architecture RTL of SPIDriver is
   type state_machine is (idle, start, shiftout, clk1, stop, hold); 
-  signal spi_state : state_machine;
+  signal spi_state : state_machine := idle;
     
   signal delay_cnt       	: std_logic_vector(1 downto 0);
   signal delay_done_full 	: std_logic;
@@ -147,7 +146,7 @@ begin
           spi_cs <= '1'; 
           done <= '1';
 
-          if SEND = '1' then
+          if send = '1' then
             spi_state <= start;
           else
             spi_state <= idle;
@@ -157,4 +156,4 @@ begin
   end if;
 end process;
 
-end RTL;
+end architecture;
