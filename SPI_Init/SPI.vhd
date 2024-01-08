@@ -72,7 +72,7 @@ begin
           when "001" => bit_cnt <= 15;
           when "010" => bit_cnt <= 17;
           when "011" => bit_cnt <= 23;
-                    when "100" => bit_cnt <= 31;
+          when "100" => bit_cnt <= 31;
           when others => bit_cnt <= 7;
         end case;
       elsif spi_state = clk1 and delay_done = '1' and bit_cnt > 0 then
