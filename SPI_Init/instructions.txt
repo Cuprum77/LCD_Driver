@@ -13,10 +13,10 @@ cmd 0x36
 data 0x00
 ; set the display pointer's x position
 cmd 0x2a
-data 0 0 240 0 ; max width 240 px
+data 0 0 239 0 ; max width 240 px
 ; set the display pointer's y position
 cmd 0x2b
-data 0 0 320 0 ; max height 320 px
+data 0 0 319 0 ; max height 320 px
 ; turn on the display inversion
 cmd 0x21
 wait 10

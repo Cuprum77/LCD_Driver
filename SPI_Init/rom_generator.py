@@ -167,44 +167,49 @@ def optimize_content(assembly):
             elif temp[0] == "cmd":
                 current_word_size = 8
 
+            # Get the instruction hex
+            instruction = temp[0]
+            # Remove the instruction from the list
+            temp.pop(0)
+
             # If the length is 0, have a payload of 0
             if instruction_length == 0:
-                instruction_payload = 0
                 # Add the instruction hex and payload to the rom content
-                rom_content.append(temp[0])
-                rom_content.append(format(instruction_payload, '08x'))
+                rom_content.append(instruction)
+                rom_content.append(format(0, '08x'))
 
             # If the length is greater than 1, and the instruction is a data instruction
-            elif instruction_length > 1 and temp[0] == "data":
+            elif instruction_length > 1 and instruction == "data":
                 # The instruction length decides the number of words to send
                 # Get the max value of the word size
                 max_value = 2 ** current_word_size
 
                 # Start at the last index of the instruction list and work backwards
                 overflow = 0
-                for i in range(1, instruction_length + 1):
+                for i in range(instruction_length):
                     # Get the payload
                     payload = fetch_payload(temp[i]) + overflow
+                    print(payload)
                     overflow = 0
                     
                     # Check if its less than the max value
                     if payload <= max_value:
                         # Add the instruction hex and payload to the rom content
-                        rom_content.append(temp[0])
+                        rom_content.append(instruction)
                         rom_content.append(format(payload, '08x'))
                     else:
                         # The payload is too large, we must split it up and append it infront of the current instruction
                         overflow = max_value
                         # Add the instruction hex and payload to the rom content
-                        rom_content.append(temp[0])
+                        rom_content.append(instruction)
                         rom_content.append(format(payload - max_value, '08x'))
 
             # If the length is at or greater than 1, just add the payload at index 1
             else:
-                payload = fetch_payload(temp[1])
+                payload = fetch_payload(temp[0])
 
                 # Add the instruction hex and payload to the rom content
-                rom_content.append(temp[0])
+                rom_content.append(instruction)
                 rom_content.append(format(payload, '08x'))
 
         else:
