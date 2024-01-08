@@ -1,0 +1,10 @@
+; set the display pointer's x position
+cmd 0x2a
+size 32
+data 0xef000000
+; set the display pointer's y position
+start
+cmd 0x2b
+size 32
+data 0x3f100000
+stop

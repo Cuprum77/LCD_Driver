@@ -1,0 +1,3 @@
+# Ignore the generated files
+ROM.vhd
+instructions_optimized.txt
