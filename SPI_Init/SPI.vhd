@@ -28,7 +28,15 @@ entity SPIDriver is
 end entity;
 
 architecture RTL of SPIDriver is
-  type state_machine is (idle, start, shiftout, clk1, stop, hold); 
+  type state_machine is (
+    idle_state,
+    start_state,
+    shiftout_state,
+    clk1_state,
+    stop_state,
+    hold_state
+  ); 
+
   signal spi_state : state_machine := idle;
     
   signal delay_cnt       	: std_logic_vector(1 downto 0);
@@ -94,7 +102,7 @@ begin
     else
       case spi_state is
         -- waiting for a command
-        when idle =>
+        when idle_state =>
           spi_sda <= '0';
           spi_scl <= '0';
           spi_cs <= '1';
@@ -106,7 +114,7 @@ begin
             spi_state <= idle;
           end if;
         -- start the transmission
-        when start =>
+        when start_state =>
           spi_scl <= '0';
           spi_cs <= '0';
           done <= '0';
@@ -115,7 +123,7 @@ begin
             spi_state <= shiftout;
           end if;
         -- shift out the DATA and set the clock low
-        when shiftout =>
+        when shiftout_state =>
           spi_sda <= DATA(bit_cnt);
           spi_scl <= '0';
           
@@ -123,7 +131,7 @@ begin
             spi_state <= clk1;
           end if;
         -- set the clock high
-        when clk1 =>
+        when clk1_state =>
           spi_scl <= '1';
 				
           if delay_done = '1' then
@@ -134,15 +142,15 @@ begin
             end if;
           end if;
         -- stop the transmission
-        when stop =>
+        when stop_state =>
           spi_sda <= '0';
           spi_scl <= '0';
        
-        if delay_done = '1' then
-          spi_state <= hold;
-        end if;
+          if delay_done = '1' then
+            spi_state <= hold;
+          end if;
         -- hold the transmission
-        when hold =>
+        when hold_state =>
           spi_cs <= '1'; 
           done <= '1';
 
