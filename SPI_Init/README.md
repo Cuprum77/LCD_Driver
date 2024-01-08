@@ -81,18 +81,10 @@ An important thing to note is that the ROM is 32 bits wide, and loads two such w
 
 | Instruction | Hex Code    | Description |
 |-------------|-------------|-------------|
-| start       | 0x01        | Start a sequence |
-| stop        | 0x02        | Stop a sequence |
 | cmd         | 0x10        | Send a command to the LCD display |
 | size        | 0x20        | Set the size of the data |
 | data        | 0x21        | Send data to the LCD display |
 | wait        | 0x30        | Delay in milliseconds |
-
-#### start
-The `start` instruction is used to start a sequence. This will set up the sequencer properly so the commands are sent correctly.
-
-#### stop
-The `stop` instruction is used to stop a sequence. This will reset the sequencer to its initial state.
 
 #### cmd
 The `cmd` instruction is used to send a command to the LCD display.
@@ -119,11 +111,9 @@ The maximum wait time is 1 000 ms.
 #### Example
 The following example shows how to configure the cursor's x position on a ST7789V display;
 ```
-start
 cmd 0x2a
 size 32
-data 0xef000000
-stop
+data 0x00 0x00 0xef 0x00
 ```
 This psuedo code can be fed into the ROM generator to create a ROM.vhd file, found at [ROM Generator](#rom-generator).
 

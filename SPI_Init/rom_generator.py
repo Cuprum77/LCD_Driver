@@ -1,19 +1,23 @@
 instruction_psuedo = [
-    "start",
-    "stop",
     "cmd",
     "size",
     "data",
-    "delay"
+    "wait"
 ]
 
 instruction_hex = [
-    0x00000001,
-    0x00000002,
     0x00000010,
     0x00000020,
     0x00000021,
     0x00000030
+]
+
+word_sizes = [
+    8,
+    16,
+    18,
+    24,
+    32
 ]
 
 # Function that loads the psuedo-assembly code from the instructions.txt file
@@ -45,28 +49,54 @@ def error(line):
 # Function that checks the length of the instruction
 def check_instruction_length(instruction_list, assembly, line):
     # Get length of the instruction
-    instruction_length = len(instruction_list)
+    payload_size = len(instruction_list)
     # If the instruction is start or stop, do not add any more data
     if instruction_list[0] == "start" or instruction_list[0] == "stop":
-        instruction_length = 0
+        payload_size = 0
     else:
         # If theres only 1 item in the instruction_list, then theres too little data
-        if instruction_length <= 1:
+        if payload_size <= 1:
             # Someone forgot to add data to the instruction
             error(line)
         # If theres more than 2 items in the instruction_list, then there might be a comment
-        elif instruction_length > 2:
-            # Check if its a comment
-            if instruction_list[2].startswith(";"):
-                # Its a comment, so the instruction length is 1
-                instruction_length = 1
-            else:
-                # Its not a comment, throw an error
-                error(line)
         else:
-            instruction_length = 1
+            # Subtract 1 from the payload size
+            payload_size -= 1
+            # Check if any of the items in the instruction_list are a comment
+            for idx in range(len(instruction_list)):
+                # Get the item
+                item = instruction_list[idx]
+                # Check if its a comment
+                if item.startswith(";"):
+                    # Remove the comment
+                    instruction_list.remove(item)
+                    # Decrement the payload size
+                    payload_size -= 1
+                    # Break out of the loop
+                    break
 
-    return instruction_length
+    return payload_size
+
+
+# Get the payload from the line
+def fetch_payload(line):
+    # Check if it starts with a hex value
+    if line.startswith("0x"):
+        # Remove the 0x
+        line = line[2:]
+        # Convert it to an integer
+        payload = int(line, 16)
+    # If it starts with a binary value
+    elif line.startswith("0b"):
+        # Remove the 0b
+        line = line[2:]
+        # Convert it to an integer
+        payload = int(line, 2)
+    else:
+        # Convert it to an integer
+        payload = int(line)
+
+    return payload
 
 
 # Function that optimizes the psuedo-assembly code
@@ -105,7 +135,7 @@ def optimize_content(assembly):
             cleaned_content.append(line)
 
     rom_content = []
-    prev_cmd = []
+    current_word_size = 8
 
     # Go through each line of the psuedo-assembly code
     for idx in range(len(cleaned_content)):
@@ -122,69 +152,60 @@ def optimize_content(assembly):
             # Make sure its a valid length
             instruction_length = check_instruction_length(temp, cleaned_content, line)
 
-            # Check if its the first instruction, if so is it start?
-            if idx == actual_first_line:
-                if temp[0] != "start":
-                    # Add start to the rom content
-                    rom_content.append("start")
-                    rom_content.append(format(0, '08x'))
-                    prev_cmd.append("start")
-            # However, if its not the first instruction, check if the command is the same as the previous command
-            elif temp[0] in prev_cmd:
-                # If its a stop, its fine, continue
-                # If its the same as start or stop, continue
-                if temp[0] == "start":
-                    continue
-                # If its the same as cmd, size, or data, check if its enclosed
-                elif temp[0] == "cmd" or temp[0] == "size" or temp[0] == "data":
-                    # Then its likely not enclosed
-                    # Enclose it by adding a stop and start BEFORE eventual comments
-                    if rom_content[-1].startswith(";"):
-                        # Add stop to the rom content
-                        rom_content.insert(-1, "stop")
-                        rom_content.insert(-1, format(0, '08x'))
-                        rom_content.append("start")
-                        rom_content.append(format(0, '08x'))
-                    else:
-                        rom_content.append("stop")
-                        rom_content.append(format(0, '08x'))
-                        rom_content.append("start")
-                        rom_content.append(format(0, '08x'))
+            # If its a size instruction, change the word size
+            if temp[0] == "size":
+                # Fetch the payload
+                payload = fetch_payload(temp[1])
+                # Check if the size is valid
+                if payload in word_sizes:
+                    # Set the word size
+                    current_word_size = payload
+                else:
+                    # The size is not valid
+                    error(line)
+            # but if its a command instruction, set the word size to 8
+            elif temp[0] == "cmd":
+                current_word_size = 8
 
-                    # Set the previous command
-                    prev_cmd = [ "start" ]
-
-            # If the length is 0, add 0x00000000
+            # If the length is 0, have a payload of 0
             if instruction_length == 0:
                 instruction_payload = 0
+                # Add the instruction hex and payload to the rom content
+                rom_content.append(temp[0])
+                rom_content.append(format(instruction_payload, '08x'))
+
+            # If the length is greater than 1, and the instruction is a data instruction
+            elif instruction_length > 1 and temp[0] == "data":
+                # The instruction length decides the number of words to send
+                # Get the max value of the word size
+                max_value = 2 ** current_word_size
+
+                # Start at the last index of the instruction list and work backwards
+                overflow = 0
+                for i in range(1, instruction_length + 1):
+                    # Get the payload
+                    payload = fetch_payload(temp[i]) + overflow
+                    overflow = 0
+                    
+                    # Check if its less than the max value
+                    if payload <= max_value:
+                        # Add the instruction hex and payload to the rom content
+                        rom_content.append(temp[0])
+                        rom_content.append(format(payload, '08x'))
+                    else:
+                        # The payload is too large, we must split it up and append it infront of the current instruction
+                        overflow = max_value
+                        # Add the instruction hex and payload to the rom content
+                        rom_content.append(temp[0])
+                        rom_content.append(format(payload - max_value, '08x'))
+
+            # If the length is at or greater than 1, just add the payload at index 1
             else:
-                # We have a payload, first check if its a hex value as denoted by 0x
-                if temp[1].startswith("0x"):
-                    # We have a hex value
-                    # Remove the 0x
-                    temp[1] = temp[1][2:]
-                    instruction_payload = int(temp[1], 16)
-                else:
-                    # We have a decimal value
-                    instruction_payload = int(temp[1])
+                payload = fetch_payload(temp[1])
 
-            # Convert the payload to a hex string thats 32 bits long
-            instruction_payload = format(instruction_payload, '08x')
-
-            # Add the instruction hex and payload to the rom content
-            rom_content.append(temp[0])
-            rom_content.append(instruction_payload)
-
-            # Set the previous command
-            prev_cmd.append(temp[0])
-
-            # Was this the last instruction?
-            if idx == len(cleaned_content) - 1:
-                # Is the last instruction a stop?
-                if temp[0] != "stop":
-                    # Add stop to the rom content
-                    rom_content.append("stop")
-                    rom_content.append(format(0, '08x'))
+                # Add the instruction hex and payload to the rom content
+                rom_content.append(temp[0])
+                rom_content.append(format(payload, '08x'))
 
         else:
             # The instruction is not valid
