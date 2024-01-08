@@ -14,7 +14,7 @@ This repo contains the hardware implementation of the SPI protocol for the FPGA.
         - [size](#size)
         - [data](#data)
         - [data_cont](#data_cont)
-        - [delay](#delay)
+        - [wait](#wait)
         - [Example](#example)
     - [ROM](#rom)
     - [ROM Generator](#rom-generator)
@@ -86,7 +86,7 @@ An important thing to note is that the ROM is 32 bits wide, and loads two such w
 | cmd         | 0x10        | Send a command to the LCD display |
 | size        | 0x20        | Set the size of the data |
 | data        | 0x21        | Send data to the LCD display |
-| delay       | 0x30        | Delay in milliseconds |
+| wait        | 0x30        | Delay in milliseconds |
 
 #### start
 The `start` instruction is used to start a sequence. This will set up the sequencer properly so the commands are sent correctly.
@@ -109,8 +109,8 @@ The `data` instruction is used to send data to the LCD display.
 
 Should always be preceded by a `size` instruction. If not, it will default to whatever was set before. Usually 8 bits if previous instruction was a `cmd` instruction.
 
-#### delay
-The `delay` instruction is used to delay the sequencer for a given number of milliseconds.
+#### wait
+The `wait` instruction is used to delay the sequencer for a given number of milliseconds.
 
 The sequencer will convert the number of milliseconds to the number of clock cycles required to wait.
 
