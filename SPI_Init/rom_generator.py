@@ -367,7 +367,8 @@ architecture RTL of ROM is
     rom_file += """  );
 
     -- The payload data
-  constant payload_rom : rom_32b_t := ("""
+  constant payload_rom : rom_32b_t := (
+"""
     
     # Add the data to the ROM file
     idx = 0
