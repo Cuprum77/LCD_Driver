@@ -1,10 +1,10 @@
 library ieee;
 use ieee.std_logic_1164.all;
 
-entity SPI_TB is
-end SPI_TB;
+entity spi_tb is
+end spi_tb;
 
-architecture SPI_ARCH of SPI_TB is
+architecture RTL of spi_tb is
   -- constants
   constant clk_period : time := 10ns; -- 100 MHz
 
@@ -40,7 +40,7 @@ architecture SPI_ARCH of SPI_TB is
 begin
 
   -- set up the component
-  UUT : SPIDriver
+  DUUT : SPIDriver
     port map(
       clk       => clk,
       rst       => rst,
@@ -87,4 +87,4 @@ begin
   wait;
   end process always_process;
 
-end SPI_ARCH;
+end architecture;
