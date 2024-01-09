@@ -189,7 +189,6 @@ def optimize_content(assembly):
                 for i in range(instruction_length):
                     # Get the payload
                     payload = fetch_payload(temp[i]) + overflow
-                    print(payload)
                     overflow = 0
                     
                     # Check if its less than the max value
@@ -249,7 +248,7 @@ def optimize_content(assembly):
 
         f.write(rom_file)
 
-    return rom_content
+    return rom_content, comment_counter
 
 
 # Function that parses the psuedo-assembly code and generates the ROM file
@@ -295,7 +294,7 @@ def parse_content(assembly):
 
 
 # Function that generates the ROM file in a proper format
-def generate_rom(rom_content):
+def generate_rom(rom_content, comment_counter):
     # Start of the ROM file
     rom_file = """
 library ieee;
@@ -328,7 +327,7 @@ architecture RTL of ROM is
   -- Set the ROM size
   constant rom_size : integer := """
     # Add the size of the ROM to the ROM file
-    rom_file += str(len(rom_content))
+    rom_file += str(len(rom_content) - comment_counter - 1)
     rom_file += """; -- Should be between 0 and 255
 
   -- Initialize the ROM with the data.
@@ -352,7 +351,12 @@ architecture RTL of ROM is
             idx += 1
         else:
             formatted_line = "x\"" + rom_content[idx] + "\", " + "x\""
-            formatted_line += rom_content[idx + 1] + "\","
+            formatted_line += rom_content[idx + 1]
+            # If its not the last line, add a comma
+            if idx + 2 < len(rom_content):
+                formatted_line += "\","
+            else:
+                formatted_line += "\""
             rom_file += "    " + formatted_line + "\n"
             # Increment the index
             idx += 2
@@ -397,6 +401,6 @@ end architecture;"""
 
 # Main function
 rom = load_rom()
-rom_optimized = optimize_content(rom)
+rom_optimized, comment_counter = optimize_content(rom)
 rom_content = parse_content(rom_optimized)
-generate_rom(rom_content)
+generate_rom(rom_content, comment_counter)
