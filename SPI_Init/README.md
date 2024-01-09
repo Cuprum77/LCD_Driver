@@ -129,7 +129,7 @@ The script can be found at [rom_generator.py](/rom_generator.py).
 
 The script expects a text file containing the instructions for the sequencer. Each instruction should be on its own line, and the instruction and its payload should be separated by a space.
 
-The script will attempt to put in a start and stop instruction at the beginning and end of the file respectively.
+An example of a valid instruction file for an ST7789V display can be found [here](/st7789v_instructions.txt).
 
 ### Error
 If the sequence encounters an unexpected instruction, it will throw an error and stop the sequence. This is to prevent the sequencer from sending out garbage data to the LCD display.
