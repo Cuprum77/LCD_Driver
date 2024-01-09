@@ -6,10 +6,10 @@ instruction_psuedo = [
 ]
 
 instruction_hex = [
-    0x00000010,
-    0x00000020,
-    0x00000021,
-    0x00000030
+    0x10,
+    0x20,
+    0x21,
+    0x30
 ]
 
 word_sizes = [
@@ -50,30 +50,26 @@ def error(line):
 def check_instruction_length(instruction_list, assembly, line):
     # Get length of the instruction
     payload_size = len(instruction_list)
-    # If the instruction is start or stop, do not add any more data
-    if instruction_list[0] == "start" or instruction_list[0] == "stop":
-        payload_size = 0
+    # If theres only 1 item in the instruction_list, then theres too little data
+    if payload_size <= 1:
+        # Someone forgot to add data to the instruction
+        error(line)
+    # If theres more than 2 items in the instruction_list, then there might be a comment
     else:
-        # If theres only 1 item in the instruction_list, then theres too little data
-        if payload_size <= 1:
-            # Someone forgot to add data to the instruction
-            error(line)
-        # If theres more than 2 items in the instruction_list, then there might be a comment
-        else:
-            # Subtract 1 from the payload size
-            payload_size -= 1
-            # Check if any of the items in the instruction_list are a comment
-            for idx in range(len(instruction_list)):
-                # Get the item
-                item = instruction_list[idx]
-                # Check if its a comment
-                if item.startswith(";"):
-                    # Remove the comment
-                    instruction_list.remove(item)
-                    # Decrement the payload size
-                    payload_size -= 1
-                    # Break out of the loop
-                    break
+        # Subtract 1 from the payload size
+        payload_size -= 1
+        # Check if any of the items in the instruction_list are a comment
+        for idx in range(len(instruction_list)):
+            # Get the item
+            item = instruction_list[idx]
+            # Check if its a comment
+            if item.startswith(";"):
+                # Remove the comment
+                instruction_list.remove(item)
+                # Decrement the payload size
+                payload_size -= 1
+                # Break out of the loop
+                break
 
     return payload_size
 
@@ -216,7 +212,7 @@ def optimize_content(assembly):
             error(line)
 
     # Do a sanity check to make sure the rom content is less or equal to 255
-    if len(rom_content) > (255 + comment_counter):
+    if len(rom_content) > (512 + comment_counter):
         print("ERROR: ROM content is greater than 255 bytes!")
         exit()
 
@@ -253,7 +249,9 @@ def optimize_content(assembly):
 
 # Function that parses the psuedo-assembly code and generates the ROM file
 def parse_content(assembly):
-    rom_content = []
+    command = []
+    command_comment = []
+    payload = []
 
     # Go through each line of the psuedo-assembly code
     idx = 0
@@ -261,40 +259,37 @@ def parse_content(assembly):
         # Check if its a comment
         if assembly[idx].startswith(";"):
             # Add the comment to the rom content
-            rom_content.append(assembly[idx])
+            command.append(assembly[idx])
+            payload.append(assembly[idx])
             idx += 1
             continue
 
         # Get the instruction and payload
         instruction = assembly[idx]
-        payload = assembly[idx + 1]
+        payload_data = assembly[idx + 1]
         idx += 2
         
         # Get the instruction hex index
         instruction_index = instruction_psuedo.index(instruction)
         # Get the actual hex code
         instruction_hex_code = instruction_hex[instruction_index]
-        # Convert it to a hex string thats 32 bits long
-        instruction_hex_code = format(instruction_hex_code, '08x')
+        # Convert it to a hex string thats 8 bits long
+        instruction_hex_code = format(instruction_hex_code, '02x')
 
         # Add the instruction hex and payload to the rom content
-        rom_content.append(instruction_hex_code)
-        rom_content.append(payload)
+        command_comment.append(instruction)
+        command.append(instruction_hex_code)
+        payload.append(payload_data)
 
         # Check if we are at the end of the psuedo-assembly code
         if idx >= len(assembly):
             break
 
-    # Do a sanity check to make sure the rom content is less or equal to 255
-    if len(rom_content) > 255:
-        print("ERROR: ROM content is greater than 255 bytes!")
-        exit()
-
-    return rom_content
+    return command, command_comment, payload
 
 
 # Function that generates the ROM file in a proper format
-def generate_rom(rom_content, comment_counter):
+def generate_rom(command, command_comment, payload, comment_counter):
     # Start of the ROM file
     rom_file = """
 library ieee;
@@ -327,20 +322,22 @@ architecture RTL of ROM is
   -- Set the ROM size
   constant rom_size : integer := """
     # Add the size of the ROM to the ROM file
-    rom_file += str(len(rom_content) - comment_counter - 1)
+    rom_file += str(len(command) - comment_counter - 1)
     rom_file += """; -- Should be between 0 and 255
 
   -- Initialize the ROM with the data.
-  type rom_t is array(0 to rom_size) of std_logic_vector(31 downto 0);
+  type rom_8b_t is array(0 to rom_size) of std_logic_vector(7 downto 0);
+  type rom_32b_t is array(0 to rom_size) of std_logic_vector(31 downto 0);
 
-  -- The ROM data
-  constant spi_rom : rom_t := (
+  -- The Instruction data
+  constant instruction_rom : rom_8b_t := (
 """
-    # Add two rom contents to each line of the ROM file
+    # Add the instructions to the ROM file
     idx = 0
+    comment_idx = 0
     while True:
         # Copy the content into a variable
-        content = rom_content[idx]
+        content = command[idx]
         # Check if the line is a comment
         if content.startswith(";"):
             # Remove the semicolon
@@ -350,19 +347,54 @@ architecture RTL of ROM is
             # Increment the index
             idx += 1
         else:
-            formatted_line = "x\"" + rom_content[idx] + "\", " + "x\""
-            formatted_line += rom_content[idx + 1]
+            formatted_line = "x\"" + command[idx]
             # If its not the last line, add a comma
-            if idx + 2 < len(rom_content):
+            if idx + 2 < len(command):
+                formatted_line += "\","
+            else:
+                formatted_line += "\""
+            # Add a comment denoting the instruction
+            formatted_line += " -- " + command_comment[comment_idx]
+            rom_file += "    " + formatted_line + "\n"
+            # Increment the index
+            idx += 1
+            comment_idx += 1
+
+        # Check if we are at the end of the rom content
+        if idx >= len(command):
+            break
+
+    rom_file += """  );
+
+    -- The payload data
+  constant payload_rom : rom_32b_t := ("""
+    
+    # Add the data to the ROM file
+    idx = 0
+    while True:
+        # Copy the content into a variable
+        content = payload[idx]
+        # Check if the line is a comment
+        if content.startswith(";"):
+            # Remove the semicolon
+            content = content[1:]
+            # Add the comment to the ROM file
+            rom_file += "    --" + content + "\n"
+            # Increment the index
+            idx += 1
+        else:
+            formatted_line = "x\"" + payload[idx]
+            # If its not the last line, add a comma
+            if idx + 2 < len(payload):
                 formatted_line += "\","
             else:
                 formatted_line += "\""
             rom_file += "    " + formatted_line + "\n"
             # Increment the index
-            idx += 2
+            idx += 1
 
         # Check if we are at the end of the rom content
-        if idx >= len(rom_content):
+        if idx >= len(payload):
             break
 
     # End of the ROM file
@@ -384,8 +416,8 @@ begin
         data        <= (others => '0');
       else
         -- Output the data at the address.
-        instruction <= spi_rom(to_integer(unsigned(address)))(7 downto 0);
-        data        <= spi_rom(to_integer(unsigned(address + 1)));
+        instruction <= instruction_rom(to_integer(unsigned(address)));
+        data        <= payload_rom(to_integer(unsigned(address)));
       end if;
     end if;
   end process;
@@ -402,5 +434,5 @@ end architecture;"""
 # Main function
 rom = load_rom()
 rom_optimized, comment_counter = optimize_content(rom)
-rom_content = parse_content(rom_optimized)
-generate_rom(rom_content, comment_counter)
+command, command_comment, payload = parse_content(rom_optimized)
+generate_rom(command, command_comment, payload, comment_counter)
