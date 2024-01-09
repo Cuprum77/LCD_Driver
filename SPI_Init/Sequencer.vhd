@@ -24,7 +24,8 @@ entity Sequencer is
     spi_scl         : out std_logic; -- SPI SCL (Clock)
     spi_cs          : out std_logic; -- SPI CS (Chip Select)
     spi_dc          : out std_logic; -- SPI DC (Data/Command)
-    -- Error output
+    -- Sequencer outputs
+    done            : out std_logic; -- HIGH when done
     sequencer_error : out std_logic  -- HIGH if error
   );
 end entity;
@@ -144,10 +145,13 @@ begin
         sequencer_state <= reset_state;
          -- Reset the error signal
         sequencer_error <= '0';
+        done <= '0';
       else
         case sequencer_state is
           -- Set up the state machine, this is also the reset state
           when reset_state =>
+            sequencer_error <= '0';
+            done <= '0';
             rom_pointer <= (others => '0'); -- Reset the pointer
             sequencer_state <= fetch_rom_data_state;
 
@@ -263,7 +267,7 @@ begin
           -- Do absolutely nothing here
           -- When we reach this state, we are done.
           when idle_state =>
-            null;
+            done <= '1';
 
           -- If we reach this state, something went wrong.
           -- Set the error signal and freeze the state machine in this state

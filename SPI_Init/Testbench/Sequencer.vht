@@ -14,6 +14,7 @@ architecture RTL of sequencer_tb is
   signal spi_sda          : std_logic := '0';
   signal spi_scl          : std_logic := '0';
   signal spi_cs           : std_logic := '0';
+  signal done             : std_logic := '0';
   signal sequencer_error  : std_logic := '0';
 
   -- adding the component declaration
@@ -27,7 +28,8 @@ architecture RTL of sequencer_tb is
       spi_scl         : out std_logic; -- SPI SCL (Clock)
       spi_cs          : out std_logic; -- SPI CS (Chip Select)
       spi_dc          : out std_logic; -- SPI DC (Data/Command)
-      -- Error output
+      -- Sequencer outputs
+      done            : out std_logic; -- HIGH when done
       sequencer_error : out std_logic  -- HIGH if error
     );
   end component;
@@ -41,6 +43,7 @@ begin
       spi_sda         => spi_sda,
       spi_scl         => spi_scl,
       spi_cs          => spi_cs,
+      done            => done,
       sequencer_error => sequencer_error
     );
 
