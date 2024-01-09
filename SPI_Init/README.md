@@ -72,6 +72,7 @@ When the sequencer is done, it will enter an idle state and stay there until it 
 | spi_scl   | out       | 1 | | SPI clock |
 | spi_cs    | out       | 1 | | SPI chip select |
 | spi_dc    | out       | 1 | | SPI data command |
+| done      | out       | 1 | HIGH when done | Turns on when the module is done |
 | sequence_error | out  | 1 | HIGH on error | Error signal |
 
 ### Instruction Set
@@ -129,7 +130,7 @@ The script can be found at [rom_generator.py](/rom_generator.py).
 
 The script expects a text file containing the instructions for the sequencer. Each instruction should be on its own line, and the instruction and its payload should be separated by a space.
 
-An example of a valid instruction file for an ST7789V display can be found [here](/st7789v_instructions.txt).
+An example of a valid instruction file for an ST7789V display can be found [here](/Example/st7789v_instructions.txt).
 
 ### Error
 If the sequence encounters an unexpected instruction, it will throw an error and stop the sequence. This is to prevent the sequencer from sending out garbage data to the LCD display.
