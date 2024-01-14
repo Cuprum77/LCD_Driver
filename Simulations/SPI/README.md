@@ -5,7 +5,6 @@ This is the files for the SPI simulation. The simulation is done using ModelSim 
 ## Simulation
 
 The goal of this simulation is to verify the functionality of the SPI interface and that it outputs the correct data when it should.
-Timing and the order of data being sent is important here for the display to work correctly. If the order appears to be wrong, we can either rectify it in this module, or later in the sequencer itself.
 
 Note, the module is somewhat limited by design. It will not prevent the user from changing the input during transmission, and it will not ignore them either. This means that if the user changes the `data` input during transmission, the module will send the new data instead of the old. This is something to keep in mind when using the module, which is also why the `DONE` signal is important.
 
