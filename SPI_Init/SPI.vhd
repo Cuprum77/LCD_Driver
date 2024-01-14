@@ -37,7 +37,7 @@ architecture RTL of SPIDriver is
     hold_state
   ); 
 
-  signal spi_state : state_machine := idle;
+  signal spi_state : state_machine := idle_state;
     
   signal delay_cnt       	: std_logic_vector(1 downto 0);
   signal delay_done_full 	: std_logic;
@@ -53,7 +53,7 @@ begin
   delay_process : process(clk)
   begin
     if rising_edge(clk) then
-      if rst = '1' or delay_done = '1' or spi_state = idle or spi_state = hold then
+      if rst = '1' or delay_done = '1' or spi_state = idle_state or spi_state = hold_state then
         delay_cnt <= (others => '0');
       else
         delay_cnt <= delay_cnt + 1;
@@ -66,14 +66,14 @@ begin
   -- Useful for setting the clock high and low with the appropriate delays
   delay_done_full <= '1' when delay_cnt = "10" else '0';
   delay_done_half <= '1' when delay_cnt = "01" else '0';
-  delay_done <= delay_done_half when spi_state = clk1 or spi_state = shiftout else delay_done_full;
+  delay_done <= delay_done_half when spi_state = clk1_state or spi_state = shiftout_state else delay_done_full;
 
   -- This is the bit counter
   -- It will set the number of bits to be shifted out and count down appropriately
   bit_cnt_process : process(clk)
   begin
     if rising_edge(clk)then
-      if rst = '1' or spi_state = idle or spi_state = hold then
+      if rst = '1' or spi_state = idle_state or spi_state = hold_state then
         case bit_width is
           when "000" => bit_cnt <= 7;
           when "001" => bit_cnt <= 15;
@@ -82,7 +82,7 @@ begin
           when "100" => bit_cnt <= 31;
           when others => bit_cnt <= 7;
         end case;
-      elsif spi_state = clk1 and delay_done = '1' and bit_cnt > 0 then
+      elsif spi_state = clk1_state and delay_done = '1' and bit_cnt > 0 then
         bit_cnt <= bit_cnt - 1;
       end if;
     end if;
@@ -98,7 +98,7 @@ begin
   begin
   if rising_edge(clk) then
     if rst = '1' then
-      spi_state <= idle;
+      spi_state <= idle_state;
     else
       case spi_state is
         -- waiting for a command
@@ -109,9 +109,9 @@ begin
           done <= '1';
           
           if SEND = '1' then
-            spi_state <= start;
+            spi_state <= start_state;
           else
-            spi_state <= idle;
+            spi_state <= idle_state;
           end if;
         -- start the transmission
         when start_state =>
@@ -120,7 +120,7 @@ begin
           done <= '0';
           
           if delay_done = '1' then
-            spi_state <= shiftout;
+            spi_state <= shiftout_state;
           end if;
         -- shift out the DATA and set the clock low
         when shiftout_state =>
@@ -128,7 +128,7 @@ begin
           spi_scl <= '0';
           
           if delay_done = '1' then
-            spi_state <= clk1;
+            spi_state <= clk1_state;
           end if;
         -- set the clock high
         when clk1_state =>
@@ -136,9 +136,9 @@ begin
 				
           if delay_done = '1' then
             if bit_cnt = 0 then
-              spi_state <= stop;
+              spi_state <= stop_state;
             else
-              spi_state <= shiftout;
+              spi_state <= shiftout_state;
             end if;
           end if;
         -- stop the transmission
@@ -147,7 +147,7 @@ begin
           spi_scl <= '0';
        
           if delay_done = '1' then
-            spi_state <= hold;
+            spi_state <= hold_state;
           end if;
         -- hold the transmission
         when hold_state =>
@@ -155,9 +155,9 @@ begin
           done <= '1';
 
           if send = '1' then
-            spi_state <= start;
+            spi_state <= start_state;
           else
-            spi_state <= idle;
+            spi_state <= idle_state;
           end if;      
       end case;
     end if;
