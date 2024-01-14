@@ -9,9 +9,9 @@ The writeup will be available on my website once the project is finished.
 
 ## Project layout
 - [Breakout_1](Breakout_1) - KiCAD files for the breakout board
+- [Initializer](Initializer) - The VHDL code for the SPI initialization
 - [RGB_Driver](RGB_Driver) - The VHDL code for the RGB driver
 - [RP2040 Firmware](RP2040%20Firmware) - The firmware for the RP2040 microcontroller handling the touch input
-- [SPI_Init](SPI_Init) - The VHDL code for the SPI initialization
 - [Simulations](Simulations) - The files for the simulations of the project
 - [UVVM_Light](https://github.com/UVVM/UVVM_Light) - The UVVM framework
 

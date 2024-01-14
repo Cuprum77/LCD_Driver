@@ -3,6 +3,7 @@
 This repo contains the hardware implementation of the SPI protocol for the FPGA. The SPI protocol is used to communicate with the LCD display.
 
 ## Table of contents
+  - [Structure](#structure)
   - [SPI](#spi)
     - [Port map](#port-map)
     - [Bit Width](#bit-width)
@@ -20,8 +21,15 @@ This repo contains the hardware implementation of the SPI protocol for the FPGA.
     - [ROM Generator](#rom-generator)
     - [Error](#error)
 
+## Structure
+This repo is divided into several folders, each containing the files needed for this module.
+The structure is as follows:
+- [SPI](SPI) - The SPI module
+- [Sequencer](Sequencer) - The sequencer module
+- [ROM Generator](ROM_Generator) - The ROM generator script
+
 ## SPI
-The SPI is a state machine that makes sure the bits are sent out in the correct order and at the correct time. The implemented can be found in the file [spi.vhd](/spi.vhd).
+The SPI is a state machine that makes sure the bits are sent out in the correct order and at the correct time. The implemented can be found in the file [spi.vhd](SPI/SPI.vhd).
 
 Unlike other SPI implementations, this is master only. Meaning that it can only transmit data and not receive it. This is because the LCD display doesn't need to send any data back to the FPGA.
 
@@ -56,7 +64,7 @@ The state machine will start at the `bit_width` setting, so if you select 8 bits
 Warning; you still need to provide the entire 32 bits to the component even if you don't need every bit. Simply pad out the remaining bits with whatever you want if you use less than 32 bits.
 
 ## Sequencer
-The sequencer is a state machine that takes in instructions from a generated ROM file and sends them to the SPI component. The implemented can be found in the file [sequencer.vhd](/sequencer.vhd).
+The sequencer is a state machine that takes in instructions from a generated ROM file and sends them to the SPI component. The implemented can be found in the file [sequencer.vhd](Sequencer/sequencer.vhd).
 
 This will execute every instruction in the ROM file, and will stop if it encounters an error. This is to prevent the sequencer from sending out garbage data to the LCD display.
 
@@ -124,13 +132,12 @@ The ROM is a generated file that contains the instructions for the sequencer. It
 This should be generated using the [ROM Generator](#rom-generator).
 
 ### ROM Generator
-The ROM generator is a python script that takes in a text file containing the instructions for the Sequencer and outputs a VHDL file containing the ROM needed for the Sequencer to synthesize.
-
-The script can be found at [rom_generator.py](/rom_generator.py).
+The ROM generator is a terminal script that takes in the text file as an argument and outputs a VHDL file containing the ROM.
+The script can be found at [rom_generator.py](ROM/rom_generator.py).
 
 The script expects a text file containing the instructions for the sequencer. Each instruction should be on its own line, and the instruction and its payload should be separated by a space.
 
-An example of a valid instruction file for an ST7789V display can be found [here](/Example/st7789v_instructions.txt).
+An example of a valid instruction file for an ST7789V display can be found [here](ROM/Example/st7789v_instructions.txt).
 
 ### Error
 If the sequence encounters an unexpected instruction, it will throw an error and stop the sequence. This is to prevent the sequencer from sending out garbage data to the LCD display.
