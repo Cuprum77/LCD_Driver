@@ -1,4 +1,3 @@
-
 # Set minimum required version of CMake
 cmake_minimum_required(VERSION 3.15)
 
@@ -35,9 +34,14 @@ target_include_directories(${PROJECT_NAME} PUBLIC
     ${CMAKE_CURRENT_LIST_DIR}
 )
 
+add_subdirectory(${CMAKE_SOURCE_DIR}/lib/touch)
+link_directories(${CMAKE_SOURCE_DIR}/lib/touch)
+
 # Link to pico_stdlib (gpio, time, etc. functions)
 target_link_libraries(${PROJECT_NAME} 
     pico_stdlib
+    hardware_i2c
+    touch
 )
 
 # Create map/bin/hex/uf2 files
