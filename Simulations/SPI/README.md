@@ -11,20 +11,13 @@ Note, the module is somewhat limited by design. It will not prevent the user fro
 
 ## Simulation Setup
 
-To verify the functionality of the SPI interface, we will attempt to simulate a simple write to a SPI based LCD such as the ST7789V. The testbench will send pixel data. The following steps need to be taken:
-
-- Set the display cursor to 0,0
-- Tell the display to expect pixel data
-- Send 10 pixels worth of data
-
-This should require us to first send 5 bytes of data to set the cursor, then a single byte to enable pixel data, ending with 10 words of pixel data. With a word in this case being 16 bits. Some displays do allow more bits per pixel, but thats not important for now.
-
-This is simply the higher level functionality we want to test. The SPI interface itself has a few more things to test. The following is a list of things we want to test:
+There are a few things that I want to test with this module, and they are as follows:
 - [Case 1](#case-1): Reset behaves as expected
 - [Case 2](#case-2): `SEND` is ignored during reset and transmission
 - [Case 3](#case-3): The `DONE` line is set correctly
 - [Case 4](#case-4): Bit order can be changed
-- [Case 5](#case-5): The higher level goal is achieved
+
+If these all pass, including a manual verification that the timings are correct, then the module should be ready for use.
 
 ### Case 1
 
@@ -59,10 +52,6 @@ Replicate [Case 3](#case-3), but do so with all the bit orders possible. Signal 
 We also care about the bits being sent in this scenario.
 
 This test will conduct one transmission for each bit width setting.
-
-### Case 5
-
-This test will essentially implement the high level functional test as described in [Simulation Setup](#simulation-setup).
 
 ## Results
 
