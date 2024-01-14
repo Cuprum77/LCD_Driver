@@ -1,0 +1,4 @@
+# Remove all text files
+*.txt
+# Keep all log files
+!*_log.txt
