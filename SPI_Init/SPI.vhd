@@ -39,10 +39,10 @@ architecture RTL of SPIDriver is
 
   signal spi_state : state_machine := idle_state;
     
-  signal delay_cnt       	: std_logic_vector(1 downto 0);
-  signal delay_done_full 	: std_logic;
-  signal delay_done_half 	: std_logic;
-  signal delay_done      	: std_logic;
+  signal delay_cnt       	: std_logic_vector(1 downto 0) := (others => '0');
+  signal delay_done_full 	: std_logic := '0';
+  signal delay_done_half 	: std_logic := '0';
+  signal delay_done      	: std_logic := '0';
 
   signal bit_cnt : integer range 0 to 31;
 	

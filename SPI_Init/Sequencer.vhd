@@ -91,11 +91,11 @@ architecture RTL of Sequencer is
   end component;
 
   -- Set up the internal signals that handle the ROM
-  signal rom_pointer          : std_logic_vector(7 downto 0);
-  signal rom_address          : std_logic_vector(7 downto 0);
-  signal rom_instruction      : std_logic_vector(7 downto 0);
-  signal rom_data             : std_logic_vector(31 downto 0);
-  signal rom_size             : std_logic_vector(7 downto 0);
+  signal rom_pointer          : std_logic_vector(7 downto 0) := (others => '0');
+  signal rom_address          : std_logic_vector(7 downto 0) := (others => '0');
+  signal rom_instruction      : std_logic_vector(7 downto 0) := (others => '0');
+  signal rom_data             : std_logic_vector(31 downto 0) := (others => '0');
+  signal rom_size             : std_logic_vector(7 downto 0) := (others => '0');
 
   -- Set up the internal signals that handle the SPIDriver
   signal spi_send   : std_logic;
