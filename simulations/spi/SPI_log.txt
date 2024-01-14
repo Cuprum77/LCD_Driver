@@ -1,0 +1,76 @@
+UVVM:      
+UVVM:      --------------------------------------------------------------------------------------------------------------------------------------------------------------------
+UVVM:      ***  REPORT OF GLOBAL CTRL ***
+UVVM:      --------------------------------------------------------------------------------------------------------------------------------------------------------------------
+UVVM:                                IGNORE    STOP_LIMIT
+UVVM:                NOTE         :  REGARD         0
+UVVM:                TB_NOTE      :  REGARD         0
+UVVM:                WARNING      :  REGARD         0
+UVVM:                TB_WARNING   :  REGARD         0
+UVVM:                MANUAL_CHECK :  REGARD         0
+UVVM:                ERROR        :  REGARD         0
+UVVM:                TB_ERROR     :  REGARD         1
+UVVM:                FAILURE      :  REGARD         1
+UVVM:                TB_FAILURE   :  REGARD         1
+UVVM:      --------------------------------------------------------------------------------------------------------------------------------------------------------------------
+UVVM:      
+UVVM: ID_LOG_MSG_CTRL                    0.0 ns  TB seq.                        enable_log_msg(ALL_MESSAGES). 
+UVVM: 
+UVVM: 
+UVVM: ID_LOG_HDR                         0.0 ns  TB seq.                        Starting the simulation for the SPI module
+UVVM: -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+UVVM: ID_CLOCK_GEN                       0.0 ns  TB seq.                        Starting clock clock
+UVVM: ID_GEN_PULSE                      20.0 ns  TB seq.                        Pulsed to 1 for 10000 ps. 'Generating Reset'
+UVVM: 
+UVVM: 
+UVVM: ID_LOG_HDR                        30.0 ns  TB seq.                        Verifying that the signals meet requirements
+UVVM: -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+UVVM: ID_POS_ACK                        30.0 ns  TB seq.                        check_value() => OK, for std_logic '0' (exp: '0'). 'Checking SPI_SDA'
+UVVM: ID_POS_ACK                        30.0 ns  TB seq.                        check_value() => OK, for std_logic '0' (exp: '0'). 'Checking SPI_SCL'
+UVVM: ID_POS_ACK                        30.0 ns  TB seq.                        check_value() => OK, for std_logic '1' (exp: '1'). 'Checking SPI_CS'
+UVVM: ID_POS_ACK                        30.0 ns  TB seq.                        check_value() => OK, for std_logic '1' (exp: '1'). 'Checking DONE'
+UVVM: 
+UVVM: 
+UVVM: ID_LOG_HDR                        40.0 ns  TB seq.                        Verifying the reset, with a send signal
+UVVM: -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+UVVM: ID_GEN_PULSE                      50.0 ns  TB seq.                        Pulsed to 1 for 10000 ps. 'Generating Reset'
+UVVM: ID_GEN_PULSE                      60.0 ns  TB seq.                        Pulsed to 1 for 10000 ps. 'Generating Send'
+UVVM: ID_POS_ACK                        80.0 ns  TB seq.                        check_value() => OK, for std_logic '1' (exp: '1'). 'Checking Done'
+UVVM: ID_GEN_PULSE                     110.0 ns  TB seq.                        Pulsed to 1 for 10000 ps. 'Generating Reset'
+UVVM: 
+UVVM: 
+UVVM: ID_LOG_HDR                       130.0 ns  TB seq.                        Verifying the DONE signal
+UVVM: -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+UVVM: ID_GEN_PULSE                     140.0 ns  TB seq.                        Pulsed to 1 for 10000 ps. 'Transmit the data'
+UVVM: ID_POS_ACK                       140.0 ns  TB seq.                        check_value() => OK, for std_logic '1' (exp: '1'). 'Checking Done before transmission'
+UVVM: ID_POS_ACK                       150.0 ns  TB seq.                        check_value() => OK, for std_logic '0' (exp: '0'). 'Checking Done during transmission'
+UVVM: ID_POS_ACK                       520.0 ns  TB seq.                        check_value() => OK, for std_logic '1' (exp: '1'). 'Checking Done after transmission'
+UVVM: 
+UVVM: 
+UVVM: ID_LOG_HDR                       520.0 ns  TB seq.                        Verifying the DATA signal (8 bits)
+UVVM: -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+UVVM: ID_POS_ACK                       520.0 ns  TB seq.                        check_value() => OK, for slv x"000000AA"'. 'Checking data, 8 bits'
+UVVM: 
+UVVM: 
+UVVM: ID_LOG_HDR                       620.0 ns  TB seq.                        Verifying the DATA signal (16 bits)
+UVVM: -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+UVVM: ID_GEN_PULSE                     630.0 ns  TB seq.                        Pulsed to 1 for 10000 ps. 'Transmit the data'
+UVVM: ID_POS_ACK                      1300.0 ns  TB seq.                        check_value() => OK, for slv x"0000AAAA"'. 'Checking data'
+UVVM: 
+UVVM: 
+UVVM: ID_LOG_HDR                      1400.0 ns  TB seq.                        Verifying the DATA signal (18 bits)
+UVVM: -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+UVVM: ID_GEN_PULSE                    1410.0 ns  TB seq.                        Pulsed to 1 for 10000 ps. 'Transmit the data'
+UVVM: ID_POS_ACK                      2160.0 ns  TB seq.                        check_value() => OK, for slv x"0002AAAA"'. 'Checking data'
+UVVM: 
+UVVM: 
+UVVM: ID_LOG_HDR                      2260.0 ns  TB seq.                        Verifying the DATA signal (24 bits)
+UVVM: -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+UVVM: ID_GEN_PULSE                    2270.0 ns  TB seq.                        Pulsed to 1 for 10000 ps. 'Transmit the data'
+UVVM: ID_POS_ACK                      3260.0 ns  TB seq.                        check_value() => OK, for slv x"00AAAAAA"'. 'Checking data'
+UVVM: 
+UVVM: 
+UVVM: ID_LOG_HDR                      3360.0 ns  TB seq.                        Verifying the DATA signal (32 bits)
+UVVM: -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+UVVM: ID_GEN_PULSE                    3370.0 ns  TB seq.                        Pulsed to 1 for 10000 ps. 'Transmit the data'
+UVVM: ID_POS_ACK                      4680.0 ns  TB seq.                        check_value() => OK, for slv x"AAAAAAAA"'. 'Checking data'

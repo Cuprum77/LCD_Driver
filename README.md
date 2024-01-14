@@ -8,11 +8,11 @@ This project aims to create a driver board for the new 40 pin LCDs from China th
 The writeup will be available on my website once the project is finished.
 
 ## Project layout
-- [Breakout_1](Breakout_1) - KiCAD files for the breakout board
-- [Initializer](Initializer) - The VHDL code for the SPI initialization
-- [RGB_Driver](RGB_Driver) - The VHDL code for the RGB driver
-- [RP2040 Firmware](RP2040%20Firmware) - The firmware for the RP2040 microcontroller handling the touch input
-- [Simulations](Simulations) - The files for the simulations of the project
+- [display_interface](display_interface/) - The VHDL code for the RGB interface
+- [hardware](hardware/) - KiCAD files for the breakout board
+- [initializer](initializer/) - The VHDL code for the SPI initialization
+- [Simulations](Simulations/) - The files for the simulations of the project
+- [touch_controller_firmware](touch_controller_firmware/) - The firmware for the RP2040 microcontroller handling the touch input
 - [UVVM_Light](https://github.com/UVVM/UVVM_Light) - The UVVM framework
 
 ## License

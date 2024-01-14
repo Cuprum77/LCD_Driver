@@ -29,4 +29,4 @@ fp-info-cache
 *.kicad_pcb.zip
 
 # Backup Files
-Breakout_1/Breakout_1-backups/
+*-backups/
