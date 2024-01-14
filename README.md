@@ -9,6 +9,7 @@ The writeup will be available on my website once the project is finished.
 
 ## Project layout
 - [display_interface](display_interface/) - The VHDL code for the RGB interface
+- [fpga](fpga/) - The necessary files for the FPGA
 - [hardware](hardware/) - KiCAD files for the breakout board
 - [initializer](initializer/) - The VHDL code for the SPI initialization
 - [simulations](simulations/) - The files for the simulations of the project
