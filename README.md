@@ -11,7 +11,7 @@ The writeup will be available on my website once the project is finished.
 - [display_interface](display_interface/) - The VHDL code for the RGB interface
 - [hardware](hardware/) - KiCAD files for the breakout board
 - [initializer](initializer/) - The VHDL code for the SPI initialization
-- [Simulations](Simulations/) - The files for the simulations of the project
+- [simulations](simulations/) - The files for the simulations of the project
 - [touch_controller_firmware](touch_controller_firmware/) - The firmware for the RP2040 microcontroller handling the touch input
 - [UVVM_Light](https://github.com/UVVM/UVVM_Light) - The UVVM framework
 
