@@ -7,9 +7,8 @@ This folder contains the files that were used for simulation of this project. Ea
 The subfolders each contains a simulation for a specific part of the project, with the exception of the `UVVM` folder which contains the compiled UVVM library, which you need to compile in order to run the simulations.
 
 The subfolders are structured as follows:
-- [SPI](SPI/README.md) - Simulation of the SPI interface
-- [Sequencer](Sequencer/README.md) - Simulation of the sequencer (with the SPI interface)
-- [UVVM](UVVM/README.md) - UVVM library compiled for ModelSim
+- [spi](spi/) - Simulation of the SPI interface
+- [sequencer](sequencer/) - Simulation of the sequencer (with the SPI interface)
 
 ## Compiling UVVM
 

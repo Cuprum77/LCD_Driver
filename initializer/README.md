@@ -29,7 +29,7 @@ The structure is as follows:
 - [rom](rom/) - The ROM generator script
 
 ## SPI
-The SPI is a state machine that makes sure the bits are sent out in the correct order and at the correct time. The implemented can be found in the file [spi.vhd](SPI/SPI.vhd).
+The SPI is a state machine that makes sure the bits are sent out in the correct order and at the correct time. The implemented can be found in the file [spi.vhd](spi/spi.vhd).
 
 Unlike other SPI implementations, this is master only. Meaning that it can only transmit data and not receive it. This is because the LCD display doesn't need to send any data back to the FPGA.
 
