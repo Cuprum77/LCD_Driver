@@ -17,6 +17,7 @@ When the sequencer is done, it will enter an idle state and stay there until it 
     - [wait](#wait)
     - [Example](#example)
 - [Error](#error)
+- [Testbench](#testbench)
 
 ## Port map
 
@@ -78,3 +79,6 @@ This psuedo code can be fed into the ROM generator to create a ROM.vhd file, fou
 If the sequence encounters an unexpected instruction, it will throw an error and stop the sequence. This is to prevent the sequencer from sending out garbage data to the LCD display.
 
 To exit the error state, the system needs to be reset.
+
+## Testbench
+The testbench for the sequencer can be found in the [sequencer.vht](testbench/sequencer.vht) file.

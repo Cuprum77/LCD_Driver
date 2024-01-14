@@ -447,7 +447,7 @@ end process;
 end architecture;"""
 
 		# Write the ROM file
-		with open('ROM.vhd', 'w') as f:
+		with open('rom.vhd', 'w') as f:
 			f.write(rom_file)
 
 		print("ROM file generated successfully!")

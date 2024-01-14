@@ -32,3 +32,6 @@ The `bit_width` variable is special, as it allows us to vary the number of bits 
 The state machine will start at the `bit_width` setting, so if you select 8 bits, it will start at index 7 of your data and work its way down to 0.
 
 Warning; you still need to provide the entire 32 bits to the component even if you don't need every bit. Simply pad out the remaining bits with whatever you want if you use less than 32 bits.
+
+## Testbench
+The testbench for the sequencer can be found in the [spi.vht](testbench/spi.vht) file.
