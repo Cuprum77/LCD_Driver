@@ -23,5 +23,11 @@ This should compile the UVVM library and place it in the `UVVM` folder.
 
 ## Running the simulations
 
+Note, all UVVM based testbenches need to be configured to use VHDL-2008 or the simulation will throw errors!
+
 Simply open up any of the project files in ModelSim and run the simulation.
 The UVVM framework should be automatically loaded from the `UVVM` folder assuming you have compiled it correctly.
+
+## UVVM Documentation
+
+The documentation can be found [here](https://uvvm.github.io/), with the specific library used in this project located [here](https://uvvm.github.io/utility_library.html).
