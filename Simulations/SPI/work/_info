@@ -9,8 +9,8 @@ z2
 cModel Technology
 dP:/Electronic Projects/FPGA/FPGA LCD Driver
 Espi_tb
-Z0 w1705241882
-Z1 DPx9 uvvm_util 11 sbi_bfm_pkg 0 22 B[h_EV`kV525^gPbWL@@T3
+Z0 w1705250873
+Z1 DPx9 uvvm_util 11 spi_bfm_pkg 0 22 ;JVa4:^bO`[PAXb]c7XWb0
 Z2 D^#x9 uvvm_util 17 uvvm_util_context 0 22 ^<_U346OK2[zHP=8^zjH53
 Z3 DPx9 uvvm_util 12 func_cov_pkg 0 22 8oa7gBVcR9NRT@<L3Y60U3
 Z4 DPx9 uvvm_util 8 rand_pkg 0 22 _Vad9FnV4n1XkDO?c=En=1
@@ -34,13 +34,13 @@ Z21 8P:/Electronic Projects/FPGA/FPGA LCD Driver/SPI_Init/Testbench/SPI_UVVM.vht
 Z22 FP:/Electronic Projects/FPGA/FPGA LCD Driver/SPI_Init/Testbench/SPI_UVVM.vht
 l0
 L8
-V^7B4n2E[OQn_C4dOlNVSA0
-!s100 X7NA?dkO;dk`c7N5dCS>l2
+VU4G>i:L^<h>0k66f9>Bl01
+!s100 @mcT7m7W^Cba1HKVz6O3Y1
 Z23 OV;C;10.5b;63
 33
-Z24 !s110 1705241989
+Z24 !s110 1705250876
 !i10b 1
-Z25 !s108 1705241988.000000
+Z25 !s108 1705250876.000000
 Z26 !s90 -reportprogress|300|-work|work|-2008|-explicit|-stats=none|P:/Electronic Projects/FPGA/FPGA LCD Driver/SPI_Init/Testbench/SPI_UVVM.vht|
 Z27 !s107 P:/Electronic Projects/FPGA/FPGA LCD Driver/SPI_Init/Testbench/SPI_UVVM.vht|
 !i113 1
@@ -66,11 +66,11 @@ R16
 R17
 R18
 R19
-Z30 DEx4 work 6 spi_tb 0 22 ^7B4n2E[OQn_C4dOlNVSA0
-l46
+Z30 DEx4 work 6 spi_tb 0 22 U4G>i:L^<h>0k66f9>Bl01
+l47
 L11
-Z31 V1YT0ckbD;:Q9zkL96VDQn2
-Z32 !s100 =1L]Vm`=hl4gGeC_;1OZB1
+VG>JE0e1;XXIL68WS]em7a2
+!s100 W>We3nhX=nC>z<2k>d8PX2
 R23
 33
 R24
@@ -82,32 +82,32 @@ R27
 R28
 R29
 Espidriver
-Z33 w1705239993
-Z34 DPx4 ieee 15 std_logic_arith 0 22 [G314=:2zXJ`VORJe1J@Z1
-Z35 DPx4 ieee 18 std_logic_unsigned 0 22 ;eZjO2D4ZDz<]0>8AL<ne1
+Z31 w1705239993
+Z32 DPx4 ieee 15 std_logic_arith 0 22 [G314=:2zXJ`VORJe1J@Z1
+Z33 DPx4 ieee 18 std_logic_unsigned 0 22 ;eZjO2D4ZDz<]0>8AL<ne1
 R16
 R18
 R19
 R20
-Z36 8P:/Electronic Projects/FPGA/FPGA LCD Driver/SPI_Init/SPI.vhd
-Z37 FP:/Electronic Projects/FPGA/FPGA LCD Driver/SPI_Init/SPI.vhd
+Z34 8P:/Electronic Projects/FPGA/FPGA LCD Driver/SPI_Init/SPI.vhd
+Z35 FP:/Electronic Projects/FPGA/FPGA LCD Driver/SPI_Init/SPI.vhd
 l0
 L12
 VFU6f3ck@J@KK_^gc5YU8z2
 !s100 [7UfmIofbmh>6mcKR<dH`0
 R23
 32
-Z38 !s110 1705241988
+R24
 !i10b 1
 R25
-Z39 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|P:/Electronic Projects/FPGA/FPGA LCD Driver/SPI_Init/SPI.vhd|
-Z40 !s107 P:/Electronic Projects/FPGA/FPGA LCD Driver/SPI_Init/SPI.vhd|
+Z36 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|P:/Electronic Projects/FPGA/FPGA LCD Driver/SPI_Init/SPI.vhd|
+Z37 !s107 P:/Electronic Projects/FPGA/FPGA LCD Driver/SPI_Init/SPI.vhd|
 !i113 1
-Z41 o-work work -2002 -explicit
+Z38 o-work work -2002 -explicit
 R29
 Artl
-R34
-R35
+R32
+R33
 R16
 R18
 R19
@@ -118,11 +118,11 @@ VROi;nPMGK_<NY<nSKBaGG0
 !s100 ciDkzzV=hdIUfWBHe@O;z0
 R23
 32
-R38
+R24
 !i10b 1
 R25
-R39
-R40
+R36
+R37
 !i113 1
-R41
+R38
 R29
