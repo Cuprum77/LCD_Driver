@@ -57,12 +57,13 @@ begin
 
   main : process
   begin
-    set_log_file_name("Sequencer_log.txt");
+    set_log_file_name("Top_log.txt");
     set_alert_stop_limit(ERROR, 0); -- Do not stop
     report_global_ctrl(VOID); -- Show global control
     enable_log_msg(ALL_MESSAGES); -- Show all log messages
 
-    log(ID_LOG_HDR, "Starting the simulation for the Sequencer module");
+    log(ID_LOG_HDR, "Starting the simulation for the entire project!");
+    log(ID_LOG_HDR, "This will take at least 10 minutes!");
 
     clk_en <= true; -- Start the clock generator
 
