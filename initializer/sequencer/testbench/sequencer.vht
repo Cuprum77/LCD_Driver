@@ -75,7 +75,7 @@ architecture RTL of sequencer_tb is
 
 begin
 
-  DUUT : Sequencer
+  DUT : Sequencer
     port map(
       clk             => clk,
       rst             => rst,
