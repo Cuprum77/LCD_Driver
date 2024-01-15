@@ -370,7 +370,7 @@ constant instruction_rom : rom_8b_t := (
 			else:
 				formatted_line = "x\"" + command[idx]
 				# If its not the last line, add a comma
-				if idx + 2 < len(command):
+				if idx + 1 < len(command):
 					formatted_line += "\","
 				else:
 					formatted_line += "\""
@@ -407,7 +407,7 @@ constant instruction_rom : rom_8b_t := (
 			else:
 				formatted_line = "x\"" + payload[idx]
 				# If its not the last line, add a comma
-				if idx + 2 < len(payload):
+				if idx + 1 < len(payload):
 					formatted_line += "\","
 				else:
 					formatted_line += "\""
