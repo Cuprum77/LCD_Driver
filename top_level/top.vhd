@@ -68,6 +68,7 @@ architecture RTL of top is
   component heart is
     port(
       sysclk  : in std_logic;
+      rst     : in std_logic;
       LED     : out std_logic_vector(3 downto 0)
     );
   end component;
@@ -189,6 +190,7 @@ begin
   heart_comp : heart
     port map (
       sysclk  => sysclk,
+      rst     => rst,
       LED     => led
     );
 

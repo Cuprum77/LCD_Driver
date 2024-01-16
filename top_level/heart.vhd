@@ -33,13 +33,13 @@ begin
   heart <= heart_cnt(22);
 
   heart_rider : process(heart)
-	begin
+  begin
     if rst = '1' then
       heart_led <= "1000";
-		elsif rising_edge(heart) then
+    elsif rising_edge(heart) then
       heart_led <= heart_led(2 downto 0) & heart_led(3);
-		end if;
-	end process;
+    end if;
+  end process;
 
   LED <= heart_led;
 
