@@ -6,6 +6,7 @@ use ieee.std_logic_unsigned.all;
 entity heart is
   port(
     sysclk  : in std_logic;
+    rst     : in std_logic;
     LED     : out std_logic_vector(3 downto 0)
   );
 end entity;
@@ -21,7 +22,9 @@ begin
   -- Heart Counter
   proc_heart_cnt : process(sysclk)
   begin
-    if rising_edge(sysclk) then
+    if rst = '1' then
+      heart_cnt <= (others => '0');
+    elsif rising_edge(sysclk) then
       heart_cnt <= heart_cnt + 1;
     end if;
   end process proc_heart_cnt;
@@ -31,7 +34,9 @@ begin
 
   heart_rider : process(heart)
 	begin
-		if rising_edge(heart) then
+    if rst = '1' then
+      heart_led <= "1000";
+		elsif rising_edge(heart) then
       heart_led <= heart_led(2 downto 0) & heart_led(3);
 		end if;
 	end process;
