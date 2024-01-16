@@ -6,11 +6,11 @@ entity top is
   port (
     -- inputs
     sysclk  : in std_logic; -- 125 MHz external clock
-    btn     : in std_logic_vector (3 downto 0);
+    btn     : in std_logic;
     -- outputs
-    jb      : out std_logic_vector (7 downto 0);
-    jc      : out std_logic_vector (7 downto 0);
-    jd      : out std_logic_vector (7 downto 0);
+    jb      : out std_logic_vector (5 downto 0);
+    jc      : out std_logic_vector (5 downto 0);
+    jd      : out std_logic_vector (5 downto 0);
     je      : out std_logic_vector (7 downto 0);
     led     : out std_logic_vector (3 downto 0)
   );
@@ -19,6 +19,10 @@ end entity;
 architecture RTL of top is
 
   component Sequencer is
+    generic(
+      -- Allow us to disable the resetter for testing and debugging
+      enable_resetter : boolean := true
+    );
     port(
       -- Clock and reset
       clk             : in std_logic;  -- 100 MHz clock
@@ -28,6 +32,8 @@ architecture RTL of top is
       spi_scl         : out std_logic; -- SPI SCL (Clock)
       spi_cs          : out std_logic; -- SPI CS (Chip Select)
       spi_dc          : out std_logic; -- SPI DC (Data/Command)
+      -- display ports
+      disp_rst_n      : out std_logic; -- Reset for the display
       -- Sequencer outputs
       done            : out std_logic; -- HIGH when done
       sequencer_error : out std_logic  -- HIGH if error
@@ -66,35 +72,46 @@ architecture RTL of top is
     );
   end component;
 
-  signal clk    : std_logic;
-  signal rst    : std_logic;
-  signal rst_n  : std_logic;
+  -- xilinx pll
+  component PLL_100M is
+    port
+    (-- Clock in ports
+      -- Clock out ports
+      clk_out : out std_logic;
+      -- Status and control signals
+      reset   : in std_logic;
+      clk_in  : in std_logic
+    );
+  end component;
+
+  signal clk        : std_logic;
+  signal rst        : std_logic;
+  signal rst_n      : std_logic;
 
   -- spi bus
-  signal sda    : std_logic;
-  signal scl    : std_logic;
-  signal cs     : std_logic;
+  signal sda        : std_logic;
+  signal scl        : std_logic;
+  signal cs         : std_logic;
 
   -- sequencer
-  signal done   : std_logic;
-  signal s_err  : std_logic;
+  signal disp_rst_n : std_logic;
+  signal done       : std_logic;
+  signal s_err      : std_logic;
 
   -- rgb
-  signal r      : std_logic_vector(7 downto 0);
-  signal g      : std_logic_vector(7 downto 0);
-  signal b      : std_logic_vector(7 downto 0);
-  signal pclk   : std_logic;
-  signal de     : std_logic;
-  signal vs     : std_logic;
-  signal hs     : std_logic;
-  signal data   : std_logic_vector(23 downto 0);
+  signal r          : std_logic_vector(7 downto 0);
+  signal g          : std_logic_vector(7 downto 0);
+  signal b          : std_logic_vector(7 downto 0);
+  signal pclk       : std_logic;
+  signal de         : std_logic;
+  signal vs         : std_logic;
+  signal hs         : std_logic;
+  signal data       : std_logic_vector(23 downto 0);
 
 begin
 
-  -- map the clock and reset (remove later)
-  clk <= sysclk;
-  rst <= btn(0);
-  rst_n <= not rst;
+  -- map the reset button
+  rst <= btn;
 
   -- solid white color for now
   r <= (others => '1');
@@ -106,31 +123,31 @@ begin
   jb(0) <= data(16);
   jb(1) <= data(14);
   jb(2) <= data(12);
-  jb(4) <= data(17);
-  jb(5) <= data(15);
-  jb(6) <= data(13);
+  jb(3) <= data(17);
+  jb(4) <= data(15);
+  jb(5) <= data(13);
 
   -- PMOD JC
   jc(0) <= data(10);
   jc(1) <= data(8);
   jc(2) <= data(6);
-  jc(4) <= data(11);
-  jc(5) <= data(9);
-  jc(6) <= data(7);
+  jc(3) <= data(11);
+  jc(4) <= data(9);
+  jc(5) <= data(7);
 
   -- PMOD JD
   jd(0) <= data(4);
   jd(1) <= data(2);
   jd(2) <= data(0);
-  jd(4) <= data(5);
-  jd(5) <= data(3);
-  jd(6) <= data(1);
+  jd(3) <= data(5);
+  jd(4) <= data(3);
+  jd(5) <= data(1);
 
   -- PMOD JE
   je(0) <= vs;
   je(1) <= pclk;
   je(2) <= scl;
-  je(3) <= rst_n;
+  je(3) <= disp_rst_n;
   je(4) <= hs;
   je(5) <= de;
   je(6) <= cs;
@@ -145,6 +162,7 @@ begin
       spi_scl         => scl,
       spi_cs          => cs,
       spi_dc          => open,
+      disp_rst_n      => disp_rst_n,
       done            => done,
       sequencer_error => s_err
     );
@@ -172,6 +190,14 @@ begin
     port map (
       sysclk  => sysclk,
       LED     => led
+    );
+
+  -- map the pll module
+  pll_comp : PLL_100M
+    port map (
+      clk_out => clk,
+      reset   => rst,
+      clk_in  => sysclk
     );
 
 end architecture;

@@ -18,11 +18,16 @@ architecture RTL of sequencer_tb is
   signal spi_sda          : std_logic := '0';
   signal spi_scl          : std_logic := '0';
   signal spi_cs           : std_logic := '0';
+  signal disp_rst_n       : std_logic := '0';
   signal done             : std_logic := '0';
   signal sequencer_error  : std_logic := '0';
 
   -- adding the component declaration
   component Sequencer is
+    generic(
+      -- Allow us to disable the resetter for testing and debugging
+      enable_resetter : boolean := true
+    );
     port(
       -- Clock and reset
       clk             : in std_logic;  -- 100 MHz clock
@@ -32,6 +37,8 @@ architecture RTL of sequencer_tb is
       spi_scl         : out std_logic; -- SPI SCL (Clock)
       spi_cs          : out std_logic; -- SPI CS (Chip Select)
       spi_dc          : out std_logic; -- SPI DC (Data/Command)
+      -- display ports
+      disp_rst_n      : out std_logic; -- Reset for the display
       -- Sequencer outputs
       done            : out std_logic; -- HIGH when done
       sequencer_error : out std_logic  -- HIGH if error
@@ -76,12 +83,16 @@ architecture RTL of sequencer_tb is
 begin
 
   DUT : Sequencer
+    generic map(
+      enable_resetter => false
+    )
     port map(
       clk             => clk,
       rst             => rst,
       spi_sda         => spi_sda,
       spi_scl         => spi_scl,
       spi_cs          => spi_cs,
+      disp_rst_n      => disp_rst_n,
       done            => done,
       sequencer_error => sequencer_error
     );
@@ -111,7 +122,7 @@ begin
     check_value(spi_scl, '0', "Checking SPI_SCL");
     check_value(spi_cs, '1', "Checking SPI_CS");
     check_value(done, '0', "Checking DONE");
-    check_value(sequencer_error, '0', "Checking DONE");
+    check_value(sequencer_error, '0', "Checking ERROR");
 
     -- The sequencer should have started now,just wait until instruction starts
     for j in 0 to 18 loop
@@ -135,7 +146,7 @@ begin
     check_value(spi_scl, '0', "Checking SPI_SCL");
     check_value(spi_cs, '1', "Checking SPI_CS");
     check_value(done, '1', "Checking DONE");
-    check_value(sequencer_error, '0', "Checking DONE");
+    check_value(sequencer_error, '0', "Checking ERROR");
 
     -- Give it some time before stopping it completely
     wait for 10 * clk_period;

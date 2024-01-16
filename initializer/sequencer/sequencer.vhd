@@ -15,6 +15,10 @@ use ieee.std_logic_unsigned.all;
 -- The ROM should be max 256 words long.
 
 entity Sequencer is
+  generic(
+    -- Allow us to disable the resetter for testing and debugging
+    enable_resetter : boolean := true
+  );
   port(
     -- Clock and reset
     clk             : in std_logic;  -- 100 MHz clock
@@ -24,6 +28,8 @@ entity Sequencer is
     spi_scl         : out std_logic; -- SPI SCL (Clock)
     spi_cs          : out std_logic; -- SPI CS (Chip Select)
     spi_dc          : out std_logic; -- SPI DC (Data/Command)
+    -- display ports
+    disp_rst_n      : out std_logic; -- Reset for the display
     -- Sequencer outputs
     done            : out std_logic; -- HIGH when done
     sequencer_error : out std_logic  -- HIGH if error
@@ -90,22 +96,41 @@ architecture RTL of Sequencer is
     );
   end component;
 
-  -- Set up the internal signals that handle the ROM
+  -- Add the component for the resetter
+  component resetter is
+    generic(
+      delay_10ms  : integer := 1_000_000; -- clock cycles for 10 ms
+      delay_100ms : integer := 10_000_000 -- clock cycles for 100 ms
+    );
+    port (
+      clk   : in std_logic;
+      rst   : in std_logic;
+      rst_n : out std_logic;
+      done  : out std_logic
+    );
+  end component;
+
+  -- setup the internal signals that handle the ROM
   signal rom_pointer          : std_logic_vector(7 downto 0) := (others => '0');
   signal rom_address          : std_logic_vector(7 downto 0) := (others => '0');
   signal rom_instruction      : std_logic_vector(7 downto 0) := (others => '0');
   signal rom_data             : std_logic_vector(31 downto 0) := (others => '0');
   signal rom_size             : std_logic_vector(7 downto 0) := (others => '0');
 
-  -- Set up the internal signals that handle the SPIDriver
+  -- setup the internal signals that handle the SPIDriver
   signal spi_send   : std_logic;
   signal spi_set_dc : std_logic;
   signal spi_done   : std_logic;
   signal spi_data   : std_logic_vector(31 downto 0);
   signal spi_width  : std_logic_vector(2 downto 0);
 
-  -- Set up the internal signals that handle the wait counter
+  -- setup the internal signals that handle the wait counter
   signal wait_count : integer := 0;
+
+  -- setup the internal signals that handle the resetter
+  signal rst_rst        : std_logic := '0';
+  signal rst_done_temp  : std_logic := '0';
+  signal rst_done       : std_logic := '0';
 
 begin
 
@@ -137,6 +162,23 @@ begin
       size        => rom_size
     );
 
+  -- If the resetter is enabled, pipe our rst signal through, else set it to '1'
+  rst_rst <= rst when enable_resetter = true else '1';
+  rst_done <= rst_done_temp when enable_resetter = true else '1';
+
+  -- Map the resetter
+  resetter_comp : resetter
+    generic map (
+      delay_10ms => 1_000_000,
+      delay_100ms => 10_000_000
+    )
+    port map (
+      clk   => clk,
+      rst   => rst_rst,
+      rst_n => disp_rst_n,
+      done  => rst_done_temp
+    );
+
   -- This is the main state machine that ensures the signals get sent in sequence
   sequencer_state_machine : process(clk)
   begin
@@ -153,7 +195,11 @@ begin
             sequencer_error <= '0';
             done <= '0';
             rom_pointer <= (others => '0'); -- Reset the pointer
-            sequencer_state <= fetch_rom_data_state;
+
+            -- only continue if the done signal is HIGH
+            if rst_done = '1' then
+              sequencer_state <= fetch_rom_data_state;
+            end if;
 
           -- Set the ROM address to the pointer
           when fetch_rom_data_state =>
