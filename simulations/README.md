@@ -7,9 +7,11 @@ This folder contains the files that were used for simulation of this project. Ea
 The subfolders each contains a simulation for a specific part of the project, with the exception of the `UVVM` folder which contains the compiled UVVM library, which you need to compile in order to run the simulations.
 
 The subfolders are structured as follows:
+- [resetter](resetter/) - Simulation of the resetter
 - [rgb](rgb/) - Simulation of the RGB controller for interfacing with the screen
 - [spi](spi/) - Simulation of the SPI interface
 - [sequencer](sequencer/) - Simulation of the sequencer (with the SPI interface)
+- [top](top/) - Simulation of the top level module (with the sequencer and the RGB controller)
 
 ## Compiling UVVM
 
