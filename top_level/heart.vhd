@@ -5,34 +5,34 @@ use ieee.std_logic_unsigned.all;
 
 entity heart is
   port(
-    sysclk  : in std_logic;
-    rst     : in std_logic;
-    LED     : out std_logic_vector(3 downto 0)
+    clk : in std_logic;
+    rst : in std_logic;
+    led : out std_logic_vector(3 downto 0)
   );
 end entity;
 
 architecture RTL of heart is
 
-  signal heart_cnt    : unsigned(22 downto 0);
-  signal heart_led    : std_logic_vector(3 downto 0) := "1000";
-  signal heart        : std_logic;
+  signal heart_cnt  : unsigned(22 downto 0);
+  signal heart_led  : std_logic_vector(3 downto 0) := "1000";
+  signal heart      : std_logic;
 
 begin
 
   -- Heart Counter
-  proc_heart_cnt : process(sysclk)
+  proc_heart_cnt : process(clk, rst)
   begin
     if rst = '1' then
       heart_cnt <= (others => '0');
-    elsif rising_edge(sysclk) then
+    elsif rising_edge(clk) then
       heart_cnt <= heart_cnt + 1;
     end if;
-  end process proc_heart_cnt;
+  end process;
 
   -- Create FIFO read Mux
   heart <= heart_cnt(22);
 
-  heart_rider : process(heart)
+  heart_rider : process(heart, rst)
   begin
     if rst = '1' then
       heart_led <= "1000";
@@ -41,6 +41,6 @@ begin
     end if;
   end process;
 
-  LED <= heart_led;
+  led <= heart_led;
 
 end architecture;
