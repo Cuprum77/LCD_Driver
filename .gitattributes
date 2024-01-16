@@ -1,2 +1,4 @@
 # Remove files from the github linguist search
 *.html linguist-vendored
+fpga/*.vh linguist-vendored
+fpga/*.vhd linguist-vendored
