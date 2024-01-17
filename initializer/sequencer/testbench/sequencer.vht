@@ -130,9 +130,11 @@ begin
       -- Set a header to the current index
       log(ID_LOG_HDR, "Checking instruction x" & to_hex_string(spi_result(j)) & " (" & to_string(j) & "/18)");
       wait until spi_cs = '0';
-      for i in 7 downto 0 loop
+      for i in 8 downto 0 loop
         wait until spi_scl = '1';
-        data_rx(i) <= spi_sda;
+        if i <= 7 then
+          data_rx(i) <= spi_sda;
+        end if;
         wait until spi_scl = '0';
       end loop;
       check_value(data_rx, spi_result(j), "Checking data");

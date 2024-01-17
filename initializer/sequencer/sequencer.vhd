@@ -63,7 +63,10 @@ architecture RTL of Sequencer is
   signal sequencer_state : state_machine := reset_state; -- initialize to start_state
 
   -- Add the component for the SPI
-  component SPIDriver is
+  component spi is
+    generic(
+      alternative_dc : boolean := false -- If the SPI DC is the first bit instead of a dedicated pin
+    );
     port(
       -- ports
       clk       : in std_logic; -- 100 MHz
@@ -82,7 +85,7 @@ architecture RTL of Sequencer is
   end component;
 
   -- Add the component for the ROM
-  component ROM is
+  component rom is
     port(
       -- Clock and reset
       clk         : in std_logic;
@@ -117,7 +120,7 @@ architecture RTL of Sequencer is
   signal rom_data             : std_logic_vector(31 downto 0) := (others => '0');
   signal rom_size             : std_logic_vector(7 downto 0) := (others => '0');
 
-  -- setup the internal signals that handle the SPIDriver
+  -- setup the internal signals that handle the spi
   signal spi_send   : std_logic;
   signal spi_set_dc : std_logic;
   signal spi_done   : std_logic;
@@ -136,23 +139,26 @@ begin
 
   -- Map the SPIDriver component
   -- The SPI physical signals will simply be forwarded to the top level file
-  SPIDRiver_comp : SPIDriver
+  spi_comp : spi
+    generic map(
+      alternative_dc  => true
+    )
     port map(
-      clk       => clk,
-      rst       => rst,
-      spi_sda   => spi_sda,
-      spi_scl   => spi_scl,
-      spi_cs    => spi_cs,
-      spi_dc    => spi_dc,
-      send      => spi_send,
-      set_dc    => spi_set_dc,
-      done      => spi_done,
-      data      => spi_data,
-      bit_width => spi_width
+      clk             => clk,
+      rst             => rst,
+      spi_sda         => spi_sda,
+      spi_scl         => spi_scl,
+      spi_cs          => spi_cs,
+      spi_dc          => spi_dc,
+      send            => spi_send,
+      set_dc          => spi_set_dc,
+      done            => spi_done,
+      data            => spi_data,
+      bit_width       => spi_width
     );
 
   -- Map the ROM component
-  ROM_comp : ROM
+  rom_comp : rom
     port map(
       clk         => clk,
       rst         => rst,
