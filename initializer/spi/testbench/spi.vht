@@ -24,6 +24,9 @@ architecture RTL of spi_tb is
   signal data       : std_logic_vector(31 downto 0) := (others => '0');
 
   component SPIDriver is
+    generic(
+      alternative_dc : boolean := false -- If the SPI DC is the first bit instead of a dedicated pin
+    );
     port(
       -- ports
       clk       : in std_logic; -- 100 MHz
@@ -42,12 +45,15 @@ architecture RTL of spi_tb is
   end component SPIDriver;
 
   signal clk_en   : boolean := false;
-  signal data_rx  : std_logic_vector(31 downto 0) := (others => '0');
+  signal data_rx  : std_logic_vector(32 downto 0) := (others => '0');
 
 begin
 
   -- set up the component
   DUT : SPIDriver
+    generic map(
+      alternative_dc => true
+    )
     port map(
       clk       => clk,
       rst       => rst,
@@ -116,7 +122,7 @@ begin
     check_value(done, '0', "Checking Done during transmission");
 
     -- Verify that the data is transmitted correctly
-    for i in 7 downto 0 loop
+    for i in 8 downto 0 loop
       wait until spi_scl = '1';
       data_rx(i) <= spi_sda;
       wait until spi_scl = '0';
@@ -129,7 +135,7 @@ begin
 
     -- Check if the data_rx matches the transmitted data
     log(ID_LOG_HDR, "Verifying the DATA signal (8 bits)");
-    check_value(data_rx, x"000000aa", "Checking data, 8 bits");
+    check_value(data_rx, x"0000000aa", "Checking data, 8 bits");
 
     -- Wait a while
     wait for 10 * clk_period;
@@ -142,12 +148,12 @@ begin
     gen_pulse(send, clk_period, "Transmit the data");
 
     -- Verify that the data is transmitted correctly
-    for i in 15 downto 0 loop
+    for i in 16 downto 0 loop
       wait until spi_scl = '1';
       data_rx(i) <= spi_sda;
       wait until spi_scl = '0';
     end loop;
-    check_value(data_rx, x"0000aaaa", "Checking data");
+    check_value(data_rx, x"00000aaaa", "Checking data");
 
     -- Give it some time before stopping it completely
     wait for 10 * clk_period;
@@ -159,12 +165,12 @@ begin
     gen_pulse(send, clk_period, "Transmit the data");
 
     -- Verify that the data is transmitted correctly
-    for i in 17 downto 0 loop
+    for i in 18 downto 0 loop
       wait until spi_scl = '1';
       data_rx(i) <= spi_sda;
       wait until spi_scl = '0';
     end loop;
-    check_value(data_rx, x"0002aaaa", "Checking data");
+    check_value(data_rx, x"00002aaaa", "Checking data");
 
     -- Give it some time before stopping it completely
     wait for 10 * clk_period;
@@ -176,12 +182,12 @@ begin
     gen_pulse(send, clk_period, "Transmit the data");
 
     -- Verify that the data is transmitted correctly
-    for i in 23 downto 0 loop
+    for i in 24 downto 0 loop
       wait until spi_scl = '1';
       data_rx(i) <= spi_sda;
       wait until spi_scl = '0';
     end loop;
-    check_value(data_rx, x"00aaaaaa", "Checking data");
+    check_value(data_rx, x"000aaaaaa", "Checking data");
 
     -- Give it some time before stopping it completely
     wait for 10 * clk_period;
@@ -193,12 +199,12 @@ begin
     gen_pulse(send, clk_period, "Transmit the data");
 
     -- Verify that the data is transmitted correctly
-    for i in 31 downto 0 loop
+    for i in 32 downto 0 loop
       wait until spi_scl = '1';
       data_rx(i) <= spi_sda;
       wait until spi_scl = '0';
     end loop;
-    check_value(data_rx, x"aaaaaaaa", "Checking data");
+    check_value(data_rx, x"0aaaaaaaa", "Checking data");
 
     -- Give it some time before stopping it completely
     wait for 10 * clk_period;

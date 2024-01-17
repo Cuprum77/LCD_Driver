@@ -10,6 +10,9 @@ use ieee.std_logic_unsigned.all;
 -- This is based off a clock of 100 MHz
 
 entity SPIDriver is
+  generic(
+    alternative_dc : boolean := false -- If the SPI DC is the first bit instead of a dedicated pin
+  );
   port(
     -- Clock and reset
     clk       : in std_logic; -- 100 MHz
@@ -44,7 +47,8 @@ architecture RTL of SPIDriver is
   signal delay_done_half 	: std_logic := '0';
   signal delay_done      	: std_logic := '0';
 
-  signal bit_cnt : integer range 0 to 31;
+  signal data_int : std_logic_vector(32 downto 0);
+  signal bit_cnt  : integer range 0 to 32;
 	
 begin
 
@@ -75,12 +79,36 @@ begin
     if rising_edge(clk)then
       if rst = '1' or spi_state = idle_state or spi_state = hold_state then
         case bit_width is
-          when "000" => bit_cnt <= 7;
-          when "001" => bit_cnt <= 15;
-          when "010" => bit_cnt <= 17;
-          when "011" => bit_cnt <= 23;
-          when "100" => bit_cnt <= 31;
-          when others => bit_cnt <= 7;
+          when "001" => 
+            if alternative_dc = true then
+              bit_cnt <= 16;
+            else
+              bit_cnt <= 15;
+            end if;
+          when "010" => 
+            if alternative_dc = true then
+              bit_cnt <= 18;
+            else
+              bit_cnt <= 17;
+            end if;
+          when "011" => 
+            if alternative_dc = true then
+              bit_cnt <= 24;
+            else
+              bit_cnt <= 23;
+            end if;
+          when "100" => 
+            if alternative_dc = true then
+              bit_cnt <= 32;
+            else
+              bit_cnt <= 31;
+            end if;
+          when others => 
+            if alternative_dc = true then
+              bit_cnt <= 8;
+            else
+              bit_cnt <= 7;
+            end if;
         end case;
       elsif spi_state = clk1_state and delay_done = '1' and bit_cnt > 0 then
         bit_cnt <= bit_cnt - 1;
@@ -113,23 +141,33 @@ begin
           else
             spi_state <= idle_state;
           end if;
+
         -- start the transmission
         when start_state =>
           spi_scl <= '0';
           spi_cs <= '0';
           done <= '0';
+          -- copy the input data to our internal register
+          data_int(31 downto 0) <= data;
+          
+          -- if we are to set the DC as part of the SPI, do so here
+          if alternative_dc = true then
+            data_int(bit_cnt) <= set_dc;
+          end if;
           
           if delay_done = '1' then
             spi_state <= shiftout_state;
           end if;
+
         -- shift out the DATA and set the clock low
         when shiftout_state =>
-          spi_sda <= DATA(bit_cnt);
+          spi_sda <= data_int(bit_cnt);
           spi_scl <= '0';
           
           if delay_done = '1' then
             spi_state <= clk1_state;
           end if;
+
         -- set the clock high
         when clk1_state =>
           spi_scl <= '1';
@@ -141,6 +179,7 @@ begin
               spi_state <= shiftout_state;
             end if;
           end if;
+
         -- stop the transmission
         when stop_state =>
           spi_sda <= '0';
@@ -149,6 +188,7 @@ begin
           if delay_done = '1' then
             spi_state <= hold_state;
           end if;
+
         -- hold the transmission
         when hold_state =>
           spi_cs <= '1'; 

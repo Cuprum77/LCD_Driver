@@ -44,33 +44,33 @@ UVVM: --------------------------------------------------------------------------
 UVVM: ID_GEN_PULSE                     140.0 ns  TB seq.                        Pulsed to 1 for 10000 ps. 'Transmit the data'
 UVVM: ID_POS_ACK                       140.0 ns  TB seq.                        check_value() => OK, for std_logic '1' (exp: '1'). 'Checking Done before transmission'
 UVVM: ID_POS_ACK                       150.0 ns  TB seq.                        check_value() => OK, for std_logic '0' (exp: '0'). 'Checking Done during transmission'
-UVVM: ID_POS_ACK                       520.0 ns  TB seq.                        check_value() => OK, for std_logic '1' (exp: '1'). 'Checking Done after transmission'
+UVVM: ID_POS_ACK                       560.0 ns  TB seq.                        check_value() => OK, for std_logic '1' (exp: '1'). 'Checking Done after transmission'
 UVVM: 
 UVVM: 
-UVVM: ID_LOG_HDR                       520.0 ns  TB seq.                        Verifying the DATA signal (8 bits)
+UVVM: ID_LOG_HDR                       560.0 ns  TB seq.                        Verifying the DATA signal (8 bits)
 UVVM: -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-UVVM: ID_POS_ACK                       520.0 ns  TB seq.                        check_value() => OK, for slv x"000000AA"'. 'Checking data, 8 bits'
+UVVM: ID_POS_ACK                       560.0 ns  TB seq.                        check_value() => OK, for slv x"0000000AA"'. 'Checking data, 8 bits'
 UVVM: 
 UVVM: 
-UVVM: ID_LOG_HDR                       620.0 ns  TB seq.                        Verifying the DATA signal (16 bits)
+UVVM: ID_LOG_HDR                       660.0 ns  TB seq.                        Verifying the DATA signal (16 bits)
 UVVM: -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-UVVM: ID_GEN_PULSE                     630.0 ns  TB seq.                        Pulsed to 1 for 10000 ps. 'Transmit the data'
-UVVM: ID_POS_ACK                      1300.0 ns  TB seq.                        check_value() => OK, for slv x"0000AAAA"'. 'Checking data'
+UVVM: ID_GEN_PULSE                     670.0 ns  TB seq.                        Pulsed to 1 for 10000 ps. 'Transmit the data'
+UVVM: ID_POS_ACK                      1380.0 ns  TB seq.                        check_value() => OK, for slv x"00000AAAA"'. 'Checking data'
 UVVM: 
 UVVM: 
-UVVM: ID_LOG_HDR                      1400.0 ns  TB seq.                        Verifying the DATA signal (18 bits)
+UVVM: ID_LOG_HDR                      1480.0 ns  TB seq.                        Verifying the DATA signal (18 bits)
 UVVM: -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-UVVM: ID_GEN_PULSE                    1410.0 ns  TB seq.                        Pulsed to 1 for 10000 ps. 'Transmit the data'
-UVVM: ID_POS_ACK                      2160.0 ns  TB seq.                        check_value() => OK, for slv x"0002AAAA"'. 'Checking data'
+UVVM: ID_GEN_PULSE                    1490.0 ns  TB seq.                        Pulsed to 1 for 10000 ps. 'Transmit the data'
+UVVM: ID_POS_ACK                      2280.0 ns  TB seq.                        check_value() => OK, for slv x"00002AAAA"'. 'Checking data'
 UVVM: 
 UVVM: 
-UVVM: ID_LOG_HDR                      2260.0 ns  TB seq.                        Verifying the DATA signal (24 bits)
+UVVM: ID_LOG_HDR                      2380.0 ns  TB seq.                        Verifying the DATA signal (24 bits)
 UVVM: -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-UVVM: ID_GEN_PULSE                    2270.0 ns  TB seq.                        Pulsed to 1 for 10000 ps. 'Transmit the data'
-UVVM: ID_POS_ACK                      3260.0 ns  TB seq.                        check_value() => OK, for slv x"00AAAAAA"'. 'Checking data'
+UVVM: ID_GEN_PULSE                    2390.0 ns  TB seq.                        Pulsed to 1 for 10000 ps. 'Transmit the data'
+UVVM: ID_POS_ACK                      3420.0 ns  TB seq.                        check_value() => OK, for slv x"000AAAAAA"'. 'Checking data'
 UVVM: 
 UVVM: 
-UVVM: ID_LOG_HDR                      3360.0 ns  TB seq.                        Verifying the DATA signal (32 bits)
+UVVM: ID_LOG_HDR                      3520.0 ns  TB seq.                        Verifying the DATA signal (32 bits)
 UVVM: -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-UVVM: ID_GEN_PULSE                    3370.0 ns  TB seq.                        Pulsed to 1 for 10000 ps. 'Transmit the data'
-UVVM: ID_POS_ACK                      4680.0 ns  TB seq.                        check_value() => OK, for slv x"AAAAAAAA"'. 'Checking data'
+UVVM: ID_GEN_PULSE                    3530.0 ns  TB seq.                        Pulsed to 1 for 10000 ps. 'Transmit the data'
+UVVM: ID_POS_ACK                      4880.0 ns  TB seq.                        check_value() => OK, for slv x"0AAAAAAAA"'. 'Checking data'
