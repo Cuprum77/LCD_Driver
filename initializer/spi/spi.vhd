@@ -3,13 +3,13 @@ use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 use ieee.std_logic_unsigned.all;
 
--- SPIDriver
+-- spi
 --
 -- This is a modified version of the SPI interface
 -- The SPI interface is modified to work with the display
 -- This is based off a clock of 100 MHz
 
-entity SPIDriver is
+entity spi is
   generic(
     alternative_dc : boolean := false -- If the SPI DC is the first bit instead of a dedicated pin
   );
@@ -30,7 +30,7 @@ entity SPIDriver is
   );
 end entity;
 
-architecture RTL of SPIDriver is
+architecture RTL of spi is
   type state_machine is (
     idle_state,
     start_state,

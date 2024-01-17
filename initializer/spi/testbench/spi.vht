@@ -23,7 +23,7 @@ architecture RTL of spi_tb is
   signal bit_width  : std_logic_vector(2 downto 0) := (others => '0');
   signal data       : std_logic_vector(31 downto 0) := (others => '0');
 
-  component SPIDriver is
+  component spi is
     generic(
       alternative_dc : boolean := false -- If the SPI DC is the first bit instead of a dedicated pin
     );
@@ -42,7 +42,7 @@ architecture RTL of spi_tb is
       data      : in std_logic_vector(31 downto 0); -- Bits to be sent
       bit_width : in std_logic_vector(2 downto 0)   -- Number of bits to send
     );
-  end component SPIDriver;
+  end component;
 
   signal clk_en   : boolean := false;
   signal data_rx  : std_logic_vector(32 downto 0) := (others => '0');
@@ -50,7 +50,7 @@ architecture RTL of spi_tb is
 begin
 
   -- set up the component
-  DUT : SPIDriver
+  DUT : spi
     generic map(
       alternative_dc => true
     )
