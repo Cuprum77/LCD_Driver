@@ -18,7 +18,7 @@ end entity;
 
 architecture RTL of top is
 
-  component Sequencer is
+  component sequencer is
     generic(
       -- Allow us to disable the resetter for testing and debugging
       enable_resetter : boolean := true
@@ -67,9 +67,9 @@ architecture RTL of top is
 
   component heart is
     port(
-      sysclk  : in std_logic;
-      rst     : in std_logic;
-      LED     : out std_logic_vector(3 downto 0)
+      clk : in std_logic;
+      rst : in std_logic;
+      LED : out std_logic_vector(3 downto 0)
     );
   end component;
 
@@ -189,9 +189,9 @@ begin
   -- map the heart module
   heart_comp : heart
     port map (
-      sysclk  => sysclk,
-      rst     => rst,
-      LED     => led
+      clk => sysclk,
+      rst => rst,
+      led => led
     );
 
   -- map the pll module
