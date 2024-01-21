@@ -1,3 +1,6 @@
 [submodule "UVVM_Light"]
 	path = UVVM_Light
 	url = https://github.com/UVVM/UVVM_Light
+[submodule "vivado-library"]
+	path = vivado-library
+	url = https://github.com/Digilent/vivado-library
