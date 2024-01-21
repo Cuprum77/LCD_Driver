@@ -25,5 +25,5 @@ The script will output a VHDL file containing the ROM. This file can then be fou
 
 ## Example
 
-Example initializer assembly files can be found in the [example](rom/example) folder.
+Example initializer assembly files can be found in the [example](example/) folder.
 The ST7701S display initializer was found [here](https://www.buydisplay.com/bar-type-3-99-inch-400x960-ips-tft-lcd-display-spi-rgb-interface). Note, as I bought mine from Aliexpress, I have no personal experience with this store. I am not affiliated with them in any way.
