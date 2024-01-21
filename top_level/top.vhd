@@ -45,7 +45,17 @@ architecture RTL of top is
 
   component rgb is
     generic(
-      pixel_format : std_logic_vector(2 downto 0) := "010"
+      pixel_format : std_logic_vector(2 downto 0) := "010";
+      -- horizontal timings
+      h_area        : integer := 400;
+      h_front_porch : integer := 2;
+      h_sync        : integer := 2;
+      h_back_porch  : integer := 2;
+      -- vertical timings
+      v_area        : integer := 960;
+      v_front_porch : integer := 2;
+      v_sync        : integer := 2;
+      v_back_porch  : integer := 2
     );
     port(
       -- clock and reset
@@ -88,39 +98,50 @@ architecture RTL of top is
     );
   end component;
 
-  signal clk        : std_logic;
-  signal rst        : std_logic;
-  signal rst_n      : std_logic;
+  signal clk        : std_logic := '0';
+  signal rst        : std_logic := '0';
 
   -- spi bus
-  signal sda        : std_logic;
-  signal scl        : std_logic;
-  signal cs         : std_logic;
+  signal sda        : std_logic := '0';
+  signal scl        : std_logic := '0';
+  signal cs         : std_logic := '0';
 
   -- sequencer
-  signal disp_rst_n : std_logic;
-  signal done       : std_logic;
-  signal s_err      : std_logic;
+  signal disp_rst_n : std_logic := '0';
+  signal done       : std_logic := '0';
+  signal s_err      : std_logic := '0';
 
   -- rgb
-  signal r          : std_logic_vector(7 downto 0);
-  signal g          : std_logic_vector(7 downto 0);
-  signal b          : std_logic_vector(7 downto 0);
-  signal pclk       : std_logic;
-  signal de         : std_logic;
-  signal vs         : std_logic;
-  signal hs         : std_logic;
-  signal data       : std_logic_vector(23 downto 0);
+  signal r          : std_logic_vector(7 downto 0) := (others => '0');
+  signal g          : std_logic_vector(7 downto 0) := (others => '0');
+  signal b          : std_logic_vector(7 downto 0) := (others => '0');
+  signal pclk       : std_logic := '0';
+  signal de         : std_logic := '0';
+  signal vs         : std_logic := '0';
+  signal hs         : std_logic := '0';
+  signal data       : std_logic_vector(23 downto 0) := (others => '0');
+  signal x          : std_logic_vector(11 downto 0) := (others => '0');
+  signal y          : std_logic_vector(11 downto 0) := (others => '0');
 
 begin
 
   -- map the reset button
   rst <= btn;
 
-  -- solid white color for now
-  r <= (others => '1');
-  g <= (others => '1');
-  b <= (others => '1');
+  checkerboard_proc : process(clk)
+  begin
+    if rising_edge(clk) then
+      if x(4) = '0' and y(4) = '0' then
+        r <= (others => '0');
+        g <= (others => '0');
+        b <= (others => '0');
+      else
+        r <= (others => '1');
+        g <= (others => '1');
+        b <= (others => '1');
+      end if;
+    end if;
+  end process;
 
   -- map the PMOD connectors to the correct pins
   -- PMOD JB
@@ -178,7 +199,15 @@ begin
   -- map the rgb module
   rgb_comp : rgb
     generic map (
-      pixel_format  => "010"
+      pixel_format  => "010",
+      h_area        => 480,
+      h_front_porch => 2,
+      h_sync        => 2,
+      h_back_porch  => 2,
+      v_area        => 960,
+      v_front_porch => 2,
+      v_sync        => 2,
+      v_back_porch  => 2
     )
     port map (
       clk           => clk,
@@ -187,8 +216,8 @@ begin
       r             => r,
       g             => g,
       b             => b,
-      x             => open,
-      y             => open,
+      x             => x,
+      y             => y,
       rgb_pclk      => pclk,
       rgb_de        => de,
       rgb_vs        => vs,
