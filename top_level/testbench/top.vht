@@ -14,10 +14,10 @@ architecture RTL of top_tb is
 
   -- signals
   signal sysclk : std_logic := '0';
-  signal btn    : std_logic_vector (3 downto 0) := (others => '0');
-  signal jb     : std_logic_vector (7 downto 0) := (others => '0');
-  signal jc     : std_logic_vector (7 downto 0) := (others => '0');
-  signal jd     : std_logic_vector (7 downto 0) := (others => '0');
+  signal btn    : std_logic := '0';
+  signal jb     : std_logic_vector (5 downto 0) := (others => '0');
+  signal jc     : std_logic_vector (5 downto 0) := (others => '0');
+  signal jd     : std_logic_vector (5 downto 0) := (others => '0');
   signal je     : std_logic_vector (7 downto 0) := (others => '0');
   signal led    : std_logic_vector (3 downto 0) := (others => '0');
 
@@ -26,11 +26,11 @@ architecture RTL of top_tb is
     port (
       -- inputs
       sysclk  : in std_logic; -- 125 MHz external clock
-      btn     : in std_logic_vector (3 downto 0);
+      btn     : in std_logic;
       -- outputs
-      jb      : out std_logic_vector (7 downto 0);
-      jc      : out std_logic_vector (7 downto 0);
-      jd      : out std_logic_vector (7 downto 0);
+      jb      : out std_logic_vector (5 downto 0);
+      jc      : out std_logic_vector (5 downto 0);
+      jd      : out std_logic_vector (5 downto 0);
       je      : out std_logic_vector (7 downto 0);
       led     : out std_logic_vector (3 downto 0)
     );
@@ -69,7 +69,7 @@ begin
 
     -- Generate a reset signal
     wait for 1 * clk_period;
-    gen_pulse(btn(0), clk_period, "Generating Reset");
+    gen_pulse(btn, clk_period, "Generating Reset");
     wait for 1 * clk_period;
 
     -- Let it simulate for a while (this will actually take a while)
