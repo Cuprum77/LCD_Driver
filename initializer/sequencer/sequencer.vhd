@@ -17,7 +17,8 @@ use ieee.std_logic_unsigned.all;
 entity Sequencer is
   generic(
     -- Allow us to disable the resetter for testing and debugging
-    enable_resetter : boolean := true
+    enable_resetter : boolean := true;
+    invert_dc       : boolean := false -- If the SPI DC is inverted
   );
   port(
     -- Clock and reset
@@ -135,6 +136,9 @@ architecture RTL of Sequencer is
   signal rst_done_temp  : std_logic := '0';
   signal rst_done       : std_logic := '0';
 
+  -- internal signal
+  signal command_dc_bit : std_logic := '0';
+
 begin
 
   -- Map the SPIDriver component
@@ -171,6 +175,7 @@ begin
   -- If the resetter is enabled, pipe our rst signal through, else set it to '1'
   rst_rst <= rst when enable_resetter = true else '1';
   rst_done <= rst_done_temp when enable_resetter = true else '1';
+  command_dc_bit <= '0' when invert_dc = true else '1';
 
   -- Map the resetter
   resetter_comp : resetter
@@ -222,7 +227,7 @@ begin
               -- Command data
               when x"10" =>
                 spi_width <= "000"; -- 8 bit width
-                spi_set_dc <= '1'; -- Set the DC signal
+                spi_set_dc <= command_dc_bit; -- Set the DC signal
                 spi_data <= rom_data; -- Set the data
                 sequencer_state <= start_transmission_state;
               -- Length data
@@ -230,7 +235,7 @@ begin
                 sequencer_state <= set_length_state;
                 -- Payload data
               when x"21" =>
-                spi_set_dc <= '0'; -- Set the DC signal
+                spi_set_dc <= not command_dc_bit; -- Set the DC signal
                 spi_data <= rom_data; -- Set the data
                 sequencer_state <= start_transmission_state;
               -- Wait data

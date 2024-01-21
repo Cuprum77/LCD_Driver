@@ -2,6 +2,8 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
+-- Note, the 100 MHz PLL has been down-clocked to 50 MHz to cope with the PMOD output impedance!
+
 entity top is
   port (
     -- inputs
@@ -21,7 +23,8 @@ architecture RTL of top is
   component sequencer is
     generic(
       -- Allow us to disable the resetter for testing and debugging
-      enable_resetter : boolean := true
+      enable_resetter : boolean := true;
+      invert_dc       : boolean := false -- If the SPI DC is inverted
     );
     port(
       -- Clock and reset
@@ -156,6 +159,10 @@ begin
 
   -- map the sequencer module
   sequencer_comp : sequencer
+    generic map (
+      enable_resetter => true,
+      invert_dc       => true
+    )
     port map (
       clk             => clk,
       rst             => rst,
@@ -170,20 +177,23 @@ begin
 
   -- map the rgb module
   rgb_comp : rgb
+    generic map (
+      pixel_format  => "010"
+    )
     port map (
-      clk       => clk,
-      rst       => rst,
-      enable    => done,
-      r         => r,
-      g         => g,
-      b         => b,
-      x         => open,
-      y         => open,
-      rgb_pclk  => pclk,
-      rgb_de    => de,
-      rgb_vs    => vs,
-      rgb_hs    => hs,
-      rgb_data  => data 
+      clk           => clk,
+      rst           => rst,
+      enable        => done,
+      r             => r,
+      g             => g,
+      b             => b,
+      x             => open,
+      y             => open,
+      rgb_pclk      => pclk,
+      rgb_de        => de,
+      rgb_vs        => vs,
+      rgb_hs        => hs,
+      rgb_data      => data 
     );
 
   -- map the heart module
@@ -198,7 +208,7 @@ begin
   pll_comp : PLL_100M
     port map (
       clk_out => clk,
-      reset   => rst,
+      reset   => '0',
       clk_in  => sysclk
     );
 
