@@ -8,7 +8,17 @@ use ieee.numeric_std.all;
 
 entity rgb is
   generic(
-    pixel_format : std_logic_vector(2 downto 0) := (others => '0')
+    pixel_format : std_logic_vector(2 downto 0) := "010";
+    -- horizontal timings
+    h_area        : integer := 400;
+    h_front_porch : integer := 2;
+    h_sync        : integer := 2;
+    h_back_porch  : integer := 2;
+    -- vertical timings
+    v_area        : integer := 960;
+    v_front_porch : integer := 2;
+    v_sync        : integer := 2;
+    v_back_porch  : integer := 2
   );
   port(
     -- clock and reset
@@ -64,7 +74,6 @@ architecture RTL of rgb is
   signal data_internal      : std_logic_vector(23 downto 0) := (others => '0');
   signal reset_internal     : std_logic := '0';
   signal rgb_de_internal    : std_logic := '0';
-  signal rgb_pclk_internal  : std_logic := '1';
 
 begin
 
@@ -73,10 +82,20 @@ begin
 
   -- hook up the clock generator
   pixel_clk_gen : rgb_clk
+    generic map (
+      h_area        => h_area,
+      h_front_porch => h_front_porch,
+      h_sync        => h_sync,
+      h_back_porch  => h_back_porch,
+      v_area        => v_area,
+      v_front_porch => v_front_porch,
+      v_sync        => v_sync,
+      v_back_porch  => v_back_porch
+    )
     port map (
       clk         => clk,
       rst         => reset_internal,
-      rgb_pclk    => rgb_pclk_internal,
+      rgb_pclk    => rgb_pclk,
       rgb_de      => rgb_de_internal,
       rgb_vs      => rgb_vs,
       rgb_hs      => rgb_hs,
@@ -124,7 +143,6 @@ begin
 
   -- hook up the data output
   rgb_data <= data_internal when rgb_de_internal = '1' else (others => '0');
-  rgb_de <= rgb_de_internal when rgb_pclk_internal = '1' else '0';
-  rgb_pclk <= rgb_pclk_internal;
+  rgb_de <= rgb_de_internal;
 
 end architecture;
