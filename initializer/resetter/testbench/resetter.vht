@@ -5,10 +5,10 @@ library uvvm_util;
 context uvvm_util.uvvm_util_context;
 use uvvm_util.spi_bfm_pkg.all;
 
-entity sequencer_tb is
-end sequencer_tb;
+entity resetter_tb is
+end resetter_tb;
 
-architecture RTL of sequencer_tb is
+architecture RTL of resetter_tb is
   -- constants
   constant clk_period : time := 10ns; -- 100 MHz
 
