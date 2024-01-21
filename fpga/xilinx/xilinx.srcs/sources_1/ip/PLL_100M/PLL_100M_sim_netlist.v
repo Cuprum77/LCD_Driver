@@ -1,7 +1,7 @@
 // Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2019.1 (win64) Build 2552052 Fri May 24 14:49:42 MDT 2019
-// Date        : Tue Jan 16 18:41:47 2024
+// Date        : Tue Jan 16 21:29:02 2024
 // Host        : DESKTOP-UGCUO9B running 64-bit major release  (build 9200)
 // Command     : write_verilog -force -mode funcsim -rename_top PLL_100M -prefix
 //               PLL_100M_ PLL_100M_sim_netlist.v
@@ -89,7 +89,7 @@ module PLL_100M_PLL_100M_clk_wiz
     .CLKFBOUT_USE_FINE_PS("FALSE"),
     .CLKIN1_PERIOD(8.000000),
     .CLKIN2_PERIOD(0.000000),
-    .CLKOUT0_DIVIDE_F(10.000000),
+    .CLKOUT0_DIVIDE_F(20.000000),
     .CLKOUT0_DUTY_CYCLE(0.500000),
     .CLKOUT0_PHASE(0.000000),
     .CLKOUT0_USE_FINE_PS("FALSE"),
