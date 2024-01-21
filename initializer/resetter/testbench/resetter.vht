@@ -52,12 +52,12 @@ begin
 
   main : process
   begin
-    set_log_file_name("Sequencer_log.txt");
+    set_log_file_name("Resetter_log.txt");
     set_alert_stop_limit(ERROR, 0); -- Do not stop
     report_global_ctrl(VOID); -- Show global control
     enable_log_msg(ALL_MESSAGES); -- Show all log messages
 
-    log(ID_LOG_HDR, "Starting the simulation for the Sequencer module");
+    log(ID_LOG_HDR, "Starting the simulation for the Resetter module");
 
     clk_en <= true; -- Start the clock generator
 
@@ -85,7 +85,7 @@ begin
     -- Give it some extra time to make the waveform look nice
     wait for 1 ms;
 
-    log(ID_LOG_HDR, "Finished the simulation for the Sequencer module");
+    log(ID_LOG_HDR, "Finished the simulation for the Resetter module");
     -- Finish the simulation
     std.env.stop;
     wait;
