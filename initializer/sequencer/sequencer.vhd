@@ -122,9 +122,9 @@ architecture RTL of Sequencer is
   signal rom_size             : std_logic_vector(7 downto 0) := (others => '0');
 
   -- setup the internal signals that handle the spi
-  signal spi_send   : std_logic;
-  signal spi_set_dc : std_logic;
-  signal spi_done   : std_logic;
+  signal spi_send   : std_logic := '0';
+  signal spi_set_dc : std_logic := '0';
+  signal spi_done   : std_logic := '0';
   signal spi_data   : std_logic_vector(31 downto 0);
   signal spi_width  : std_logic_vector(2 downto 0);
 

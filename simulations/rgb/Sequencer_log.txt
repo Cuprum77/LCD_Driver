@@ -27,15 +27,7 @@ UVVM: --------------------------------------------------------------------------
 UVVM: ID_POS_ACK                        30.0 ns  TB seq.                        check_value() => OK, for slv x"000"'. 'Checking X helper signal'
 UVVM: ID_POS_ACK                        30.0 ns  TB seq.                        check_value() => OK, for slv x"000"'. 'Checking Y helper signal'
 UVVM: ID_POS_ACK                        30.0 ns  TB seq.                        check_value() => OK, for std_logic '0' (exp: '0'). 'Checking RGB_PCLK'
-UVVM: 
-UVVM: =========================================================================================================================================================================
-UVVM: ***  ERROR #1  ***
-UVVM:            30 ns   TB seq.
-UVVM:                    check_value() => Failed. std_logic  Was '0'. Expected '1'
-UVVM:                    Checking RGB_DE
-UVVM: =========================================================================================================================================================================
-UVVM: 
-UVVM: 
+UVVM: ID_POS_ACK                        30.0 ns  TB seq.                        check_value() => OK, for std_logic '1' (exp: '1'). 'Checking RGB_DE'
 UVVM: ID_POS_ACK                        30.0 ns  TB seq.                        check_value() => OK, for std_logic '1' (exp: '1'). 'Checking RGB_VS'
 UVVM: ID_POS_ACK                        30.0 ns  TB seq.                        check_value() => OK, for std_logic '1' (exp: '1'). 'Checking RGB_HS'
 UVVM: ID_POS_ACK                        30.0 ns  TB seq.                        check_value() => OK, for slv x"000000"'. 'Checking RGB_DATA'
