@@ -127,6 +127,12 @@ architecture RTL of top is
       pixelclk      : out std_logic;
       apixelclklckd : out std_logic;
       plocked       : out std_logic;
+      sda_i         : in std_logic;
+      sda_o         : out std_logic;
+      sda_t         : out std_logic;
+      scl_i         : in std_logic;
+      scl_o         : out std_logic;
+      scl_t         : out std_logic;
       prst          : in std_logic
     );
   end component;
@@ -295,7 +301,7 @@ begin
       tmds_data_p   => hdmi_rx_p,
       tmds_data_n   => hdmi_rx_n,
       refclk        => clk_200,
-      arst          => not done,
+      arst          => rst,
       vid_pdata     => data,
       vid_pvde      => de,
       vid_phsync    => hs,
@@ -303,7 +309,39 @@ begin
       pixelclk      => open,
       apixelclklckd => open,
       plocked       => open,
+      sda_i         => sda_i,
+      sda_o         => sda_o,
+      sda_t         => sda_t,
+      scl_i         => scl_i,
+      scl_o         => scl_o,
+      scl_t         => scl_t,
       prst          => '0'
+    );
+
+  sda_iobuf_inst: iobuf
+    generic map(
+      drive      => 12,
+      iostandard => "DEFAULT",
+      slew       => "SLOW"
+    )
+    port map(
+      o  => sda_i,  -- Buffer output
+      io => hdmi_rx_sda, -- Buffer inout port(connect directly to top-level port)
+      i  => sda_o,  -- Bufferinput
+      t  => sda_t   -- 3-state enable input,high=input,low=output
+    ); 
+
+  scl_iobuf_inst: iobuf
+    generic map(
+      drive      => 12,
+      iostandard => "DEFAULT",
+      slew       => "SLOW"
+    )
+    port map(
+      o  => scl_i,  -- Buffer output
+      io => hdmi_rx_scl, -- Buffer inout port(connect directly to top-level port)
+      i  => scl_o,  -- Buffer input
+      t  => scl_t   -- 3-state enable input,high=input,low=output
     );
 
   hdmi_rx_hpd <= '1';
