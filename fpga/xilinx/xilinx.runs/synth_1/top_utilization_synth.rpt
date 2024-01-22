@@ -1,7 +1,7 @@
 Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2019.1 (win64) Build 2552052 Fri May 24 14:49:42 MDT 2019
-| Date         : Mon Jan 22 00:45:11 2024
+| Date         : Mon Jan 22 19:17:01 2024
 | Host         : DESKTOP-UGCUO9B running 64-bit major release  (build 9200)
 | Command      : report_utilization -file top_utilization_synth.rpt -pb top_utilization_synth.pb
 | Design       : top
@@ -30,8 +30,8 @@ Table of Contents
 +-------------------------+------+-------+-----------+-------+
 |        Site Type        | Used | Fixed | Available | Util% |
 +-------------------------+------+-------+-----------+-------+
-| Slice LUTs*             |  340 |     0 |     53200 |  0.64 |
-|   LUT as Logic          |  340 |     0 |     53200 |  0.64 |
+| Slice LUTs*             |  341 |     0 |     53200 |  0.64 |
+|   LUT as Logic          |  341 |     0 |     53200 |  0.64 |
 |   LUT as Memory         |    0 |     0 |     17400 |  0.00 |
 | Slice Registers         |  209 |     0 |    106400 |  0.20 |
 |   Register as Flip Flop |  209 |     0 |    106400 |  0.20 |
@@ -152,7 +152,7 @@ Table of Contents
 | LUT2     |   77 |                 LUT |
 | LUT5     |   73 |                 LUT |
 | LUT4     |   67 |                 LUT |
-| LUT1     |   59 |                 LUT |
+| LUT1     |   60 |                 LUT |
 | CARRY4   |   47 |          CarryLogic |
 | OBUF     |   31 |                  IO |
 | LUT3     |   31 |                 LUT |

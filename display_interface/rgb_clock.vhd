@@ -31,6 +31,10 @@ entity rgb_clk is
     -- clock and reset
     clk         : in std_logic;
     rst         : in std_logic;
+    -- hdmi sync input
+    hdmi_de     : in std_logic;
+    hdmi_vs     : in std_logic;
+    hdmi_hs     : in std_logic;
     -- data output
     rgb_pclk    : out std_logic := '1';
     rgb_de      : out std_logic;
@@ -44,29 +48,38 @@ end entity;
 
 architecture RTL of rgb_clk is
 
-  signal h_cnt_int : unsigned(11 downto 0) := (others => '0');
-  signal v_cnt_int : unsigned(11 downto 0) := (others => '0');
-  signal line_done : std_logic;
-  signal hblank_n  : std_logic;
-  signal vblank_n  : std_logic;
-  signal px_clk    : std_logic;
+  signal clk_div      : std_logic_vector(3 downto 0) := (others => '0');
+  signal hdmi_hs_cnt  : unsigned(11 downto 0) := (others => '0');
+  signal h_cnt_int    : unsigned(11 downto 0) := (others => '0');
+  signal v_cnt_int    : unsigned(11 downto 0) := (others => '0');
+  signal line_done    : std_logic;
+  signal hblank_n     : std_logic;
+  signal vblank_n     : std_logic;
+  signal px_clk       : std_logic;
 
 begin
 
-  -- generate the pixel clock by dividing the main clock by 2
-  clk_divider : process(clk)
-    variable div_1   : std_logic_vector(1 downto 0) := (others => '0');
+  -- count the horizontal sync hdmi signal
+  hdmi_sync_process : process(px_clk, hdmi_hs)
   begin
-    if rst = '1' then
-      px_clk <= '0';
-    elsif rising_edge(clk) then
-      div_1 := div_1 + 1;
-      if div_1 = "10" then
-        px_clk <= not px_clk;
-        div_1 := (others => '0');
-      end if;
+    if rst = '1' or rising_edge(hdmi_hs) then
+      hdmi_hs_cnt <= (others => '0');
+    elsif rising_edge(px_clk) then
+      hdmi_hs_cnt <= hdmi_hs_cnt + 1;
     end if;
   end process;
+
+  -- generate the pixel clock by dividing the main clock by 4
+  clk_divider : process(clk)
+  begin
+    if rst = '1' then
+      clk_div <= (others => '0');
+    elsif rising_edge(clk) then
+      clk_div <= clk_div + 1;
+    end if;
+  end process;
+  -- px_clk <= clk_div(3);
+  px_clk <= clk;
 
   -- Create the horizontal signals
   hsync_process : process(px_clk, rst)
@@ -87,24 +100,27 @@ begin
       rgb_hcnt <= (others => '0');
 
     elsif rising_edge(px_clk) then
-      h_cnt_int <= h_cnt_int + 1;
-      line_done <= '0';
+      if hdmi_hs_cnt <= h_whole_frame then
+        h_cnt_int <= h_cnt_int + 1;
+      
+        line_done <= '0';
 
-      if h_cnt_int <= h_area_var then
-        rgb_hcnt <= std_logic_vector(h_cnt_int);
-      end if;
+        if h_cnt_int <= h_area_var then
+          rgb_hcnt <= std_logic_vector(h_cnt_int);
+        end if;
 
-      if h_cnt_int = "0000000000" then
-        hblank_n <= '1';
-      elsif h_cnt_int = h_area_var then
-        hblank_n <= '0';
-      elsif h_cnt_int = h_sync_on then
-        rgb_hs <= '0';
-      elsif h_cnt_int = h_sync_off then
-        rgb_hs <= '1';
-      elsif h_cnt_int >= h_whole_frame then
-        h_cnt_int <= (others => '0');
-        line_done <= '1';
+        if h_cnt_int = "0000000000" then
+          hblank_n <= '1';
+        elsif h_cnt_int = h_area_var then
+          hblank_n <= '0';
+        elsif h_cnt_int = h_sync_on then
+          rgb_hs <= '0';
+        elsif h_cnt_int = h_sync_off then
+          rgb_hs <= '1';
+        elsif h_cnt_int >= h_whole_frame then
+          h_cnt_int <= (others => '0');
+          line_done <= '1';
+        end if;
       end if;
     end if;
   end process;

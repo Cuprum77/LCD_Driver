@@ -32,6 +32,10 @@ entity rgb is
     -- current pixel position
     x           : out std_logic_vector(11 downto 0);
     y           : out std_logic_vector(11 downto 0);
+    -- hdmi sync input
+    hdmi_de     : in std_logic;
+    hdmi_vs     : in std_logic;
+    hdmi_hs     : in std_logic;
     -- data output
     rgb_pclk    : out std_logic;
     rgb_de      : out std_logic;

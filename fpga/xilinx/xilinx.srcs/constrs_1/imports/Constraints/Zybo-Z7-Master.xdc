@@ -32,6 +32,7 @@ set_property -dict { PACKAGE_PIN U20   IOSTANDARD TMDS_33     } [get_ports { hdm
 set_property -dict { PACKAGE_PIN T20   IOSTANDARD TMDS_33     } [get_ports { hdmi_rx_p[1] }]; #IO_L15P_T2_DQS_34 Sch=hdmi_rx_p[1]
 set_property -dict { PACKAGE_PIN P20   IOSTANDARD TMDS_33     } [get_ports { hdmi_rx_n[2] }]; #IO_L14N_T2_SRCC_34 Sch=hdmi_rx_n[2]
 set_property -dict { PACKAGE_PIN N20   IOSTANDARD TMDS_33     } [get_ports { hdmi_rx_p[2] }]; #IO_L14P_T2_SRCC_34 Sch=hdmi_rx_p[2]
+set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets { hdmi_rx_scl }]; # Why should this be treated as a clock signal?
 
 ##HDMI RX CEC (Zybo Z7-20 only)
 set_property -dict { PACKAGE_PIN Y8    IOSTANDARD LVCMOS33 } [get_ports { hdmi_rx_cec }]; #IO_L14N_T2_SRCC_13 Sch=hdmi_rx_cec         

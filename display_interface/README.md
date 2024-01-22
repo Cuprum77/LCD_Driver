@@ -1,3 +1,7 @@
+# DEPRECIATED
+
+No longer used in the project. Remains for future reference.
+
 # RGB Interface
 The RGB interface contains the logic to convert a 24-bit RGB signal into what the display expects, with the correct timings.
 

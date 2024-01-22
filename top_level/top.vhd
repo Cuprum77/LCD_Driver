@@ -54,42 +54,7 @@ architecture RTL of top is
       done            : out std_logic; -- HIGH when done
       sequencer_error : out std_logic  -- HIGH if error
     );
-  end component;
-
-  component rgb is
-    generic(
-      pixel_format : std_logic_vector(2 downto 0) := "010";
-      -- horizontal timings
-      h_area        : integer := 400;
-      h_front_porch : integer := 2;
-      h_sync        : integer := 2;
-      h_back_porch  : integer := 2;
-      -- vertical timings
-      v_area        : integer := 960;
-      v_front_porch : integer := 2;
-      v_sync        : integer := 2;
-      v_back_porch  : integer := 2
-    );
-    port(
-      -- clock and reset
-      clk         : in std_logic;
-      rst         : in std_logic;
-      enable      : in std_logic;
-      -- pixel data
-      r           : in std_logic_vector(7 downto 0);
-      g           : in std_logic_vector(7 downto 0);
-      b           : in std_logic_vector(7 downto 0);
-      -- current pixel position
-      x           : out std_logic_vector(11 downto 0);
-      y           : out std_logic_vector(11 downto 0);
-      -- data output
-      rgb_pclk    : out std_logic;
-      rgb_de      : out std_logic;
-      rgb_vs      : out std_logic;
-      rgb_hs      : out std_logic;
-      rgb_data    : out std_logic_vector(23 downto 0)
-    );
-  end component;
+  end component sequencer;
 
   component heart is
     port(
@@ -97,7 +62,7 @@ architecture RTL of top is
       rst : in std_logic;
       LED : out std_logic_vector(3 downto 0)
     );
-  end component;
+  end component heart;
 
   -- xilinx pll
   component pll_200 is
@@ -109,7 +74,7 @@ architecture RTL of top is
       reset   : in std_logic;
       clk_in  : in std_logic
     );
-  end component;
+  end component pll_200;
 
   -- hdmi to rgb
   component dvi2rgb_0 is
@@ -135,7 +100,7 @@ architecture RTL of top is
       scl_t         : out std_logic;
       prst          : in std_logic
     );
-  end component;
+  end component dvi2rgb_0;
 
   signal clk        : std_logic := '0';
   signal clk_200    : std_logic := '0';
@@ -176,10 +141,18 @@ architecture RTL of top is
   signal hdmi_vsync : std_logic := '0';
   signal hdmi_data  : std_logic_vector(23 downto 0) := (others => '0');
 
+  signal pxl_clk    : std_logic;
+  signal pxl_clk_l  : std_logic;
+  signal hdmi_sync  : std_logic;
+  signal hdmi_vs_n  : std_logic;
+  signal vs_n       : std_logic;
+
 begin
 
   -- map the reset button
   rst <= btn;
+  vs_n <= not vs;
+  hdmi_vs_n <= not hdmi_vsync;
 
   -- map the PMOD connectors to the correct pins
   -- PMOD JB
@@ -207,15 +180,12 @@ begin
   jd(5) <= data(1);
 
   -- PMOD JE
-  --je(0) <= vs;
-  je(0) <= hdmi_vsync;
+  je(0) <= not vs;
   je(1) <= pclk;
   je(2) <= scl;
   je(3) <= disp_rst_n;
-  --je(4) <= hs;
-  je(4) <= hdmi_hsync;
-  --je(5) <= de;
-  je(5) <= hdmi_vde;
+  je(4) <= hs;
+  je(5) <= de;
   je(6) <= cs;
   je(7) <= sda;
 
@@ -236,35 +206,6 @@ begin
       done            => done,
       sequencer_error => s_err
     );
-
-  -- map the rgb module
-  -- rgb_inst : rgb
-  --   generic map (
-  --     pixel_format  => "010",
-  --     h_area        => 480,
-  --     h_front_porch => 2,
-  --     h_sync        => 2,
-  --     h_back_porch  => 2,
-  --     v_area        => 960,
-  --     v_front_porch => 2,
-  --     v_sync        => 2,
-  --     v_back_porch  => 2
-  --   )
-  --   port map (
-  --     clk           => clk,
-  --     rst           => rst,
-  --     enable        => done,
-  --     r             => r,
-  --     g             => g,
-  --     b             => b,
-  --     x             => x,
-  --     y             => y,
-  --     rgb_pclk      => pclk,
-  --     rgb_de        => de,
-  --     rgb_vs        => vs,
-  --     rgb_hs        => hs,
-  --     rgb_data      => data 
-  --   );
 
   -- map the heart module
   heart_inst : heart
@@ -302,12 +243,12 @@ begin
       tmds_data_n   => hdmi_rx_n,
       refclk        => clk_200,
       arst          => rst,
-      vid_pdata     => data,
       vid_pvde      => de,
       vid_phsync    => hs,
       vid_pvsync    => vs,
-      pixelclk      => open,
-      apixelclklckd => open,
+      pixelclk      => pclk,
+      vid_pdata     => hdmi_data,
+      apixelclklckd => pxl_clk_l,
       plocked       => open,
       sda_i         => sda_i,
       sda_o         => sda_o,
@@ -344,14 +285,35 @@ begin
       t  => scl_t   -- 3-state enable input,high=input,low=output
     );
 
+  -- sync the hdmi to the display
+  hdmi_sync_proc : process(hdmi_vs_n, rst, vs_n)
+  begin
+    if rst = '1' or pxl_clk_l = '0' then
+      hdmi_sync <= '1';
+    end if;
+    -- when the vsync is high, we are starting a new frame, so wait for it to fall
+    if rising_edge(hdmi_vs_n) then
+      hdmi_sync <= '0';
+    end if;
+    -- however, we still need to make sure we are only active as long as we can be
+    -- so we must wait for the vsync to fall to start the next frame
+    if rising_edge(vs_n) and hdmi_sync = '0' then
+      hdmi_sync <= '1';
+    end if;
+  end process hdmi_sync_proc;
+
+  -- set the hpd signal for hot plug detection
   hdmi_rx_hpd <= '1';
 
-  -- map the rgb inputs
-  --r <= x"00";
-  --g <= x"f4";
-  --b <= x"ff";
-  r <= hdmi_data(7 downto 0);
-  g <= hdmi_data(15 downto 8);
-  b <= hdmi_data(23 downto 16);
+  -- rearrange the bits to match the rgb format
+  -- rest
+  data(23 downto 18) <= (others => '0');
+  -- red component (6 bits)
+  data(17 downto 12) <= hdmi_data(23 downto 18);
+  -- green component (6 bits)
+  data(11 downto 6) <= hdmi_data(7 downto 2);
+  -- blue component (6 bits)
+  data(5 downto 0) <= hdmi_data(15 downto 10);
+
 
 end architecture;

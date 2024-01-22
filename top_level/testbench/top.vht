@@ -13,28 +13,45 @@ architecture RTL of top_tb is
   constant clk_period : time := 10ns; -- 100 MHz
 
   -- signals
-  signal sysclk : std_logic := '0';
-  signal btn    : std_logic := '0';
-  signal jb     : std_logic_vector (5 downto 0) := (others => '0');
-  signal jc     : std_logic_vector (5 downto 0) := (others => '0');
-  signal jd     : std_logic_vector (5 downto 0) := (others => '0');
-  signal je     : std_logic_vector (7 downto 0) := (others => '0');
-  signal led    : std_logic_vector (3 downto 0) := (others => '0');
+  signal sysclk         : std_logic := '0';
+  signal btn            : std_logic := '0';
+  signal hdmi_rx_hpd    : std_logic := '0';
+  signal hdmi_rx_sda    : std_logic := '0';
+  signal hdmi_rx_scl    : std_logic := '0';
+  signal hdmi_rx_cec    : std_logic := '0';
+  signal hdmi_rx_clk_n  : std_logic := '0';
+  signal hdmi_rx_clk_p  : std_logic := '0';
+  signal hdmi_rx_n      : std_logic_vector(2 downto 0) := (others => '0');
+  signal hdmi_rx_p      : std_logic_vector(2 downto 0) := (others => '0');
+  signal jb             : std_logic_vector (5 downto 0) := (others => '0');
+  signal jc             : std_logic_vector (5 downto 0) := (others => '0');
+  signal jd             : std_logic_vector (5 downto 0) := (others => '0');
+  signal je             : std_logic_vector (7 downto 0) := (others => '0');
+  signal led            : std_logic_vector (3 downto 0) := (others => '0');
 
   -- adding the component declaration
   component top is
     port (
       -- inputs
-      sysclk  : in std_logic; -- 125 MHz external clock
-      btn     : in std_logic;
+      sysclk        : in std_logic; -- 125 MHz external clock
+      btn           : in std_logic;
+      -- hdmi in
+      hdmi_rx_hpd   : out std_logic;
+      hdmi_rx_sda   : inout std_logic;
+      hdmi_rx_scl   : inout std_logic;
+      hdmi_rx_cec   : inout std_logic;
+      hdmi_rx_clk_n : in std_logic;
+      hdmi_rx_clk_p : in std_logic;
+      hdmi_rx_n     : in std_logic_vector(2 downto 0);
+      hdmi_rx_p     : in std_logic_vector(2 downto 0);
       -- outputs
-      jb      : out std_logic_vector (5 downto 0);
-      jc      : out std_logic_vector (5 downto 0);
-      jd      : out std_logic_vector (5 downto 0);
-      je      : out std_logic_vector (7 downto 0);
-      led     : out std_logic_vector (3 downto 0)
+      jb            : out std_logic_vector (5 downto 0);
+      jc            : out std_logic_vector (5 downto 0);
+      jd            : out std_logic_vector (5 downto 0);
+      je            : out std_logic_vector (7 downto 0);
+      led           : out std_logic_vector (3 downto 0)
     );
-  end component;
+  end component top;
 
   signal clk_en : boolean := true;
 
@@ -45,6 +62,14 @@ begin
     port map (
       sysclk  => sysclk,
       btn     => btn,
+      hdmi_rx_hpd => hdmi_rx_hpd,
+      hdmi_rx_sda => hdmi_rx_sda,
+      hdmi_rx_scl => hdmi_rx_scl,
+      hdmi_rx_cec => hdmi_rx_cec,
+      hdmi_rx_clk_n => hdmi_rx_clk_n,
+      hdmi_rx_clk_p => hdmi_rx_clk_p,
+      hdmi_rx_n => hdmi_rx_n,
+      hdmi_rx_p => hdmi_rx_p,
       jb      => jb,
       jc      => jc,
       jd      => jd,
