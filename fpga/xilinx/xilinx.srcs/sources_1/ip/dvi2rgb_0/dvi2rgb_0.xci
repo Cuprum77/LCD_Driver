@@ -44,11 +44,11 @@
         <spirit:configurableElementValue spirit:referenceId="MODELPARAM_VALUE.kClkRange">3</spirit:configurableElementValue>
         <spirit:configurableElementValue spirit:referenceId="MODELPARAM_VALUE.kDebug">false</spirit:configurableElementValue>
         <spirit:configurableElementValue spirit:referenceId="MODELPARAM_VALUE.kEdidFileName">dgl_720p_cea.data</spirit:configurableElementValue>
-        <spirit:configurableElementValue spirit:referenceId="MODELPARAM_VALUE.kEmulateDDC">false</spirit:configurableElementValue>
+        <spirit:configurableElementValue spirit:referenceId="MODELPARAM_VALUE.kEmulateDDC">true</spirit:configurableElementValue>
         <spirit:configurableElementValue spirit:referenceId="MODELPARAM_VALUE.kIDLY_TapValuePs">78</spirit:configurableElementValue>
         <spirit:configurableElementValue spirit:referenceId="MODELPARAM_VALUE.kIDLY_TapWidth">5</spirit:configurableElementValue>
         <spirit:configurableElementValue spirit:referenceId="MODELPARAM_VALUE.kRstActiveHigh">true</spirit:configurableElementValue>
-        <spirit:configurableElementValue spirit:referenceId="PARAM_ENABLEMENT.kEdidFileName">false</spirit:configurableElementValue>
+        <spirit:configurableElementValue spirit:referenceId="PARAM_ENABLEMENT.kEdidFileName">true</spirit:configurableElementValue>
         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.Component_Name">dvi2rgb_0</spirit:configurableElementValue>
         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.IIC_BOARD_INTERFACE"/>
         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.TMDS_BOARD_INTERFACE"/>
@@ -56,7 +56,7 @@
         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.kClkRange">3</spirit:configurableElementValue>
         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.kDebug">false</spirit:configurableElementValue>
         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.kEdidFileName">dgl_720p_cea.data</spirit:configurableElementValue>
-        <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.kEmulateDDC">false</spirit:configurableElementValue>
+        <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.kEmulateDDC">true</spirit:configurableElementValue>
         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.kEnableSerialClkOutput">false</spirit:configurableElementValue>
         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.kRstActiveHigh">true</spirit:configurableElementValue>
         <spirit:configurableElementValue spirit:referenceId="PROJECT_PARAM.ARCHITECTURE">zynq</spirit:configurableElementValue>
@@ -87,6 +87,7 @@
             <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.kAddBUFG" xilinx:valueSource="user"/>
             <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.kClkRange" xilinx:valueSource="user"/>
             <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.kDebug" xilinx:valueSource="user"/>
+            <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.kEdidFileName" xilinx:valueSource="user"/>
             <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.kEmulateDDC" xilinx:valueSource="user"/>
             <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.kEnableSerialClkOutput" xilinx:valueSource="user"/>
           </xilinx:configElementInfos>

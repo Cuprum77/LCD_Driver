@@ -42,13 +42,13 @@
     <Option Name="WTVcsLaunchSim" Val="0"/>
     <Option Name="WTRivieraLaunchSim" Val="0"/>
     <Option Name="WTActivehdlLaunchSim" Val="0"/>
-    <Option Name="WTXSimExportSim" Val="12"/>
-    <Option Name="WTModelSimExportSim" Val="12"/>
-    <Option Name="WTQuestaExportSim" Val="12"/>
-    <Option Name="WTIesExportSim" Val="12"/>
-    <Option Name="WTVcsExportSim" Val="12"/>
-    <Option Name="WTRivieraExportSim" Val="12"/>
-    <Option Name="WTActivehdlExportSim" Val="12"/>
+    <Option Name="WTXSimExportSim" Val="17"/>
+    <Option Name="WTModelSimExportSim" Val="17"/>
+    <Option Name="WTQuestaExportSim" Val="17"/>
+    <Option Name="WTIesExportSim" Val="17"/>
+    <Option Name="WTVcsExportSim" Val="17"/>
+    <Option Name="WTRivieraExportSim" Val="17"/>
+    <Option Name="WTActivehdlExportSim" Val="17"/>
     <Option Name="GenerateIPUpgradeLog" Val="TRUE"/>
     <Option Name="XSimRadix" Val="hex"/>
     <Option Name="XSimTimeUnit" Val="ns"/>
@@ -116,6 +116,12 @@
       <File Path="$PPRDIR/../../display_interface/rgb_clock.vhd">
         <FileInfo>
           <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../display_interface/ddc/edid/edid.data">
+        <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>

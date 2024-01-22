@@ -68,6 +68,12 @@ ENTITY dvi2rgb_0 IS
     PixelClk : OUT STD_LOGIC;
     aPixelClkLckd : OUT STD_LOGIC;
     pLocked : OUT STD_LOGIC;
+    SDA_I : IN STD_LOGIC;
+    SDA_O : OUT STD_LOGIC;
+    SDA_T : OUT STD_LOGIC;
+    SCL_I : IN STD_LOGIC;
+    SCL_O : OUT STD_LOGIC;
+    SCL_T : OUT STD_LOGIC;
     pRst : IN STD_LOGIC
   );
 END dvi2rgb_0;
@@ -114,6 +120,13 @@ ARCHITECTURE dvi2rgb_0_arch OF dvi2rgb_0 IS
   END COMPONENT dvi2rgb;
   ATTRIBUTE X_INTERFACE_INFO : STRING;
   ATTRIBUTE X_INTERFACE_PARAMETER : STRING;
+  ATTRIBUTE X_INTERFACE_INFO OF SCL_T: SIGNAL IS "xilinx.com:interface:iic:1.0 DDC SCL_T";
+  ATTRIBUTE X_INTERFACE_INFO OF SCL_O: SIGNAL IS "xilinx.com:interface:iic:1.0 DDC SCL_O";
+  ATTRIBUTE X_INTERFACE_INFO OF SCL_I: SIGNAL IS "xilinx.com:interface:iic:1.0 DDC SCL_I";
+  ATTRIBUTE X_INTERFACE_INFO OF SDA_T: SIGNAL IS "xilinx.com:interface:iic:1.0 DDC SDA_T";
+  ATTRIBUTE X_INTERFACE_INFO OF SDA_O: SIGNAL IS "xilinx.com:interface:iic:1.0 DDC SDA_O";
+  ATTRIBUTE X_INTERFACE_PARAMETER OF SDA_I: SIGNAL IS "XIL_INTERFACENAME DDC, BOARD.ASSOCIATED_PARAM IIC_BOARD_INTERFACE";
+  ATTRIBUTE X_INTERFACE_INFO OF SDA_I: SIGNAL IS "xilinx.com:interface:iic:1.0 DDC SDA_I";
   ATTRIBUTE X_INTERFACE_PARAMETER OF PixelClk: SIGNAL IS "XIL_INTERFACENAME PixelClk, FREQ_HZ 100000000, PHASE 0.000, INSERT_VIP 0";
   ATTRIBUTE X_INTERFACE_INFO OF PixelClk: SIGNAL IS "xilinx.com:signal:clock:1.0 PixelClk CLK";
   ATTRIBUTE X_INTERFACE_INFO OF vid_pVSync: SIGNAL IS "xilinx.com:interface:vid_io:1.0 RGB VSYNC";
@@ -131,7 +144,7 @@ ARCHITECTURE dvi2rgb_0_arch OF dvi2rgb_0 IS
 BEGIN
   U0 : dvi2rgb
     GENERIC MAP (
-      kEmulateDDC => false,
+      kEmulateDDC => true,
       kRstActiveHigh => true,
       kClkRange => 3,
       kIDLY_TapValuePs => 78,
@@ -155,8 +168,12 @@ BEGIN
       PixelClk => PixelClk,
       aPixelClkLckd => aPixelClkLckd,
       pLocked => pLocked,
-      SDA_I => '0',
-      SCL_I => '0',
+      SDA_I => SDA_I,
+      SDA_O => SDA_O,
+      SDA_T => SDA_T,
+      SCL_I => SCL_I,
+      SCL_O => SCL_O,
+      SCL_T => SCL_T,
       pRst => pRst,
       pRst_n => '1'
     );
