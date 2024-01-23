@@ -118,16 +118,11 @@ architecture RTL of top is
   signal s_err      : std_logic := '0';
 
   -- rgb
-  signal r          : std_logic_vector(7 downto 0) := (others => '0');
-  signal g          : std_logic_vector(7 downto 0) := (others => '0');
-  signal b          : std_logic_vector(7 downto 0) := (others => '0');
   signal pclk       : std_logic := '0';
   signal de         : std_logic := '0';
   signal vs         : std_logic := '0';
   signal hs         : std_logic := '0';
   signal data       : std_logic_vector(23 downto 0) := (others => '0');
-  signal x          : std_logic_vector(11 downto 0) := (others => '0');
-  signal y          : std_logic_vector(11 downto 0) := (others => '0');
 
   -- hdmi
   signal sda_i      : std_logic;
@@ -136,23 +131,12 @@ architecture RTL of top is
   signal scl_i      : std_logic;
   signal scl_o      : std_logic;
   signal scl_t      : std_logic;
-  signal hdmi_vde   : std_logic := '0';
-  signal hdmi_hsync : std_logic := '0';
-  signal hdmi_vsync : std_logic := '0';
   signal hdmi_data  : std_logic_vector(23 downto 0) := (others => '0');
-
-  signal pxl_clk    : std_logic;
-  signal pxl_clk_l  : std_logic;
-  signal hdmi_sync  : std_logic;
-  signal hdmi_vs_n  : std_logic;
-  signal vs_n       : std_logic;
 
 begin
 
   -- map the reset button
   rst <= btn;
-  vs_n <= not vs;
-  hdmi_vs_n <= not hdmi_vsync;
 
   -- map the PMOD connectors to the correct pins
   -- PMOD JB
@@ -242,13 +226,13 @@ begin
       tmds_data_p   => hdmi_rx_p,
       tmds_data_n   => hdmi_rx_n,
       refclk        => clk_200,
-      arst          => rst,
+      arst          => not done,
+      vid_pdata     => hdmi_data,
       vid_pvde      => de,
       vid_phsync    => hs,
       vid_pvsync    => vs,
       pixelclk      => pclk,
-      vid_pdata     => hdmi_data,
-      apixelclklckd => pxl_clk_l,
+      apixelclklckd => open,
       plocked       => open,
       sda_i         => sda_i,
       sda_o         => sda_o,
@@ -284,23 +268,6 @@ begin
       i  => scl_o,  -- Buffer input
       t  => scl_t   -- 3-state enable input,high=input,low=output
     );
-
-  -- sync the hdmi to the display
-  hdmi_sync_proc : process(hdmi_vs_n, rst, vs_n)
-  begin
-    if rst = '1' or pxl_clk_l = '0' then
-      hdmi_sync <= '1';
-    end if;
-    -- when the vsync is high, we are starting a new frame, so wait for it to fall
-    if rising_edge(hdmi_vs_n) then
-      hdmi_sync <= '0';
-    end if;
-    -- however, we still need to make sure we are only active as long as we can be
-    -- so we must wait for the vsync to fall to start the next frame
-    if rising_edge(vs_n) and hdmi_sync = '0' then
-      hdmi_sync <= '1';
-    end if;
-  end process hdmi_sync_proc;
 
   -- set the hpd signal for hot plug detection
   hdmi_rx_hpd <= '1';
