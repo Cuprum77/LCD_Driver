@@ -10,3 +10,12 @@ These are the known issues with the current design:
 - No reset button
 - No ability to power the board from the USB port (for the microcontroller)
 - Difficult to add external power to the board
+- More ground connections!
+- Maybe a few on the edges?
+
+## 3D Files
+
+In the [3D](./3d/) folder you can find the 3D models for the board and a stand for the display to rest on.
+The [stand](./3d/stand.stl) is a very crude design. It may not be very printable, but it works well enough for a prototype. 
+
+This will not be developed further as there will not be a need for it in the final design.
