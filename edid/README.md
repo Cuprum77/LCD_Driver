@@ -1,16 +1,30 @@
 # EDID Data
 
 This folder contains the EDID data for the display used in this project.
-It should replace the EDID data in the IP core itself. As this cannot be published due to the use of submodules, it is provided here and should be done manually.
-The file in use for the xilinx system is (this one.)[https://github.com/Digilent/vivado-library/blob/master/ip/dvi2rgb/src/dgl_720p_cea.data]
+However, the current bit file is already synthesized with the correct EDID data, so this shouldn't be necessary unless you intend to use a different display or modify the timings.
 
-I am however unsure if its just this file, or the one in the 'src' folder Vivado uses. I simply replaced both.
+## Table of contents
+- [Replacing the EDID Data](#replacing-the-edid-data)
+- [Timing Data](#timing-data)
+- [Generating or Modifying EDID Data](#generating-or-modifying-edid-data)
+- [Modeline to EDID](#modeline-to-edid)
+
+## Replacing the EDID Data
+
+To replace the EDID data, you need to identify all the files named "dgl_720p_cea.data" in the project. I am unsure if you only need to replace the one that Vivado copied into the project folder, or the one in the IP core as well. I simply replaced both.
+These files are typically found in both the [fpga folder](../fpga/xilinx/xilinx.srcs/sources_1/ip/dvi2rgb_0/src/dgl_720p_cea.data) and the [IP core folder](../vivado-library/ip/dvi2rgb/src/dgl_720p_cea.data).
+
+This however should be done manually, as the IP core is a submodule and cannot be published.
+
+## Timing Data
+
+The Timing data needed for this project was specified in the datasheet for the display, however I found that to be insufficient and unreliable on most systems. This was due to the clock being too slow, and not enough time being given to the display to process the data. Luckily, the display does not have any upper limits to how much "trash" data it can receive for synchronezation.
+This tool generates a modeline for the display, which we can convert to EDID data using the [Free86 modeline generator](https://xtiming.sourceforge.net/cgi-bin/xtiming.pl) made by Ethan Fischer, comes in.
+The beauty of this, is that its designed for CRT monitors in mind, which have a problematic resolution when it comes to modern interfaces.
 
 ## Generating or Modifying EDID Data
 
-The binary file is generated using the Deltacast EDID Editor. It is a free tool, but requires registration.
-To get the correct timing data, I used the (Free86 modeline generator)[https://xtiming.sourceforge.net/cgi-bin/xtiming.pl] made by Ethan Fischer.
-This was then plugged into the EDID editor, and the binary file was generated, which then was ran through the python script in this folder to convert it to a data file.
+The binary file is generated using the [Deltacast EDID Editor](https://www.deltacast.tv/products/free-software/e-edid-editor). It is a "free" tool, but requires registration. This outputs a pure binary file, which in itself is not very useful. So I wrote a simple python script to convert it to the data file used by the Digilent IP powering the HDMI interface. This script is included [here](edid_to_ip.py).
 
 ## Modeline to EDID
 
