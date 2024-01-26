@@ -76,4 +76,4 @@ These are simply plotted into the Detailed Timings / Display Descriptor section 
 Important to note that you also need to set the "Sync Signal Definition" to "Digital Seperate" and both the sync signals should be unchecked.
 
 Your "Detailed Timings / Display Descriptor" section should look like this:
-!(EDID Screen)[./edid.png]
+![EDID Screen](edid.png)
