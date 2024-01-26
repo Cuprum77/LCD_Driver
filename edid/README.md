@@ -71,18 +71,18 @@ Back Porch = Total - Display
 
 This should give us the following values:
 ```
-Pixel Clock:     36.48 MHz
+Pixel Clock:      36.48 MHz
 
-H. Active:      400
-H. Blank:       200
-H. Front Porch:  32
-H. Sync Width:  136
-H. Image Size:  600
+H. Active:       400
+H. Blank:        200
+H. Front Porch:   32
+H. Sync Width:   136
+H. Image Size:   600
 
-V. Active:      960
-V. Blank:        49
-V. Front Porch:  19
-V. Sync Width:   10
+V. Active:       960
+V. Blank:         49
+V. Front Porch:   19
+V. Sync Width:    10
 V. Image Size:  1009
 ```
 
