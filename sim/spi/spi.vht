@@ -1,18 +1,32 @@
+--------------------------------------------------------------------------
+--! @file spi.vht
+--! @brief SPI testbench
+--! @author Cuprum https://github.com/Cuprum77
+--! @date 2024-01-27
+--! @version 1.0
+--------------------------------------------------------------------------
+
+--! Use standard library
 library ieee;
 use ieee.std_logic_1164.all;
 
+--! UVVM library
 library uvvm_util;
 context uvvm_util.uvvm_util_context;
 use uvvm_util.spi_bfm_pkg.all;
 
+--! Work library
+use work.driver_top_pkg.all;
+
 entity spi_tb is
 end spi_tb;
 
+--! Testbench architecture
 architecture RTL of spi_tb is
-  -- constants
+  --! Constants
   constant clk_period : time := 5ns; -- 200 MHz
 
-  -- signals, these are all initialized to 0
+  --! Signals, these are all initialized to 0
   signal clk        : std_logic := '0';
   signal rst        : std_logic := '0';
   signal spi_sda    : std_logic := '0';
@@ -25,15 +39,12 @@ architecture RTL of spi_tb is
   signal bit_width  : std_logic_vector(2 downto 0) := (others => '0');
   signal data       : std_logic_vector(31 downto 0) := (others => '0');
 
+  --! Add the external SPI component
   component spi is
-    generic(
-      alternative_dc : boolean := false --! If the SPI DC is a part of the data stream or not
-    );
     port(
-      -- Clock and reset
       clk       : in  std_logic; --! Clock
       rst       : in  std_logic; --! Reset, synchronous
-      -- SPI ports
+      settings  : in  t_spi_settings; --! Settings for the display
       spi_sda   : out std_logic; --! SPI SDA (Data)
       spi_scl   : out std_logic; --! SPI SCL (Clock)
       spi_cs    : out std_logic; --! SPI CS (Chip Select)
@@ -44,7 +55,7 @@ architecture RTL of spi_tb is
       data      : in  std_logic_vector(31 downto 0); --! Data to be transmitted
       bit_width : in  std_logic_vector(2 downto 0)   --! Number of bits to send
     );
-  end component;
+  end component spi;
 
   signal clk_en   : boolean := false;
   signal data_rx  : std_logic_vector(32 downto 0) := (others => '0');
@@ -53,12 +64,10 @@ begin
 
   -- set up the component
   DUT : spi
-    generic map(
-      alternative_dc => true
-    )
     port map(
       clk       => clk,
       rst       => rst,
+      settings  => c_spi_settings,
       spi_sda   => spi_sda,
       spi_scl   => spi_scl,
       spi_cs    => spi_cs,

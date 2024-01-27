@@ -16,15 +16,14 @@ use ieee.numeric_std.all;
 --! Use unsigned library for arithmetic on std_logic_vector
 use ieee.std_logic_unsigned.all;
 
+--! Work library
+use work.driver_top_pkg.all;
+
 entity spi is
-  generic(
-    alternative_dc : boolean := false --! If the SPI DC is a part of the data stream or not
-  );
   port(
-    -- Clock and reset
     clk       : in  std_logic; --! Clock
     rst       : in  std_logic; --! Reset, synchronous
-    -- SPI ports
+    settings  : in  t_spi_settings; --! Settings for the display
     spi_sda   : out std_logic; --! SPI SDA (Data)
     spi_scl   : out std_logic; --! SPI SCL (Clock)
     spi_cs    : out std_logic; --! SPI CS (Chip Select)
@@ -35,7 +34,7 @@ entity spi is
     data      : in  std_logic_vector(31 downto 0); --! Data to be transmitted
     bit_width : in  std_logic_vector(2 downto 0)   --! Number of bits to send
   );
-end entity;
+end entity spi;
 
 --! @brief SPI architecture
 --! @details The goal is to create a SPI signal that is readable by the screen
@@ -60,8 +59,13 @@ architecture rtl of spi is
   signal data_int : std_logic_vector(data'length downto 0);
   --! Internal bit counter signal, used to count down the number of bits to be transmitted
   signal bit_cnt  : integer range 0 to (data'length);
+  --! Internal alternative DC signal, used to determine if the DC bit is used or not
+  signal alternative_dc : std_logic := '0';
 	
 begin
+
+  --! Assign the alternative DC signal based on the settings
+  alternative_dc <= settings.alt_spi_dc;
 
   --! Frequency generator for the SPI clock
   delay_process : process(clk)
@@ -90,31 +94,31 @@ begin
       if rst = '1' or spi_state = idle_state then
         case bit_width is
           when "001" => 
-            if alternative_dc = true then
+            if alternative_dc = '1' then
               bit_cnt <= 16;
             else
               bit_cnt <= 15;
             end if;
           when "010" => 
-            if alternative_dc = true then
+            if alternative_dc = '1' then
               bit_cnt <= 18;
             else
               bit_cnt <= 17;
             end if;
           when "011" => 
-            if alternative_dc = true then
+            if alternative_dc = '1' then
               bit_cnt <= 24;
             else
               bit_cnt <= 23;
             end if;
           when "100" => 
-            if alternative_dc = true then
+            if alternative_dc = '1' then
               bit_cnt <= 32;
             else
               bit_cnt <= 31;
             end if;
           when others => 
-            if alternative_dc = true then
+            if alternative_dc = '1' then
               bit_cnt <= 8;
             else
               bit_cnt <= 7;
@@ -133,7 +137,7 @@ begin
     if rising_edge(clk) then
       if rst = '1' then
         spi_dc <= '0';
-      elsif alternative_dc = false then
+      elsif alternative_dc = '0' then
         spi_dc <= set_dc;
       end if;
     end if;
@@ -169,7 +173,7 @@ begin
           data_int((data'length - 1) downto 0) <= data;
           
           --! If we use the alternative DC system, append the DC bit to the start of the signal
-          if alternative_dc = true then
+          if alternative_dc = '1' then
             data_int(bit_cnt) <= set_dc;
           end if;
           
