@@ -40,33 +40,34 @@ end entity;
 --! @brief SPI architecture
 --! @details The goal is to create a SPI signal that is readable by the screen
 architecture rtl of spi is
+  --! SPI state machine type declaration
   type state_machine is (
     idle_state,
     start_state,
     shiftout_state,
     clk_state,
-    stop_state,
-    hold_state
+    stop_state
   ); 
-
   signal spi_state : state_machine := idle_state;
     
-  signal delay_cnt       	: std_logic_vector(1 downto 0) := (others => '0');
+  --! Internal counter signals for the various delays
+  signal delay_cnt       	: std_logic_vector(2 downto 0) := (others => '0');
   signal delay_done_full 	: std_logic := '0';
   signal delay_done_half 	: std_logic := '0';
   signal delay_done      	: std_logic := '0';
 
-  signal data_int : std_logic_vector(32 downto 0);
-  signal bit_cnt  : integer range 0 to 32;
+  --! Internal data signal, its one bit longer than the data to be transmitted to account for the potential DC bit
+  signal data_int : std_logic_vector(data'length downto 0);
+  --! Internal bit counter signal, used to count down the number of bits to be transmitted
+  signal bit_cnt  : integer range 0 to (data'length);
 	
 begin
 
-  -- This process handles the delay counter
-  -- This is essentially a glorified frequency divider, which gets reset when the delay is done
+  --! Frequency generator for the SPI clock
   delay_process : process(clk)
   begin
     if rising_edge(clk) then
-      if rst = '1' or delay_done = '1' or spi_state = idle_state or spi_state = hold_state then
+      if rst = '1' or delay_done = '1' or spi_state = idle_state then
         delay_cnt <= (others => '0');
       else
         delay_cnt <= delay_cnt + 1;
@@ -74,19 +75,19 @@ begin
     end if;
   end process;
 
-  -- These are the delay signals, which gets squished into one
-  -- Where the full delay is 2 cycles and half delay is 1 cycle
-  -- Useful for setting the clock high and low with the appropriate delays
-  delay_done_full <= '1' when delay_cnt = "10" else '0';
-  delay_done_half <= '1' when delay_cnt = "01" else '0';
-  delay_done <= delay_done_half when spi_state = clk1_state or spi_state = shiftout_state else delay_done_full;
+  --! Full delay is used for start and stop states
+  delay_done_full <= '1' when delay_cnt(delay_cnt'length - 1) = '1' else '0';
+  --! Half delay is used between shifting and clocking to ensure plenty of time for the data to settle
+  delay_done_half <= '1' when delay_cnt(0) = '1' else '0';
+  --! Delay done is used to determine when the delay is done, a "catch all"
+  delay_done <= delay_done_half when spi_state = clk_state or spi_state = shiftout_state else delay_done_full;
 
-  -- This is the bit counter
-  -- It will set the number of bits to be shifted out and count down appropriately
+  --! Bit counter, either sets the number of bits to be transmitted based on input, or counts down
   bit_cnt_process : process(clk)
   begin
     if rising_edge(clk)then
-      if rst = '1' or spi_state = idle_state or spi_state = hold_state then
+      --! Resetting the counter when the state machine is idle, or when the reset is active
+      if rst = '1' or spi_state = idle_state then
         case bit_width is
           when "001" => 
             if alternative_dc = true then
@@ -119,47 +120,55 @@ begin
               bit_cnt <= 7;
             end if;
         end case;
+      --! Only count down if the delay is done and the bit counter is not zero (otherwise we are done)
       elsif spi_state = clk_state and delay_done = '1' and bit_cnt > 0 then
         bit_cnt <= bit_cnt - 1;
       end if;
     end if;
   end process bit_cnt_process;
 
-  -- set the DATA/command or d/c pin
-  spi_dc <= set_dc when rst = '0' else '0';
-
-  -- This is the main state machine
-  -- It should be able to shift out however many bits are needed
-  -- With the appropriate delays and clock signals
+  --! Set the DC pin if the alternative is not used
+  dc_process : process(clk)
+  begin
+    if rising_edge(clk) then
+      if rst = '1' then
+        spi_dc <= '0';
+      elsif alternative_dc = false then
+        spi_dc <= set_dc;
+      end if;
+    end if;
+  end process dc_process;
+  
+  --! Main state machine for the SPI
   interface_process : process(clk)
   begin
   if rising_edge(clk) then
+    --! Resetting the state machine might as well put the SPI in idle state
     if rst = '1' then
       spi_state <= idle_state;
     else
       case spi_state is
-        -- waiting for a command
+        --! Idle state, waiting for the send signal to be active
         when idle_state =>
-          spi_sda <= '0';
-          spi_scl <= '0';
-          spi_cs <= '1';
-          done <= '1';
+          spi_sda   <= '0';
+          spi_scl   <= '0';
+          spi_cs    <= '1';
+          spi_done  <= '1';
           
-          if SEND = '1' then
+          if send = '1' then
             spi_state <= start_state;
           else
             spi_state <= idle_state;
           end if;
 
-        -- start the transmission
+        --! Start state, copies the data and prepares for transmission
         when start_state =>
-          spi_scl <= '0';
-          spi_cs <= '0';
-          done <= '0';
-          -- copy the input data to our internal register
-          data_int(31 downto 0) <= data;
+          spi_scl   <= '0';
+          spi_cs    <= '0';
+          spi_done  <= '0';
+          data_int((data'length - 1) downto 0) <= data;
           
-          -- if we are to set the DC as part of the SPI, do so here
+          --! If we use the alternative DC system, append the DC bit to the start of the signal
           if alternative_dc = true then
             data_int(bit_cnt) <= set_dc;
           end if;
@@ -168,7 +177,7 @@ begin
             spi_state <= shiftout_state;
           end if;
 
-        -- shift out the DATA and set the clock low
+        --! Shiftout state, set the data bit to the correct value, clock bit to low
         when shiftout_state =>
           spi_sda <= data_int(bit_cnt);
           spi_scl <= '0';
@@ -177,7 +186,7 @@ begin
             spi_state <= clk_state;
           end if;
 
-        -- set the clock high
+        --! Clock state, set the clock bit to high
         when clk_state =>
           spi_scl <= '1';
 				
@@ -189,25 +198,14 @@ begin
             end if;
           end if;
 
-        -- stop the transmission
+        --! Stop state, set the bus to "stop"
         when stop_state =>
           spi_sda <= '0';
           spi_scl <= '0';
        
           if delay_done = '1' then
-            spi_state <= hold_state;
-          end if;
-
-        -- hold the transmission
-        when hold_state =>
-          spi_cs <= '1'; 
-          done <= '1';
-
-          if send = '1' then
-            spi_state <= start_state;
-          else
             spi_state <= idle_state;
-          end if;      
+          end if;     
       end case;
     end if;
   end if;
