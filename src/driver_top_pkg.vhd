@@ -1,0 +1,7 @@
+--------------------------------------------------------------------------
+--! @file rom.vhd
+--! @brief Package containing all the settings for the driver
+--! @author Cuprum https://github.com/Cuprum77
+--! @date 2024-01-27
+--! @version 1.0
+--------------------------------------------------------------------------
