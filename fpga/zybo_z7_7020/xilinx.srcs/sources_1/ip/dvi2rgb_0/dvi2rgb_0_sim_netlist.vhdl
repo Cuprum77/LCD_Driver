@@ -3,8 +3,8 @@
 -- Tool Version: Vivado v.2019.1 (win64) Build 2552052 Fri May 24 14:49:42 MDT 2019
 -- Date        : Fri Jan 26 22:16:26 2024
 -- Host        : DESKTOP-UGCUO9B running 64-bit major release  (build 9200)
--- Command     : write_vhdl -force -mode funcsim {P:/Electronic Projects/FPGA/FPGA LCD
---               Driver/fpga/xilinx/xilinx.srcs/sources_1/ip/dvi2rgb_0/dvi2rgb_0_sim_netlist.vhdl}
+-- Command     : write_vhdl -force -mode funcsim -rename_top dvi2rgb_0 -prefix
+--               dvi2rgb_0_ dvi2rgb_0_sim_netlist.vhdl
 -- Design      : dvi2rgb_0
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -27,8 +27,6 @@ entity dvi2rgb_0_ChannelBond is
     pAllVld : in STD_LOGIC;
     pDataInRaw : in STD_LOGIC_VECTOR ( 9 downto 0 )
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of dvi2rgb_0_ChannelBond : entity is "ChannelBond";
 end dvi2rgb_0_ChannelBond;
 
 architecture STRUCTURE of dvi2rgb_0_ChannelBond is
@@ -2175,8 +2173,6 @@ entity dvi2rgb_0_GlitchFilter is
     RefClk : in STD_LOGIC;
     SS : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of dvi2rgb_0_GlitchFilter : entity is "GlitchFilter";
 end dvi2rgb_0_GlitchFilter;
 
 architecture STRUCTURE of dvi2rgb_0_GlitchFilter is
@@ -2496,8 +2492,6 @@ entity dvi2rgb_0_InputSERDES is
     CLKB : in STD_LOGIC;
     \out\ : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of dvi2rgb_0_InputSERDES : entity is "InputSERDES";
 end dvi2rgb_0_InputSERDES;
 
 architecture STRUCTURE of dvi2rgb_0_InputSERDES is
@@ -3103,8 +3097,6 @@ entity dvi2rgb_0_PhaseAlign is
     D : in STD_LOGIC_VECTOR ( 8 downto 0 );
     \pIDLY_CNT_Q_reg[4]_0\ : in STD_LOGIC_VECTOR ( 4 downto 0 )
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of dvi2rgb_0_PhaseAlign : entity is "PhaseAlign";
 end dvi2rgb_0_PhaseAlign;
 
 architecture STRUCTURE of dvi2rgb_0_PhaseAlign is
@@ -7598,8 +7590,6 @@ entity dvi2rgb_0_ResyncToBUFG is
     p_1_out : in STD_LOGIC;
     D : in STD_LOGIC_VECTOR ( 23 downto 0 )
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of dvi2rgb_0_ResyncToBUFG : entity is "ResyncToBUFG";
 end dvi2rgb_0_ResyncToBUFG;
 
 architecture STRUCTURE of dvi2rgb_0_ResyncToBUFG is
@@ -7840,8 +7830,6 @@ entity dvi2rgb_0_SyncAsync is
     RefClk : in STD_LOGIC;
     AS : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of dvi2rgb_0_SyncAsync : entity is "SyncAsync";
 end dvi2rgb_0_SyncAsync;
 
 architecture STRUCTURE of dvi2rgb_0_SyncAsync is
@@ -8539,8 +8527,6 @@ entity dvi2rgb_0_ResetBridge is
     in0 : in STD_LOGIC;
     \oSyncStages_reg[1]\ : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of dvi2rgb_0_ResetBridge : entity is "ResetBridge";
 end dvi2rgb_0_ResetBridge;
 
 architecture STRUCTURE of dvi2rgb_0_ResetBridge is
@@ -8664,8 +8650,6 @@ entity dvi2rgb_0_SyncBase is
     rTimeoutCnt_reg : in STD_LOGIC_VECTOR ( 23 downto 0 );
     CLK : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of dvi2rgb_0_SyncBase : entity is "SyncBase";
 end dvi2rgb_0_SyncBase;
 
 architecture STRUCTURE of dvi2rgb_0_SyncBase is
@@ -9130,8 +9114,6 @@ entity dvi2rgb_0_TWI_SlaveCtl is
     SDA_I : in STD_LOGIC;
     SCL_I : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of dvi2rgb_0_TWI_SlaveCtl : entity is "TWI_SlaveCtl";
 end dvi2rgb_0_TWI_SlaveCtl;
 
 architecture STRUCTURE of dvi2rgb_0_TWI_SlaveCtl is
@@ -10093,8 +10075,6 @@ entity dvi2rgb_0_EEPROM_8b is
     SDA_I : in STD_LOGIC;
     SCL_I : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of dvi2rgb_0_EEPROM_8b : entity is "EEPROM_8b";
 end dvi2rgb_0_EEPROM_8b;
 
 architecture STRUCTURE of dvi2rgb_0_EEPROM_8b is
@@ -11097,8 +11077,6 @@ entity dvi2rgb_0_TMDS_Clocking is
     TMDS_Clk_p : in STD_LOGIC;
     TMDS_Clk_n : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of dvi2rgb_0_TMDS_Clocking : entity is "TMDS_Clocking";
 end dvi2rgb_0_TMDS_Clocking;
 
 architecture STRUCTURE of dvi2rgb_0_TMDS_Clocking is
@@ -11532,8 +11510,6 @@ entity dvi2rgb_0_TMDS_Decoder is
     pRdy_2 : in STD_LOGIC;
     pRst : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of dvi2rgb_0_TMDS_Decoder : entity is "TMDS_Decoder";
 end dvi2rgb_0_TMDS_Decoder;
 
 architecture STRUCTURE of dvi2rgb_0_TMDS_Decoder is
@@ -13474,8 +13450,6 @@ entity dvi2rgb_0_dvi2rgb is
     pRst : in STD_LOGIC;
     pRst_n : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of dvi2rgb_0_dvi2rgb : entity is "dvi2rgb";
   attribute kAddBUFG : string;
   attribute kAddBUFG of dvi2rgb_0_dvi2rgb : entity is "TRUE";
   attribute kClkRange : integer;

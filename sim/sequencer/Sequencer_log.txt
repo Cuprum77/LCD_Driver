@@ -1,0 +1,136 @@
+UVVM:      
+UVVM:      --------------------------------------------------------------------------------------------------------------------------------------------------------------------
+UVVM:      ***  REPORT OF GLOBAL CTRL ***
+UVVM:      --------------------------------------------------------------------------------------------------------------------------------------------------------------------
+UVVM:                                IGNORE    STOP_LIMIT
+UVVM:                NOTE         :  REGARD         0
+UVVM:                TB_NOTE      :  REGARD         0
+UVVM:                WARNING      :  REGARD         0
+UVVM:                TB_WARNING   :  REGARD         0
+UVVM:                MANUAL_CHECK :  REGARD         0
+UVVM:                ERROR        :  REGARD         0
+UVVM:                TB_ERROR     :  REGARD         1
+UVVM:                FAILURE      :  REGARD         1
+UVVM:                TB_FAILURE   :  REGARD         1
+UVVM:      --------------------------------------------------------------------------------------------------------------------------------------------------------------------
+UVVM:      
+UVVM: ID_LOG_MSG_CTRL                    0.0 ns  TB seq.                        enable_log_msg(ALL_MESSAGES). 
+UVVM: 
+UVVM: 
+UVVM: ID_LOG_HDR                         0.0 ns  TB seq.                        Starting the simulation for the Sequencer module
+UVVM: -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+UVVM: ID_CLOCK_GEN                       0.0 ns  TB seq.                        Starting clock clock
+UVVM: ID_GEN_PULSE                      20.0 ns  TB seq.                        Pulsed to 1 for 10000 ps. 'Generating Reset'
+UVVM: 
+UVVM: 
+UVVM: ID_LOG_HDR                        30.0 ns  TB seq.                        Verifying that the signals meet requirements
+UVVM: -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+UVVM: ID_POS_ACK                        30.0 ns  TB seq.                        check_value() => OK, for std_logic '0' (exp: '0'). 'Checking SPI_SDA'
+UVVM: ID_POS_ACK                        30.0 ns  TB seq.                        check_value() => OK, for std_logic '0' (exp: '0'). 'Checking SPI_SCL'
+UVVM: ID_POS_ACK                        30.0 ns  TB seq.                        check_value() => OK, for std_logic '1' (exp: '1'). 'Checking SPI_CS'
+UVVM: ID_POS_ACK                        30.0 ns  TB seq.                        check_value() => OK, for std_logic '0' (exp: '0'). 'Checking DONE'
+UVVM: ID_POS_ACK                        30.0 ns  TB seq.                        check_value() => OK, for std_logic '0' (exp: '0'). 'Checking ERROR'
+UVVM: 
+UVVM: 
+UVVM: ID_LOG_HDR                        30.0 ns  TB seq.                        Checking instruction x00000001 (0/18)
+UVVM: -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+UVVM: ID_POS_ACK                       580.0 ns  TB seq.                        check_value() => OK, for slv x"00000001"'. 'Checking data'
+UVVM: 
+UVVM: 
+UVVM: ID_LOG_HDR                       630.0 ns  TB seq.                        Checking instruction x00000011 (1/18)
+UVVM: -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+UVVM: ID_POS_ACK                      1120.0 ns  TB seq.                        check_value() => OK, for slv x"00000011"'. 'Checking data'
+UVVM: 
+UVVM: 
+UVVM: ID_LOG_HDR                      1170.0 ns  TB seq.                        Checking instruction x0000003A (2/18)
+UVVM: -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+UVVM: ID_POS_ACK                      1660.0 ns  TB seq.                        check_value() => OK, for slv x"0000003A"'. 'Checking data'
+UVVM: 
+UVVM: 
+UVVM: ID_LOG_HDR                      1710.0 ns  TB seq.                        Checking instruction x00000055 (3/18)
+UVVM: -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+UVVM: ID_POS_ACK                      2200.0 ns  TB seq.                        check_value() => OK, for slv x"00000055"'. 'Checking data'
+UVVM: 
+UVVM: 
+UVVM: ID_LOG_HDR                      2250.0 ns  TB seq.                        Checking instruction x00000036 (4/18)
+UVVM: -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+UVVM: ID_POS_ACK                      2740.0 ns  TB seq.                        check_value() => OK, for slv x"00000036"'. 'Checking data'
+UVVM: 
+UVVM: 
+UVVM: ID_LOG_HDR                      2790.0 ns  TB seq.                        Checking instruction x00000000 (5/18)
+UVVM: -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+UVVM: ID_POS_ACK                      3280.0 ns  TB seq.                        check_value() => OK, for slv x"00000000"'. 'Checking data'
+UVVM: 
+UVVM: 
+UVVM: ID_LOG_HDR                      3330.0 ns  TB seq.                        Checking instruction x0000002A (6/18)
+UVVM: -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+UVVM: ID_POS_ACK                      3820.0 ns  TB seq.                        check_value() => OK, for slv x"0000002A"'. 'Checking data'
+UVVM: 
+UVVM: 
+UVVM: ID_LOG_HDR                      3870.0 ns  TB seq.                        Checking instruction x00000000 (7/18)
+UVVM: -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+UVVM: ID_POS_ACK                      4360.0 ns  TB seq.                        check_value() => OK, for slv x"00000000"'. 'Checking data'
+UVVM: 
+UVVM: 
+UVVM: ID_LOG_HDR                      4410.0 ns  TB seq.                        Checking instruction x00000000 (8/18)
+UVVM: -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+UVVM: ID_POS_ACK                      4900.0 ns  TB seq.                        check_value() => OK, for slv x"00000000"'. 'Checking data'
+UVVM: 
+UVVM: 
+UVVM: ID_LOG_HDR                      4950.0 ns  TB seq.                        Checking instruction x000000EF (9/18)
+UVVM: -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+UVVM: ID_POS_ACK                      5440.0 ns  TB seq.                        check_value() => OK, for slv x"000000EF"'. 'Checking data'
+UVVM: 
+UVVM: 
+UVVM: ID_LOG_HDR                      5490.0 ns  TB seq.                        Checking instruction x00000000 (10/18)
+UVVM: -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+UVVM: ID_POS_ACK                      5980.0 ns  TB seq.                        check_value() => OK, for slv x"00000000"'. 'Checking data'
+UVVM: 
+UVVM: 
+UVVM: ID_LOG_HDR                      6030.0 ns  TB seq.                        Checking instruction x0000002B (11/18)
+UVVM: -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+UVVM: ID_POS_ACK                      6520.0 ns  TB seq.                        check_value() => OK, for slv x"0000002B"'. 'Checking data'
+UVVM: 
+UVVM: 
+UVVM: ID_LOG_HDR                      6570.0 ns  TB seq.                        Checking instruction x00000000 (12/18)
+UVVM: -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+UVVM: ID_POS_ACK                      7060.0 ns  TB seq.                        check_value() => OK, for slv x"00000000"'. 'Checking data'
+UVVM: 
+UVVM: 
+UVVM: ID_LOG_HDR                      7110.0 ns  TB seq.                        Checking instruction x00000000 (13/18)
+UVVM: -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+UVVM: ID_POS_ACK                      7600.0 ns  TB seq.                        check_value() => OK, for slv x"00000000"'. 'Checking data'
+UVVM: 
+UVVM: 
+UVVM: ID_LOG_HDR                      7650.0 ns  TB seq.                        Checking instruction x0000003F (14/18)
+UVVM: -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+UVVM: ID_POS_ACK                      8140.0 ns  TB seq.                        check_value() => OK, for slv x"0000003F"'. 'Checking data'
+UVVM: 
+UVVM: 
+UVVM: ID_LOG_HDR                      8190.0 ns  TB seq.                        Checking instruction x00000001 (15/18)
+UVVM: -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+UVVM: ID_POS_ACK                      8680.0 ns  TB seq.                        check_value() => OK, for slv x"00000001"'. 'Checking data'
+UVVM: 
+UVVM: 
+UVVM: ID_LOG_HDR                      8730.0 ns  TB seq.                        Checking instruction x00000021 (16/18)
+UVVM: -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+UVVM: ID_POS_ACK                      9220.0 ns  TB seq.                        check_value() => OK, for slv x"00000021"'. 'Checking data'
+UVVM: 
+UVVM: 
+UVVM: ID_LOG_HDR                      9270.0 ns  TB seq.                        Checking instruction x00000013 (17/18)
+UVVM: -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+UVVM: ID_POS_ACK                      9760.0 ns  TB seq.                        check_value() => OK, for slv x"00000013"'. 'Checking data'
+UVVM: 
+UVVM: 
+UVVM: ID_LOG_HDR                      9810.0 ns  TB seq.                        Checking instruction x00000029 (18/18)
+UVVM: -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+UVVM: ID_POS_ACK                     10300.0 ns  TB seq.                        check_value() => OK, for slv x"00000029"'. 'Checking data'
+UVVM: 
+UVVM: 
+UVVM: ID_LOG_HDR                     10450.0 ns  TB seq.                        Verifying that the signals meet requirements
+UVVM: -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+UVVM: ID_POS_ACK                     10450.0 ns  TB seq.                        check_value() => OK, for std_logic '0' (exp: '0'). 'Checking SPI_SDA'
+UVVM: ID_POS_ACK                     10450.0 ns  TB seq.                        check_value() => OK, for std_logic '0' (exp: '0'). 'Checking SPI_SCL'
+UVVM: ID_POS_ACK                     10450.0 ns  TB seq.                        check_value() => OK, for std_logic '1' (exp: '1'). 'Checking SPI_CS'
+UVVM: ID_POS_ACK                     10450.0 ns  TB seq.                        check_value() => OK, for std_logic '1' (exp: '1'). 'Checking DONE'
+UVVM: ID_POS_ACK                     10450.0 ns  TB seq.                        check_value() => OK, for std_logic '0' (exp: '0'). 'Checking ERROR'

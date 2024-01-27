@@ -30,3 +30,6 @@ fp-info-cache
 
 # Backup Files
 *-backups/
+
+# temporary!!!!
+docs/*

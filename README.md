@@ -8,14 +8,15 @@ This project aims to create a driver board for the new 40 pin LCDs from China th
 The writeup will be available on my website once the project is finished.
 
 ## Project layout
-- [display_interface](display_interface/) - The VHDL code for the RGB interface
-- [fpga](fpga/) - The bitstream for the FPGA
-- [hardware](hardware/) - KiCAD files for the breakout board
-- [initializer](initializer/) - The VHDL code for the SPI initialization
-- [simulations](simulations/) - The files for the simulations of the project
-- [top_level](top_level/) - The top level VHDL file
-- [touch_controller_firmware](touch_controller_firmware/) - The firmware for the RP2040 microcontroller handling the touch input
 - [UVVM_Light](https://github.com/UVVM/UVVM_Light) - The UVVM framework
+- [edid](edid/) - EDID files for the LCDs
+- [fpga](fpga/) - The FPGA project files for specific boards
+- [hardware](hardware/) - The KiCad project files for the driver boards
+- [resources](resources/) - Resources for the project, such as datasheets
+- [rom](rom/) - The ROM files for the FPGA projects
+- [sim](sim/) - The UVVM testbenches for the driver boards
+- [software](software/) - The software for the driver boards
+- [vivado-library](https://github.com/Digilent/vivado-library/) - The Vivado library files for the driver boards
 
 ## License
 This project is licensed under CERN Open Hardware License Version 2 - Strong Reciprocity (CERN-OHL-S-2.0). See [LICENSE](LICENSE) for more details.
