@@ -1,0 +1,27 @@
+; reset the display
+cmd 0x1
+wait 100
+; set the display to sleep out
+cmd 0x11
+wait 50
+; set the pixel format
+cmd 0x3a
+data 0x55
+wait 10
+; set rotation
+cmd 0x36
+data 0x00
+; set the display pointer's x position
+cmd 0x2a
+data 0 0 239 0 ; max width 240 px
+; set the display pointer's y position
+cmd 0x2b
+data 0 0 319 0 ; max height 320 px
+; turn on the display inversion
+cmd 0x21
+wait 10
+; normal mode on
+cmd 0x13
+wait 10
+; enable the display
+cmd 0x29
