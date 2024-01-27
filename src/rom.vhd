@@ -8,6 +8,7 @@
 --------------------------------------------------------------------------
 
 --! Use standard library
+library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
@@ -140,7 +141,7 @@ begin
       data        <= (others => '0');
     elsif rising_edge(clk) then
       --! Handle the possibility of an invalid address
-      if address > to_unsigned(rom_size, 8) then
+      if to_integer(unsigned(address)) > rom_size then
         instruction <= (others => '0');
         data        <= (others => '0');
       else
