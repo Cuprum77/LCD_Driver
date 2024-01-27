@@ -10,7 +10,7 @@ end spi_tb;
 
 architecture RTL of spi_tb is
   -- constants
-  constant clk_period : time := 10ns; -- 100 MHz
+  constant clk_period : time := 5ns; -- 200 MHz
 
   -- signals, these are all initialized to 0
   signal clk        : std_logic := '0';
@@ -18,29 +18,31 @@ architecture RTL of spi_tb is
   signal spi_sda    : std_logic := '0';
   signal spi_scl    : std_logic := '0';
   signal spi_cs     : std_logic := '0';
+  signal spi_dc     : std_logic := '0';
   signal send       : std_logic := '0';
+  signal set_dc     : std_logic := '0';
   signal done       : std_logic := '0';
   signal bit_width  : std_logic_vector(2 downto 0) := (others => '0');
   signal data       : std_logic_vector(31 downto 0) := (others => '0');
 
   component spi is
     generic(
-      alternative_dc : boolean := false -- If the SPI DC is the first bit instead of a dedicated pin
+      alternative_dc : boolean := false --! If the SPI DC is a part of the data stream or not
     );
     port(
-      -- ports
-      clk       : in std_logic; -- 100 MHz
-      rst       : in std_logic; -- Reset, active HIGH
-      -- modified spi interface
-      spi_sda   : out std_logic; -- SPI SDA (Data)
-      spi_scl   : out std_logic; -- SPI SCL (Clock)
-      spi_cs    : out std_logic; -- SPI CS (Chip Select)
-      spi_dc    : out std_logic; -- SPI DC (Data/Command)
-      send      : in std_logic;  -- Send, active HIGH
-      set_dc    : in std_logic;  -- If the SPI DC is set or not, active HIGH
-      done      : out std_logic; -- Done, when all the bits have been sent, active LOW
-      data      : in std_logic_vector(31 downto 0); -- Bits to be sent
-      bit_width : in std_logic_vector(2 downto 0)   -- Number of bits to send
+      -- Clock and reset
+      clk       : in  std_logic; --! Clock
+      rst       : in  std_logic; --! Reset, synchronous
+      -- SPI ports
+      spi_sda   : out std_logic; --! SPI SDA (Data)
+      spi_scl   : out std_logic; --! SPI SCL (Clock)
+      spi_cs    : out std_logic; --! SPI CS (Chip Select)
+      spi_dc    : out std_logic; --! SPI DC (Data/Command)
+      send      : in  std_logic; --! Send, active high
+      set_dc    : in  std_logic; --! If the SPI DC is set or not, active high
+      spi_done  : out std_logic; --! Signals completion of a transmission
+      data      : in  std_logic_vector(31 downto 0); --! Data to be transmitted
+      bit_width : in  std_logic_vector(2 downto 0)   --! Number of bits to send
     );
   end component;
 
@@ -60,10 +62,10 @@ begin
       spi_sda   => spi_sda,
       spi_scl   => spi_scl,
       spi_cs    => spi_cs,
-      spi_dc    => open,
+      spi_dc    => spi_dc,
       send      => send,
-      set_dc    => '0',
-      done      => done,
+      set_dc    => set_dc,
+      spi_done  => done,
       data      => data,
       bit_width => bit_width
     );
