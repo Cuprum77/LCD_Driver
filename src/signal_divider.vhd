@@ -27,7 +27,7 @@ end entity signal_divider;
 --! @brief Divider architecture
 --! @details The architecture contains an internal counter that counts the number of rising edges of the input signal.
 --! The output signal is high when the counter reaches the division factor.
-architecture rtl of divider is
+architecture rtl of signal_divider is
   --! Internal counter
   signal input_cnt : std_logic_vector((div - 1) downto 0) := (others => '0');
 begin

@@ -1,6 +1,23 @@
+--------------------------------------------------------------------------
+--! @file sequencer.vht
+--! @brief Testbench for the sequencer module
+--! @author Cuprum https://github.com/Cuprum77
+--! @date 2024-01-27
+--! @version 1.0
+--------------------------------------------------------------------------
+
+--! Use standard library
 library ieee;
 use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
 
+--! Use unsigned library for arithmetic on std_logic_vector
+use ieee.std_logic_unsigned.all;
+
+--! Work library
+use work.driver_top_pkg.all;
+
+--! Use UVVM library
 library uvvm_util;
 context uvvm_util.uvvm_util_context;
 use uvvm_util.spi_bfm_pkg.all;
@@ -8,9 +25,10 @@ use uvvm_util.spi_bfm_pkg.all;
 entity sequencer_tb is
 end sequencer_tb;
 
+--! Architecture of the testbench
 architecture RTL of sequencer_tb is
   -- constants
-  constant clk_period : time := 10ns; -- 100 MHz
+  constant clk_period : time := 10 ns; -- 100 MHz
 
   -- signals
   signal clk              : std_logic := '0';
@@ -23,58 +41,29 @@ architecture RTL of sequencer_tb is
   signal sequencer_error  : std_logic := '0';
 
   -- adding the component declaration
-  component Sequencer is
-    generic(
-      -- Allow us to disable the resetter for testing and debugging
-      enable_resetter : boolean := true
-    );
+  component sequencer is
     port(
       -- Clock and reset
-      clk             : in std_logic;  -- 100 MHz clock
-      rst             : in std_logic;  -- Reset
-      -- SPI ports
-      spi_sda         : out std_logic; -- SPI SDA (Data)
-      spi_scl         : out std_logic; -- SPI SCL (Clock)
-      spi_cs          : out std_logic; -- SPI CS (Chip Select)
-      spi_dc          : out std_logic; -- SPI DC (Data/Command)
-      -- display ports
-      disp_rst_n      : out std_logic; -- Reset for the display
-      -- Sequencer outputs
-      done            : out std_logic; -- HIGH when done
-      sequencer_error : out std_logic  -- HIGH if error
+      clk             : in  std_logic;  --! Clock
+      rst             : in  std_logic;  --! Reset, synchronous
+      settings        : in  t_spi_settings; --! Settings for the display
+      spi_sda         : out std_logic;  --! SPI SDA (Data)
+      spi_scl         : out std_logic;  --! SPI SCL (Clock)
+      spi_cs          : out std_logic;  --! SPI CS (Chip Select)
+      spi_dc          : out std_logic;  --! SPI DC (Data/Command)
+      disp_rst_n      : out std_logic;  --! Reset for the display
+      done            : out std_logic;  --! HIGH when done
+      sequencer_error : out std_logic   --! HIGH if error
     );
-  end component;
+  end component sequencer;
 
   type rom_t is array(0 to 18) of std_logic_vector(31 downto 0);
-  constant spi_result : rom_t :=(
-    -- reset the display
-    x"00000001",
-    -- set the display to sleep out
-    x"00000011",
-    -- set the pixel format
-    x"0000003a",
-    x"00000055",
-    -- set rotation
-    x"00000036",
-    x"00000000",
-    -- set the display pointer's x position
-    x"0000002a",
-    x"00000000",
-    x"00000000",
-    x"000000ef",
-    x"00000000",
-    -- set the display pointer's y position
-    x"0000002b",
-    x"00000000",
-    x"00000000",
-    x"0000003f",
-    x"00000001",
-    -- turn on the display inversion
-    x"00000021",
-    -- normal mode on
-    x"00000013",
-    -- enable the display
-    x"00000029"
+  constant spi_result : rom_t := (
+    x"00000001", x"00000011", x"0000003a", x"00000055",
+    x"00000036", x"00000000", x"0000002a", x"00000000",
+    x"00000000", x"000000ef", x"00000000", x"0000002b",
+    x"00000000", x"00000000", x"0000003f", x"00000001",
+    x"00000021", x"00000013", x"00000029"
   );
 
   signal clk_en   : boolean := false;
@@ -82,13 +71,11 @@ architecture RTL of sequencer_tb is
 
 begin
 
-  DUT : Sequencer
-    generic map(
-      enable_resetter => false
-    )
+  DUT : sequencer
     port map(
       clk             => clk,
       rst             => rst,
+      settings        => c_spi_settings,
       spi_sda         => spi_sda,
       spi_scl         => spi_scl,
       spi_cs          => spi_cs,
@@ -125,7 +112,7 @@ begin
     check_value(sequencer_error, '0', "Checking ERROR");
 
     -- The sequencer should have started now,just wait until instruction starts
-    for j in 0 to 18 loop
+    for j in 0 to (rom_t'length - 1) loop
       data_rx <= (others => '0'); -- Reset the data rx
       -- Set a header to the current index
       log(ID_LOG_HDR, "Checking instruction x" & to_hex_string(spi_result(j)) & " (" & to_string(j) & "/18)");

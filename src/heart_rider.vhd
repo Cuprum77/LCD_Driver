@@ -15,13 +15,13 @@ use ieee.numeric_std.all;
 
 entity heart_rider is
   generic(
-    clk_div :   integer := 23;  --! Clock divider, 2**23 for ~6 Hz on 50 MHz
-    led_cnt :   integer := 4    --! Number of LEDs
+    clk_div : integer := 23;  --! Clock divider, 2**23 for ~6 Hz on 50 MHz
+    led_cnt : integer := 4    --! Number of LEDs
   );
   port(
-    clk : in    std_logic;      --! Clock input
-    rst : in    std_logic;      --! Reset input, asynchronous
-    led : inout std_logic_vector((led_cnt-1) downto 0)  --! LED output
+    clk : in  std_logic;      --! Clock input
+    rst : in  std_logic;      --! Reset input, asynchronous
+    led : out std_logic_vector((led_cnt-1) downto 0)  --! LED output
   );
 end entity heart_rider;
 
@@ -31,6 +31,8 @@ end entity heart_rider;
 architecture rtl of heart_rider is
   --! Heart beat counter
   signal heart_cnt  : unsigned(clk_div downto 0);
+  --! Knight rider effect counter
+  signal heart_led  : std_logic_vector((led_cnt-1) downto 0) := (0 => '1', others => '0');
   --! Heart beat pulse
   signal heart_beat : std_logic;
 begin
@@ -50,12 +52,12 @@ begin
   heart_beat <= heart_cnt(heart_cnt'LENGTH - 1);
 
   --! Knight rider effect counter
-  heart_rider_process : process(heart, rst)
+  heart_rider_process : process(heart_beat, rst)
   begin
     if rst = '1' then
       --! Reset the LEDs, but make sure that at least one LED is on
-      heart_led <= '1' & (others => '0');
-    elsif rising_edge(heart) then
+      heart_led <= (0 => '1', others => '0');
+    elsif rising_edge(heart_beat) then
       --! Shift the LEDs one step to the right
       heart_led <= heart_led((heart_led'length - 2) downto 0) & 
         heart_led(heart_led'length - 1);

@@ -12,8 +12,8 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
-entity ROM is
-  port(
+entity rom is
+  port (
     clk         : in  std_logic;  --! Clock signal
     rst         : in  std_logic;  --! Reset signal, asynchronous
     address     : in  std_logic_vector(7 downto 0);  --! Address of the ROM
@@ -21,7 +21,7 @@ entity ROM is
     data        : out std_logic_vector(31 downto 0); --! Payload data
     size        : out std_logic_vector(7 downto 0)   --! Size of the ROM, constant
   );
-end entity;
+end entity rom;
 
 --! @brief ROM architecture
 --! @details The ROM architecture handles the output of the instructions and payload data.

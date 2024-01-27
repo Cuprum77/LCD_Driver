@@ -10,46 +10,44 @@
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
+
+--! Use unsigned library for arithmetic on std_logic_vector
 use ieee.std_logic_unsigned.all;
 
+--! Work library
+use work.driver_top_pkg.all;
 
-entity Sequencer is
-  generic(
-    enable_resetter : boolean := true; --! If the resetter should be enabled or not
-    invert_dc       : boolean := false --! If the DC signal should be inverted or not
-  );
+entity sequencer is
   port(
     -- Clock and reset
-    clk             : in std_logic;  -- 100 MHz clock
-    rst             : in std_logic;  -- Reset
-    -- SPI ports
-    spi_sda         : out std_logic; -- SPI SDA (Data)
-    spi_scl         : out std_logic; -- SPI SCL (Clock)
-    spi_cs          : out std_logic; -- SPI CS (Chip Select)
-    spi_dc          : out std_logic; -- SPI DC (Data/Command)
-    -- display ports
-    disp_rst_n      : out std_logic; -- Reset for the display
-    -- Sequencer outputs
-    done            : out std_logic; -- HIGH when done
-    sequencer_error : out std_logic  -- HIGH if error
+    clk             : in  std_logic;  --! Clock
+    rst             : in  std_logic;  --! Reset, synchronous
+    settings        : in  t_spi_settings; --! Settings for the display
+    spi_sda         : out std_logic;  --! SPI SDA (Data)
+    spi_scl         : out std_logic;  --! SPI SCL (Clock)
+    spi_cs          : out std_logic;  --! SPI CS (Chip Select)
+    spi_dc          : out std_logic;  --! SPI DC (Data/Command)
+    disp_rst_n      : out std_logic;  --! Reset for the display
+    done            : out std_logic;  --! HIGH when done
+    sequencer_error : out std_logic   --! HIGH if error
   );
-end entity;
+end entity sequencer;
 
-architecture RTL of Sequencer is
-  -- Setup the variables for the statem machine
+architecture rtl of sequencer is
+  --! Setup the variables for the statem machine
   type state_machine is (
     reset_state,
     fetch_rom_data_state,
     wait_for_rom_state,
     process_instruction_state,
-      command_instruction_state,
-      length_instruction_state,
-        set_length_state,
-      data_instruction_state,
-      wait_instruction_state,
-        wait_init_state,
-        wait_calculate_state,
-        wait_state,
+    command_instruction_state,
+    length_instruction_state,
+    set_length_state,
+    data_instruction_state,
+    wait_instruction_state,
+    wait_init_state,
+    wait_calculate_state,
+    wait_state,
     start_transmission_state,
     end_transmission_state,
     give_spi_time_1_state,
@@ -59,58 +57,48 @@ architecture RTL of Sequencer is
     idle_state,
     error_state
   );
-  signal sequencer_state : state_machine := reset_state; -- initialize to start_state
+  signal sequencer_state : state_machine := reset_state; --! Initialize to reset_state
 
-  -- Add the component for the SPI
+  --! Add the component for the SPI
   component spi is
-    generic(
-      alternative_dc : boolean := false -- If the SPI DC is the first bit instead of a dedicated pin
-    );
     port(
-      -- ports
-      clk       : in std_logic; -- 100 MHz
-      rst       : in std_logic; -- Reset, active HIGH
-      -- modified spi interface
-      spi_sda   : out std_logic; -- SPI SDA (Data)
-      spi_scl   : out std_logic; -- SPI SCL (Clock)
-      spi_cs    : out std_logic; -- SPI CS (Chip Select)
-      spi_dc    : out std_logic; -- SPI DC (Data/Command)
-      send      : in std_logic;  -- Send, active HIGH
-      set_dc    : in std_logic;  -- If the SPI DC is set or not, active HIGH
-      done      : out std_logic; -- Done, when all the bits have been sent, active LOW
-      data      : in std_logic_vector(31 downto 0); -- Bits to be sent
-      bit_width : in std_logic_vector(2 downto 0)   -- Number of bits to send
+      clk       : in  std_logic; --! Clock
+      rst       : in  std_logic; --! Reset, synchronous
+      settings  : in  t_spi_settings; --! Settings for the display
+      spi_sda   : out std_logic; --! SPI SDA (Data)
+      spi_scl   : out std_logic; --! SPI SCL (Clock)
+      spi_cs    : out std_logic; --! SPI CS (Chip Select)
+      spi_dc    : out std_logic; --! SPI DC (Data/Command)
+      send      : in  std_logic; --! Send, active high
+      set_dc    : in  std_logic; --! If the SPI DC is set or not, active high
+      spi_done  : out std_logic; --! Signals completion of a transmission
+      data      : in  std_logic_vector(31 downto 0); --! Data to be transmitted
+      bit_width : in  std_logic_vector(2 downto 0)   --! Number of bits to send
     );
-  end component;
+  end component spi;
 
-  -- Add the component for the ROM
+  --! Add the component for the ROM
   component rom is
     port(
-      -- Clock and reset
-      clk         : in std_logic;
-      rst         : in std_logic;
-      -- Address and data
-      address     : in std_logic_vector(7 downto 0);
-      instruction : out std_logic_vector(7 downto 0);
-      data        : out std_logic_vector(31 downto 0);
-      -- Size of the ROM
-      size        : out std_logic_vector(7 downto 0)
+      clk         : in  std_logic;  --! Clock signal
+      rst         : in  std_logic;  --! Reset signal, asynchronous
+      address     : in  std_logic_vector(7 downto 0);  --! Address of the ROM
+      instruction : out std_logic_vector(7 downto 0);  --! Instruction data
+      data        : out std_logic_vector(31 downto 0); --! Payload data
+      size        : out std_logic_vector(7 downto 0)   --! Size of the ROM, constant
     );
-  end component;
+  end component rom;
 
-  -- Add the component for the resetter
+  --! Add the component for the resetter
   component resetter is
-    generic(
-      delay_10ms  : integer := 1_000_000; -- clock cycles for 10 ms
-      delay_100ms : integer := 10_000_000 -- clock cycles for 100 ms
-    );
     port (
-      clk   : in std_logic;
-      rst   : in std_logic;
-      rst_n : out std_logic;
-      done  : out std_logic
+      clk         : in  std_logic;  --! Clock
+      rst         : in  std_logic;  --! Reset, synchronous
+      settings    : in  t_spi_settings; --! Settings
+      disp_rst_n  : out std_logic;  --! Display reset, active low
+      done        : out std_logic   --! Done signal
     );
-  end component;
+  end component resetter;
 
   -- setup the internal signals that handle the ROM
   signal rom_pointer          : std_logic_vector(7 downto 0) := (others => '0');
@@ -137,26 +125,32 @@ architecture RTL of Sequencer is
   -- internal signal
   signal command_dc_bit : std_logic := '0';
 
+  --! Create internal signals for the settings
+  signal enable_resetter : std_logic;
+  signal invert_dc       : std_logic;
+
 begin
+
+  --! Get the settings from the settings record
+  enable_resetter <= settings.resetter_en;
+  invert_dc       <= settings.invert_dc;
 
   -- Map the SPIDriver component
   -- The SPI physical signals will simply be forwarded to the top level file
   spi_comp : spi
-    generic map(
-      alternative_dc  => true
-    )
     port map(
-      clk             => clk,
-      rst             => rst,
-      spi_sda         => spi_sda,
-      spi_scl         => spi_scl,
-      spi_cs          => spi_cs,
-      spi_dc          => spi_dc,
-      send            => spi_send,
-      set_dc          => spi_set_dc,
-      done            => spi_done,
-      data            => spi_data,
-      bit_width       => spi_width
+      clk       => clk,
+      rst       => rst,
+      settings  => settings,
+      spi_sda   => spi_sda,
+      spi_scl   => spi_scl,
+      spi_cs    => spi_cs,
+      spi_dc    => spi_dc,
+      send      => spi_send,
+      set_dc    => spi_set_dc,
+      spi_done  => spi_done,
+      data      => spi_data,
+      bit_width => spi_width
     );
 
   -- Map the ROM component
@@ -171,21 +165,18 @@ begin
     );
 
   -- If the resetter is enabled, pipe our rst signal through, else set it to '1'
-  rst_rst <= rst when enable_resetter = true else '1';
-  rst_done <= rst_done_temp when enable_resetter = true else '1';
-  command_dc_bit <= '0' when invert_dc = true else '1';
+  rst_rst <= rst when enable_resetter = '1' else '1';
+  rst_done <= rst_done_temp when enable_resetter = '1' else '1';
+  command_dc_bit <= '0' when invert_dc = '1' else '1';
 
   -- Map the resetter
   resetter_comp : resetter
-    generic map (
-      delay_10ms => 1_000_000,
-      delay_100ms => 10_000_000
-    )
     port map (
-      clk   => clk,
-      rst   => rst_rst,
-      rst_n => disp_rst_n,
-      done  => rst_done_temp
+      clk         => clk,
+      rst         => rst_rst,
+      settings    => settings,
+      disp_rst_n  => disp_rst_n,
+      done        => rst_done_temp
     );
 
   -- This is the main state machine that ensures the signals get sent in sequence
@@ -340,4 +331,4 @@ begin
     end if;
   end process;
 
-end architecture;
+end architecture rtl;

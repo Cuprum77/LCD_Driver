@@ -1,6 +1,23 @@
+--------------------------------------------------------------------------
+--! @file resetter.vht
+--! @brief Testbench for the resetter module
+--! @author Cuprum https://github.com/Cuprum77
+--! @date 2024-01-27
+--! @version 1.0
+--------------------------------------------------------------------------
+
+--! Use standard library
 library ieee;
 use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
 
+--! Use unsigned library for arithmetic on std_logic_vector
+use ieee.std_logic_unsigned.all;
+
+--! Work library
+use work.driver_top_pkg.all;
+
+--! Use UVVM library
 library uvvm_util;
 context uvvm_util.uvvm_util_context;
 use uvvm_util.spi_bfm_pkg.all;
@@ -9,42 +26,36 @@ entity resetter_tb is
 end resetter_tb;
 
 architecture RTL of resetter_tb is
-  -- constants
-  constant clk_period : time := 10ns; -- 100 MHz
+  --! Constants
+  constant clk_period : time := 20 ns; -- 50 MHz
 
-  -- signals
-  signal clk : std_logic := '0';
-  signal rst : std_logic := '0';
-  signal rst_n : std_logic;
-  signal done : std_logic;
+  --! Signals
+  signal clk      : std_logic := '0';
+  signal rst      : std_logic := '0';
+  signal rst_n    : std_logic;
+  signal done     : std_logic;
   signal clk_en   : boolean := false;
   
   component resetter is
-    generic(
-      delay_10ms  : integer := 1_000_000; -- clock cycles for 10 ms
-      delay_100ms : integer := 10_000_000 -- clock cycles for 100 ms
-    );
     port (
-      clk   : in std_logic;
-      rst   : in std_logic;
-      rst_n : out std_logic;
-      done  : out std_logic
+      clk         : in  std_logic;  --! Clock
+      rst         : in  std_logic;  --! Reset, synchronous
+      settings    : in  t_spi_settings; --! Settings
+      disp_rst_n  : out std_logic;  --! Display reset, active low
+      done        : out std_logic   --! Done signal
     );
-  end component;
+  end component resetter;
 
 begin
 
   -- map the DUT
   DUT : resetter
-    generic map (
-      delay_10ms => 1_000_000,
-      delay_100ms => 10_000_000
-    )
     port map (
-      clk   => clk,
-      rst   => rst,
-      rst_n => rst_n,
-      done  => done
+      clk         => clk,
+      rst         => rst,
+      settings    => c_spi_settings,
+      disp_rst_n  => rst_n,
+      done        => done
     );
 
   -- clock generator

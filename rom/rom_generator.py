@@ -32,9 +32,9 @@ class ROM_Generator:
         # Optimize the psuedo-assembly code
         assembly, comment_counter = self.optimize_content(assembly, debug)
         # Parse the psuedo-assembly code
-        command, command_comment, payload = self.parse_content(assembly)
+        command, payload = self.parse_content(assembly)
         # Generate the ROM file
-        self.generate_rom(command, command_comment, payload, comment_counter)
+        self.generate_rom(command, payload, comment_counter)
 
 
     # Function that loads the psuedo-assembly code from the instructions.txt file
@@ -271,7 +271,6 @@ class ROM_Generator:
     # Function that parses the psuedo-assembly code and generates the ROM file
     def parse_content(self, assembly):
         command = []
-        command_comment = []
         payload = []
 
         # Go through each line of the psuedo-assembly code
@@ -279,9 +278,6 @@ class ROM_Generator:
         while True:
             # Check if its a comment
             if assembly[idx].startswith(";"):
-                # Add the comment to the rom content
-                command.append(assembly[idx])
-                payload.append(assembly[idx])
                 idx += 1
                 continue
 
@@ -298,7 +294,6 @@ class ROM_Generator:
             instruction_hex_code = format(instruction_hex_code, '02x')
 
             # Add the instruction hex and payload to the rom content
-            command_comment.append(instruction)
             command.append(instruction_hex_code)
             payload.append(payload_data)
 
@@ -306,11 +301,11 @@ class ROM_Generator:
             if idx >= len(assembly):
                 break
 
-        return command, command_comment, payload
+        return command, payload
 
 
     # Function that generates the ROM file in a proper format
-    def generate_rom(self, command, command_comment, payload, comment_counter):
+    def generate_rom(self, command, payload, comment_counter):
         # Start of the ROM file
         rom_file = """--------------------------------------------------------------------------
 --! @file rom.vhd
@@ -326,8 +321,8 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
-entity ROM is
-  port(
+entity rom is
+  port (
     clk         : in  std_logic;  --! Clock signal
     rst         : in  std_logic;  --! Reset signal, asynchronous
     address     : in  std_logic_vector(7 downto 0);  --! Address of the ROM
@@ -335,7 +330,7 @@ entity ROM is
     data        : out std_logic_vector(31 downto 0); --! Payload data
     size        : out std_logic_vector(7 downto 0)   --! Size of the ROM, constant
   );
-end entity;
+end entity rom;
 
 --! @brief ROM architecture
 --! @details The ROM architecture handles the output of the instructions and payload data.
@@ -344,7 +339,7 @@ architecture rtl of rom is
 --! @note This constant is used to determine the size of the ROM in the sequencer.vhd
 constant rom_size : integer := """
         # Add the size of the ROM to the ROM file
-        rom_file += str(len(command) - comment_counter - 1)
+        rom_file += str(len(command) - 1)
         rom_file += """;
 
 --! Create the ROM types for the instruction and payload data

@@ -17,9 +17,15 @@ UVVM:
 UVVM: ID_LOG_MSG_CTRL                    0.0 ns  TB seq.                        enable_log_msg(ALL_MESSAGES). 
 UVVM: 
 UVVM: 
-UVVM: ID_LOG_HDR                         0.0 ns  TB seq.                        Starting the simulation for the Sequencer module
+UVVM: ID_LOG_HDR                         0.0 ns  TB seq.                        Starting the simulation for the Resetter module
 UVVM: -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 UVVM: ID_CLOCK_GEN                       0.0 ns  TB seq.                        Starting clock clock
-UVVM: ID_GEN_PULSE                      20.0 ns  TB seq.                        Pulsed to 1 for 10000 ps. 'Generating Reset'
-UVVM: ID_POS_ACK                        70.0 ns  TB seq.                        check_value() => OK, for std_logic '1' (exp: '1'). 'Checking the reset signal'
-UVVM: ID_POS_ACK                  10000070.0 ns  TB seq.                        check_value() => OK, for std_logic '0' (exp: '0'). 'Checking the reset signal'
+UVVM: ID_GEN_PULSE                      40.0 ns  TB seq.                        Pulsed to 1 for 20000 ps. 'Generating Reset'
+UVVM: ID_POS_ACK                       140.0 ns  TB seq.                        check_value() => OK, for std_logic '1' (exp: '1'). 'Checking the reset signal'
+UVVM: ID_POS_ACK                  10000140.0 ns  TB seq.                        check_value() => OK, for std_logic '0' (exp: '0'). 'Checking the reset signal'
+UVVM: ID_POS_ACK                 110000140.0 ns  TB seq.                        check_value() => OK, for std_logic '1' (exp: '1'). 'Checking the reset signal'
+UVVM: ID_POS_ACK                 120000140.0 ns  TB seq.                        check_value() => OK, for std_logic '1' (exp: '1'). 'Checking the done signal'
+UVVM: 
+UVVM: 
+UVVM: ID_LOG_HDR                 121000140.0 ns  TB seq.                        Finished the simulation for the Resetter module
+UVVM: -------------------------------------------------------------------------------------------------------------------------------------------------------------------------

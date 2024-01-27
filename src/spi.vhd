@@ -209,7 +209,11 @@ begin
        
           if delay_done = '1' then
             spi_state <= idle_state;
-          end if;     
+          end if;
+
+        --! Default case, should never happen
+        when others =>
+          spi_state <= idle_state;
       end case;
     end if;
   end if;
