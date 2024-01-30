@@ -5,7 +5,7 @@ cmake_minimum_required(VERSION 3.15)
 project(touch)
 
 # Add the library with the above sources
-add_library(${PROJECT_NAME} src/touch.cpp)
+add_library(${PROJECT_NAME} src/touch.c)
 add_library(sub::touch ALIAS ${PROJECT_NAME})
 
 target_include_directories(${PROJECT_NAME}
@@ -15,4 +15,5 @@ target_include_directories(${PROJECT_NAME}
 target_link_libraries(${PROJECT_NAME} 
     pico_stdlib
     hardware_i2c
+    hardware_gpio
 )
