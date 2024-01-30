@@ -1,14 +1,14 @@
 Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
-------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2019.1 (win64) Build 2552052 Fri May 24 14:49:42 MDT 2019
-| Date         : Sat Jan 27 17:27:36 2024
+| Date         : Mon Jan 29 19:32:07 2024
 | Host         : DESKTOP-UGCUO9B running 64-bit major release  (build 9200)
-| Command      : report_clock_utilization -file top_clock_utilization_routed.rpt
-| Design       : top
+| Command      : report_clock_utilization -file display_top_clock_utilization_routed.rpt
+| Design       : display_top
 | Device       : 7z020-clg400
 | Speed File   : -1  PRODUCTION 1.11 2014-09-11
 | Design State : Routed
-------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------
 
 Clock Utilization Report
 
