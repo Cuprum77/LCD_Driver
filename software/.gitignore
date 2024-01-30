@@ -1,5 +1,5 @@
-
 # VSCode
 .vscode/
-build/
-*.uf2
+!build/
+build/*
+!build/*.uf2
