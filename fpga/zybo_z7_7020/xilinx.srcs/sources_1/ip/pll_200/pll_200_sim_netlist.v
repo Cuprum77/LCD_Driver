@@ -3,8 +3,8 @@
 // Tool Version: Vivado v.2019.1 (win64) Build 2552052 Fri May 24 14:49:42 MDT 2019
 // Date        : Sun Jan 21 23:21:47 2024
 // Host        : DESKTOP-UGCUO9B running 64-bit major release  (build 9200)
-// Command     : write_verilog -force -mode funcsim {p:/Electronic Projects/FPGA/FPGA LCD
-//               Driver/fpga/xilinx/xilinx.srcs/sources_1/ip/pll_200/pll_200_sim_netlist.v}
+// Command     : write_verilog -force -mode funcsim -rename_top pll_200 -prefix
+//               pll_200_ pll_200_sim_netlist.v
 // Design      : pll_200
 // Purpose     : This verilog netlist is a functional simulation representation of the design and should not be modified
 //               or synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -31,7 +31,6 @@ module pll_200
         .reset(reset));
 endmodule
 
-(* ORIG_REF_NAME = "pll_200_clk_wiz" *) 
 module pll_200_pll_200_clk_wiz
    (clk_out,
     reset,

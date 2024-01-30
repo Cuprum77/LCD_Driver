@@ -3,8 +3,8 @@
 -- Tool Version: Vivado v.2019.1 (win64) Build 2552052 Fri May 24 14:49:42 MDT 2019
 -- Date        : Sun Jan 21 23:21:47 2024
 -- Host        : DESKTOP-UGCUO9B running 64-bit major release  (build 9200)
--- Command     : write_vhdl -force -mode funcsim {p:/Electronic Projects/FPGA/FPGA LCD
---               Driver/fpga/xilinx/xilinx.srcs/sources_1/ip/pll_200/pll_200_sim_netlist.vhdl}
+-- Command     : write_vhdl -force -mode funcsim -rename_top pll_200 -prefix
+--               pll_200_ pll_200_sim_netlist.vhdl
 -- Design      : pll_200
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -20,8 +20,6 @@ entity pll_200_pll_200_clk_wiz is
     reset : in STD_LOGIC;
     clk_in : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of pll_200_pll_200_clk_wiz : entity is "pll_200_clk_wiz";
 end pll_200_pll_200_clk_wiz;
 
 architecture STRUCTURE of pll_200_pll_200_clk_wiz is
