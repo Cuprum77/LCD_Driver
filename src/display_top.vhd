@@ -18,7 +18,7 @@ use UNISIM.VComponents.all;
 --! Work library
 use work.driver_top_pkg.all;
 
-entity top is
+entity display_top is
   port (
     sysclk        : in    std_logic; --! 125 MHz external clock
     btn           : in    std_logic; --! Reset button
@@ -37,7 +37,7 @@ entity top is
   );
 end entity;
 
-architecture RTL of top is
+architecture rtl of display_top is
   --! Declare the sequencer component
   component sequencer is
     port(
@@ -295,4 +295,4 @@ begin
   --! Blue component (6 bits)
   data(5 downto 0) <= hdmi_data(15 downto 10);
 
-end architecture;
+end architecture rtl;
