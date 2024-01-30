@@ -15,7 +15,6 @@ volatile struct touch_point_data_s touch_points[5];
 
 /**
  * @brief Initialize the touch controller.
- * 
  * @param inst The I2C instance.
  * @param i2c_speed The I2C speed.
  * @param i2c_sda The I2C SDA pin.
@@ -83,7 +82,6 @@ void touch_init(i2c_inst_t *inst, uint i2c_speed,
 
 /**
  * @brief Reset the touch controller.
- * 
  * @param i2c_rst The RST pin.
  */
 void touch_reset()
@@ -97,12 +95,9 @@ void touch_reset()
 }
 
 /**
- * @private
  * @brief Write data to a register.
- * 
  * @param data The data to write.
  * @param size The size of the data.
- * 
  * @return The number of bytes written.
  */
 int touch_write_reg(unsigned short reg, unsigned char* data, size_t size)
@@ -124,12 +119,9 @@ int touch_write_reg(unsigned short reg, unsigned char* data, size_t size)
 }
 
 /**
- * @private
  * @brief Read data from a register.
- * 
  * @param data The data to read into.
  * @param size The size of the data.
- * 
  * @return The number of bytes read.
  */
 int touch_read_reg(unsigned short reg, unsigned char* data, size_t size)
@@ -146,10 +138,9 @@ int touch_read_reg(unsigned short reg, unsigned char* data, size_t size)
 }
 
 /**
- * @private
  * @brief Get all the points from the touch controller.
- * 
  * @return The number of bytes read.
+ * @note This function gets called from the interrupt handler.
 */
 int touch_get_all_points()
 {
@@ -197,8 +188,8 @@ int touch_get_all_points()
 }
 
 /**
- * @private
  * @brief The interrupt handler for the touch controller.
+ * @note This is an interrupt handler and shouldn't be called outside of the library.
 */
 void touch_irq_handler(uint gpio, uint32_t events)
 {
