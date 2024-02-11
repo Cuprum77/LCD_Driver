@@ -9,6 +9,10 @@
 		"files.associations": {
 			"type_traits": "cpp",
 			"cmath": "cpp",
+			"tusb.h": "c",
+			"usb_descriptors.h": "c",
+			"i2c.h": "c",
+			"stdio.h": "c"
 		}
 	}
 }
