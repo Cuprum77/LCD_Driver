@@ -1,17 +1,17 @@
 #include "touch.h"
 
 // Register addresses
-volatile struct touch_reg_addr_t touch_reg_addr = touch_reg_addr_init;
+volatile touch_reg_addr_t touch_reg_addr = touch_reg_addr_init;
 // Offsets for the points
-volatile struct touch_reg_offsets_t touch_reg_offsets = touch_reg_offsets_init;
+volatile touch_reg_offsets_t touch_reg_offsets = touch_reg_offsets_init;
 // I2C data
-volatile struct touch_i2c_data_s touch_i2c_data;
+volatile touch_i2c_data_t touch_i2c_data;
 // Chip data
-volatile struct touch_chip_data_s touch_chip_data;
+volatile touch_chip_data_t touch_chip_data;
 // Status register data
-volatile struct touch_status_data_s touch_status_data;
+volatile touch_status_data_t touch_status_data;
 // Point data
-volatile struct touch_point_data_s touch_points[5];
+volatile touch_point_data_t touch_points[5];
 
 /**
  * @brief Initialize the touch controller.
