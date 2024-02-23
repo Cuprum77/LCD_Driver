@@ -1,4 +1,6 @@
 # Breakout Board
+Note, this is not a complete project. It lacks the necessary files to properly modify the design. This is purely out of the fact that this is a prototype and I am too lazy to properly document it.
+
 ![Breakout design](img/driver_breakout.png)
 
 This repo contains the KiCAD files for the first itteration of this project, the breakout board.
