@@ -23,13 +23,16 @@ fp-info-cache
 
 # Exported BOM files
 *.xml
-*.csv
+#*.csv
 
 # Gerber files
 *.kicad_pcb.zip
 
 # Backup Files
 *-backups/
+
+# KiCad lck files
+*.lck
 
 # temporary!!!!
 docs/*
