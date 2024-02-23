@@ -11,7 +11,7 @@ These are the known issues with the current design:
 - No ability to power the board from the USB port (for the microcontroller)
 - Difficult to add external power to the board
 - More ground connections!
-- Maybe a few on the edges?
+- Boost Converter is not capable of providing enough current for the display. Does not match the chips rated output.
 
 ## 3D Files
 
