@@ -4,6 +4,8 @@ The firmware, written in C/C++, is designed to operate on the RP2040 microcontro
 
 The challenge lies in dealing with the capacitive touch sensor, an unidentified device. Fortunately, the touch controller on the display's flat flex cable retains its markings, making identification possible. The touch controller in use is the GT911 from Goodix, utilizing the I2C protocol.
 
+Based on the similar AVR project by [azukovskij89](https://github.com/azukovskij89/AVR-MultiTouch).
+
 ## Chip Identification
 ![Chip](resources/chip.jpg)
 Above is a close-up image of the GT911 chip on the flat flex cable of this specific display.
