@@ -7,8 +7,8 @@
 #include "touch_struct.h"
 #include "usb_device_struct.h"
 
-extern touch_report_t touch_rep;
+extern digitizer_report_t report;
 
 void usb_device_init(void);
-void usb_device_touch_data(touch_point_data_t* data, size_t size);
+void usb_device_touch_data(touch_point_data_t* data, size_t size, uint8_t contact_count);
 void usb_device_task(void);

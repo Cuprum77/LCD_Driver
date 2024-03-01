@@ -76,6 +76,6 @@ int main()
         }
         
         // Touch task
-        usb_device_touch_data((touch_point_data_t*)touch_points, 5);
+        usb_device_touch_data((touch_point_data_t*)touch_points, 5, 5);
     }
 }
