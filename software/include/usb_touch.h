@@ -1,7 +1,5 @@
 #pragma once
 
-#include "hid.h"
-
 // Taken from https://github.com/azukovskij89/AVR-MultiTouch
 // Which in turn is based on Microsoft's Digitizer Report Descriptor example
 
