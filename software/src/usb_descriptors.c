@@ -26,6 +26,7 @@
 #include "pico/unique_id.h"
 #include "tusb.h"
 #include "usb_descriptors.h"
+#include "usb_touch.h"
 
 /* A combination of interfaces must have a unique product id, since PC will save device driver after the first plug.
  * Same VID/PID with different interface e.g MSC (first), then CDC (later) will possibly cause system error on PC.
@@ -37,8 +38,9 @@
 #define USB_PID           (0x4000 | _PID_MAP(CDC, 0) | _PID_MAP(MSC, 1) | _PID_MAP(HID, 2) | \
                            _PID_MAP(MIDI, 3) | _PID_MAP(VENDOR, 4) )
 
-#define USB_VID   0xCafe
-#define USB_BCD   0x0200
+#define USB_VID             0x1594
+#define USB_BCD             0x0110
+#define USB_DIGITIZER_CLASS 0x000d
 
 //--------------------------------------------------------------------+
 // Device Descriptors
@@ -74,14 +76,6 @@ uint8_t const * tud_descriptor_device_cb(void)
 //--------------------------------------------------------------------+
 // HID Report Descriptor
 //--------------------------------------------------------------------+
-
-uint8_t const desc_hid_report[] =
-{
-  TUD_HID_REPORT_DESC_KEYBOARD( HID_REPORT_ID(REPORT_ID_KEYBOARD         )),
-  TUD_HID_REPORT_DESC_MOUSE   ( HID_REPORT_ID(REPORT_ID_MOUSE            )),
-  TUD_HID_REPORT_DESC_CONSUMER( HID_REPORT_ID(REPORT_ID_CONSUMER_CONTROL )),
-  TUD_HID_REPORT_DESC_GAMEPAD ( HID_REPORT_ID(REPORT_ID_GAMEPAD          ))
-};
 
 // Invoked when received GET HID REPORT DESCRIPTOR
 // Application return pointer to descriptor
@@ -185,9 +179,9 @@ char serial[2 * PICO_UNIQUE_BOARD_ID_SIZE_BYTES + 1];
 char const* string_desc_arr [] =
 {
   (const char[]) { 0x09, 0x04 }, // 0: is supported language is English (0x0409)
-  "TinyUSB",                     // 1: Manufacturer
-  "TinyUSB Device",              // 2: Product
-  serial,                        // 3: Serials, uses the flash ID
+  "Lockmart Special",  // 1: Manufacturer
+  "Touchscreen Interface", // 2: Product
+  serial, // 3: Serials, uses the flash ID
 };
 
 static uint16_t _desc_str[32];
