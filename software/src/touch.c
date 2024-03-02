@@ -11,7 +11,7 @@ volatile touch_chip_data_t touch_chip_data;
 // Status register data
 volatile touch_status_data_t touch_status_data;
 // Point data
-volatile touch_point_data_t touch_points[5];
+volatile touch_point_data_t touch_points[TOUCH_POINT_COUNT];
 
 /**
  * @brief Initialize the touch controller.
@@ -59,7 +59,7 @@ void touch_init(i2c_inst_t *inst, uint i2c_speed,
     // Configure the chip
 
     // Set the number of touches to 5
-    touch_write_reg(touch_reg_addr.touch_num, (unsigned char*)5, 1);
+    touch_write_reg(touch_reg_addr.touch_num, (unsigned char*)TOUCH_POINT_COUNT, 1);
 
     // Get the chip data
     unsigned char buffer[11];
@@ -151,6 +151,12 @@ int touch_get_all_points()
     unsigned char status;
     bytes += touch_read_reg(touch_reg_addr.status, &status, 1);
 
+    // If the buffer is not ready, return
+    if(!(status & 0x80))
+    {
+        return bytes;
+    }
+
     // Unpack the status register
     touch_status_data.buffer_status = (status >> 7) & 0x01;
     touch_status_data.large_detect = (status >> 6) & 0x01;
@@ -159,7 +165,7 @@ int touch_get_all_points()
     touch_status_data.num_touches = status & 0x0f;
 
     // Loop through all the 5 points
-    for(int i = 0; i < 5; i++)
+    for(int i = 0; i < TOUCH_POINT_COUNT; i++)
     {
         // Buffer to store the point data
         volatile unsigned char point_data[7];
