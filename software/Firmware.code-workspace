@@ -7,12 +7,17 @@
 	],
 	"settings": {
 		"files.associations": {
+			"*.latex": "latex",
 			"type_traits": "cpp",
 			"cmath": "cpp",
 			"tusb.h": "c",
 			"usb_descriptors.h": "c",
 			"i2c.h": "c",
-			"stdio.h": "c"
+			"stdio.h": "c",
+			"unique_id.h": "c",
+			"hid.h": "c",
+			"stdlib.h": "c",
+			"gpio.h": "c"
 		}
 	}
 }

@@ -128,7 +128,7 @@ pico_add_extra_outputs(${PROJECT_NAME})
 
 # Enable uart output, disable usb output
 pico_enable_stdio_usb(${PROJECT_NAME} 0)
-pico_enable_stdio_uart(${PROJECT_NAME} 1)
+pico_enable_stdio_uart(${PROJECT_NAME} 0)
 
 # Run the programming script to program the device
 add_custom_command(TARGET ${PROJECT_NAME}
