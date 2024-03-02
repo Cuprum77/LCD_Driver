@@ -6,7 +6,7 @@
 #include "touch.h"
 #include "usb_device.h"
 
-#define LED_PIN 25
+#define LED_PIN 6
 
 #define TOUCH_I2C_SDA 	18
 #define TOUCH_I2C_SCL 	19
@@ -76,6 +76,6 @@ int main()
         }
         
         // Touch task
-        usb_device_touch_data((touch_point_data_t*)touch_points, 5, 5);
+        usb_device_touch_data((touch_point_data_t*)touch_points, TOUCH_POINT_COUNT, touch_status_data.num_touches);
     }
 }

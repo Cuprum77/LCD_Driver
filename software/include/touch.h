@@ -10,6 +10,7 @@
 
 #define TOUCH_I2C_SPEED 400000
 #define TOUCH_I2C_ADDR 	0x5d
+#define TOUCH_POINT_COUNT 5
 
 // Register addresses
 extern volatile touch_reg_addr_t touch_reg_addr;
