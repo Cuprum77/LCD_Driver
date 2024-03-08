@@ -92,6 +92,12 @@ void usb_device_task(void)
  */
 void usb_hid_task(void)
 {
+    // Skip if hid is not ready yet
+    if (!tud_hid_ready())
+    {
+        return;
+    }
+
     // Static variable for the task interval counter
     static uint32_t task_interval_counter = 0;
 
