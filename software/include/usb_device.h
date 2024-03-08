@@ -7,8 +7,12 @@
 #include "touch_struct.h"
 #include "usb_device_struct.h"
 
-extern digitizer_report_t report;
+// Constants for the USB device task
+#define USB_DEVICE_TASK_INTERVAL 10000 // 10ms
+
+extern volatile digitizer_report_t report;
 
 void usb_device_init(void);
 void usb_device_touch_data(touch_point_data_t* data, size_t size, uint8_t contact_count);
 void usb_device_task(void);
+void usb_hid_task(void);

@@ -1,7 +1,7 @@
 #include "usb_device.h"
 
 // HID Report Descriptor
-digitizer_report_t report;
+volatile digitizer_report_t report;
 
 /**
  * @brief Initialize the USB device.
@@ -71,10 +71,8 @@ void usb_device_touch_data(touch_point_data_t* data, size_t size, uint8_t contac
         report.finger4_y = data[4].y;
     }
 
+    // Set the contact count
     report.contact_count = contact_count;
-
-    // Send the report
-    tud_hid_report(1, &report, sizeof(digitizer_report_t));
 }
 
 /**
@@ -88,6 +86,39 @@ void usb_device_task(void)
     tud_task();
 }
 
+/**
+ * @brief Send HID data to the USB device.
+ * @note Only sends the HID data every 10ms.
+ */
+void usb_hid_task(void)
+{
+    // Static variable for the task interval counter
+    static uint32_t task_interval_counter = 0;
+
+    // Check if the task interval has elapsed, if not return
+    if ((time_us_32() - task_interval_counter) < USB_DEVICE_TASK_INTERVAL)
+    {
+        return;
+    }
+
+    // Update the task interval counter
+    task_interval_counter = time_us_32();    
+
+    // Wake the up if asleep
+    if (tud_suspended())
+    {
+        // Wake up host if we are in suspend mode
+        // and REMOTE_WAKEUP feature is enabled by host
+        tud_remote_wakeup();
+    }
+    else
+    {
+        // Transmit the touch data
+        digitizer_report_t* report_ptr = (digitizer_report_t*) &report;
+        tud_hid_report(1, report_ptr, sizeof(digitizer_report_t));
+    }
+}
+
 /***
  *      _____ _          _   _ ___ ___    ___      _ _ _             _       
  *     |_   _(_)_ _ _  _| | | / __| _ )  / __|__ _| | | |__  __ _ __| |__ ___
@@ -97,52 +128,35 @@ void usb_device_task(void)
  */
 
 //--------------------------------------------------------------------+
-// Device callbacks
-//--------------------------------------------------------------------+
-
-// Invoked when device is mounted
-void tud_mount_cb(void)
-{
-
-}
-
-// Invoked when device is unmounted
-void tud_umount_cb(void)
-{
-
-}
-
-// Invoked when usb bus is suspended
-// remote_wakeup_en : if host allow us  to perform remote wakeup
-// Within 7ms, device must draw an average of current less than 2.5 mA from bus
-void tud_suspend_cb(bool remote_wakeup_en)
-{
-    
-}
-
-// Invoked when usb bus is resumed
-void tud_resume_cb(void)
-{
-    
-}
-
-//--------------------------------------------------------------------+
 // USB HID
 //--------------------------------------------------------------------+
-
-// Every 10ms, we will sent 1 report for each HID profile (keyboard, mouse etc ..)
-// tud_hid_report_complete_cb() is used to send the next report after previous one is complete
-void hid_task(void)
-{
-    
-}
 
 // Invoked when sent REPORT successfully to host
 // Application can use this to send the next report
 // Note: For composite reports, report[0] is report ID
 void tud_hid_report_complete_cb(uint8_t instance, uint8_t const* report, uint16_t len)
 {
-    
+    (void) instance;
+    (void) len;
+
+/*
+    uint8_t next_report_id = report[0] + 1u;
+
+    if (next_report_id == 2)
+    {
+        // Transmit the feature report
+        digitizer_feature_t feature;
+        digitizer_report_t* report_ptr = (digitizer_report_t*) &report;
+        feature.contact_count_max = report_ptr->contact_count;
+
+        tud_hid_report(2, (uint8_t*) &feature, sizeof(digitizer_feature_t));
+    }
+    else
+    {
+        // Transmit the touch data
+        digitizer_report_t* report_ptr = (digitizer_report_t*) &report;
+        tud_hid_report(1, report_ptr, sizeof(digitizer_report_t));
+    }*/
 }
 
 // Invoked when received GET_REPORT control request
@@ -150,6 +164,26 @@ void tud_hid_report_complete_cb(uint8_t instance, uint8_t const* report, uint16_
 // Return zero will cause the stack to STALL request
 uint16_t tud_hid_get_report_cb(uint8_t instance, uint8_t report_id, hid_report_type_t report_type, uint8_t* buffer, uint16_t reqlen)
 {
+    /*if (report_id == 0 && report_type == HID_REPORT_TYPE_INPUT)
+    {
+        memcpy(buffer, &report, sizeof(digitizer_report_t));
+        return sizeof(digitizer_report_t);
+    }
+
+    if (report_id == 2)
+    {
+        memcpy(buffer, &(report.contact_count), sizeof(digitizer_feature_t));
+        return sizeof(digitizer_feature_t);
+    }
+    
+    return 0;*/
+    // TODO not Implemented
+    (void) instance;
+    (void) report_id;
+    (void) report_type;
+    (void) buffer;
+    (void) reqlen;
+
     return 0;
 }
 

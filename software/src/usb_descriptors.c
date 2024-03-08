@@ -39,7 +39,7 @@
                            _PID_MAP(MIDI, 3) | _PID_MAP(VENDOR, 4) )
 
 #define USB_VID             0x1594
-#define USB_BCD             0x0110
+#define USB_BCD             0x0069
 #define USB_DIGITIZER_CLASS 0x000d
 
 //--------------------------------------------------------------------+
