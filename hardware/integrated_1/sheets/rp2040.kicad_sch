@@ -2615,10 +2615,6 @@
 		(uuid "2b4ba83f-69dd-4ff9-b9e8-056762255e17")
 	)
 	(no_connect
-		(at 173.99 76.2)
-		(uuid "58676472-9841-47c6-849e-2af768cb647c")
-	)
-	(no_connect
 		(at 173.99 142.24)
 		(uuid "64816cb3-bb3c-472a-bee2-073c34729737")
 	)
@@ -3926,6 +3922,16 @@
 	)
 	(wire
 		(pts
+			(xy 173.99 76.2) (xy 176.53 76.2)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f0b3e5f5-88b7-4f36-a2f4-8b90d1416abe")
+	)
+	(wire
+		(pts
 			(xy 80.01 127) (xy 82.55 127)
 		)
 		(stroke
@@ -4251,6 +4257,18 @@
 			(justify left)
 		)
 		(uuid "2fd2fd08-6515-4209-964e-40e513e82c32")
+	)
+	(hierarchical_label "BL_PWM"
+		(shape output)
+		(at 176.53 76.2 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "34cdc49e-ba13-4231-82cc-b4d45785cfa1")
 	)
 	(hierarchical_label "TP_INT"
 		(shape input)

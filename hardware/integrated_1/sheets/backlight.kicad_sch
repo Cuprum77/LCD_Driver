@@ -2,7 +2,7 @@
 	(version 20231120)
 	(generator "eeschema")
 	(generator_version "8.0")
-	(uuid "9a1e8c65-8701-4dd6-9a7c-72d24b65e76f")
+	(uuid "63e3a659-9768-4c77-aa23-9d87da9e7063")
 	(paper "A4")
 	(title_block
 		(title "Backlight Driver")

@@ -2724,6 +2724,10 @@
 		(uuid "fe4d9568-8d8d-466c-a968-4d27a6de8a67")
 	)
 	(no_connect
+		(at 33.02 43.18)
+		(uuid "8efe8a47-7839-41b3-b452-5d3dc5f9d8c8")
+	)
+	(no_connect
 		(at 43.18 167.64)
 		(uuid "9902cc10-7249-42a2-8a01-5418fe05807d")
 	)
@@ -3073,6 +3077,16 @@
 			(type default)
 		)
 		(uuid "00aed7b4-39d2-4644-9275-ed5728565f32")
+	)
+	(wire
+		(pts
+			(xy 240.03 120.65) (xy 240.03 39.37)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "026cb550-761e-427d-a8b3-a75150ad08ee")
 	)
 	(wire
 		(pts
@@ -3554,16 +3568,6 @@
 		)
 		(uuid "454b1e37-89b0-44d2-964d-b28170013714")
 	)
-	(wire
-		(pts
-			(xy 167.64 127) (xy 151.13 127)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "467534f9-73af-4d52-adb8-75068850e584")
-	)
 	(bus
 		(pts
 			(xy 248.92 90.17) (xy 248.92 92.71)
@@ -3604,6 +3608,16 @@
 		)
 		(uuid "4ea639e9-55f4-4f61-83a8-f5c4db21cc88")
 	)
+	(wire
+		(pts
+			(xy 212.09 39.37) (xy 212.09 29.21)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "4f26ccb2-3ca4-4bdd-8465-120c9c6bd622")
+	)
 	(bus
 		(pts
 			(xy 248.92 87.63) (xy 248.92 90.17)
@@ -3643,16 +3657,6 @@
 			(type default)
 		)
 		(uuid "5551b9f6-5d69-4262-9d9c-832e26dc2c39")
-	)
-	(wire
-		(pts
-			(xy 153.67 129.54) (xy 167.64 129.54)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "576cf8cb-4354-4d73-a245-d2c7a3e301d0")
 	)
 	(bus
 		(pts
@@ -3756,23 +3760,23 @@
 	)
 	(wire
 		(pts
-			(xy 151.13 127) (xy 151.13 158.75)
+			(xy 156.21 135.89) (xy 167.64 135.89)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6bc77ed0-9e04-41ea-ad85-734ba7f52a8b")
+	)
+	(wire
+		(pts
+			(xy 151.13 130.81) (xy 151.13 158.75)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
 		(uuid "6db22431-dc0e-4be9-84d7-94601a33242d")
-	)
-	(wire
-		(pts
-			(xy 148.59 124.46) (xy 167.64 124.46)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "6f7be68a-62ab-4b65-95f5-d6ce53c42852")
 	)
 	(bus
 		(pts
@@ -3984,6 +3988,16 @@
 		)
 		(uuid "8a0043c6-b8ed-4ac1-837d-66d328ef4a84")
 	)
+	(wire
+		(pts
+			(xy 153.67 133.35) (xy 167.64 133.35)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8e4700b6-566c-4f58-a402-3f2f03b44a21")
+	)
 	(bus
 		(pts
 			(xy 248.92 130.81) (xy 248.92 133.35)
@@ -4166,6 +4180,16 @@
 	)
 	(wire
 		(pts
+			(xy 212.09 29.21) (xy 215.9 29.21)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a1bcbbcf-8106-4531-afcf-091909916dbc")
+	)
+	(wire
+		(pts
 			(xy 125.73 140.97) (xy 137.16 140.97)
 		)
 		(stroke
@@ -4176,7 +4200,7 @@
 	)
 	(wire
 		(pts
-			(xy 153.67 161.29) (xy 153.67 129.54)
+			(xy 153.67 161.29) (xy 153.67 133.35)
 		)
 		(stroke
 			(width 0)
@@ -4253,6 +4277,16 @@
 			(type default)
 		)
 		(uuid "ae2e50c8-4869-40cd-aff8-c71277223b78")
+	)
+	(wire
+		(pts
+			(xy 151.13 130.81) (xy 167.64 130.81)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b050db26-5a91-467b-9a84-339320509d03")
 	)
 	(wire
 		(pts
@@ -4476,6 +4510,16 @@
 	)
 	(wire
 		(pts
+			(xy 148.59 128.27) (xy 167.64 128.27)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c337c166-29e7-4d0f-8b5b-52035b3610c1")
+	)
+	(wire
+		(pts
 			(xy 49.53 170.18) (xy 49.53 144.78)
 		)
 		(stroke
@@ -4536,6 +4580,16 @@
 	)
 	(wire
 		(pts
+			(xy 240.03 39.37) (xy 212.09 39.37)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c9ae49da-918c-4a8d-8543-afbf9ed2b1e8")
+	)
+	(wire
+		(pts
 			(xy 251.46 62.23) (xy 255.27 62.23)
 		)
 		(stroke
@@ -4566,7 +4620,7 @@
 	)
 	(wire
 		(pts
-			(xy 156.21 132.08) (xy 156.21 163.83)
+			(xy 156.21 135.89) (xy 156.21 163.83)
 		)
 		(stroke
 			(width 0)
@@ -4576,7 +4630,7 @@
 	)
 	(wire
 		(pts
-			(xy 148.59 156.21) (xy 148.59 124.46)
+			(xy 148.59 156.21) (xy 148.59 128.27)
 		)
 		(stroke
 			(width 0)
@@ -4684,16 +4738,6 @@
 		)
 		(uuid "e390f884-2436-44c1-a36b-c50db9ff20d5")
 	)
-	(wire
-		(pts
-			(xy 167.64 132.08) (xy 156.21 132.08)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "e4de9010-b9a8-4035-81fa-7c20fcecb481")
-	)
 	(bus
 		(pts
 			(xy 248.92 57.15) (xy 248.92 72.39)
@@ -4794,16 +4838,6 @@
 		)
 		(uuid "f1142dff-820b-4e22-9218-eac6b1bbc13f")
 	)
-	(wire
-		(pts
-			(xy 33.02 43.18) (xy 33.02 40.64)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "f30c62e6-f31b-4d2a-b207-26ab7d7767cc")
-	)
 	(bus
 		(pts
 			(xy 248.92 97.79) (xy 248.92 100.33)
@@ -4876,6 +4910,16 @@
 	)
 	(wire
 		(pts
+			(xy 125.73 120.65) (xy 240.03 120.65)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "fac87f0f-9c28-4539-bba7-e3f403763489")
+	)
+	(wire
+		(pts
 			(xy 260.35 26.67) (xy 260.35 62.23)
 		)
 		(stroke
@@ -4934,9 +4978,19 @@
 		)
 		(uuid "a31efc68-3610-422d-ab77-63a030575161")
 	)
+	(text "The connector can only deliver around 50mA which is not enough"
+		(exclude_from_sim no)
+		(at 48.006 40.132 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "cd2c8c1d-2ab4-45b1-bcfd-5d81f1b951a7")
+	)
 	(text "This is not HDMI\nWe are using DVI over a HDMI-like connector\nThis is due to the extreme licensing cost of real HDMI\n"
 		(exclude_from_sim no)
-		(at 41.91 29.21 0)
+		(at 46.228 23.368 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4956,7 +5010,7 @@
 		(uuid "008b52e6-9c10-45a1-9676-093c63040df9")
 	)
 	(label "TMS"
-		(at 166.37 132.08 180)
+		(at 166.37 135.89 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -4989,7 +5043,7 @@
 		(uuid "0d427bd4-98f4-454c-b41d-d47fae7c20ac")
 	)
 	(label "TDO"
-		(at 166.37 127 180)
+		(at 166.37 130.81 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -5076,7 +5130,7 @@
 		)
 		(uuid "40dd23a9-11d5-42f7-8ded-8d3d40faf3ae")
 	)
-	(label "HDMI_CEC"
+	(label "DVI_CEC"
 		(at 44.45 73.66 0)
 		(fields_autoplaced yes)
 		(effects
@@ -5109,7 +5163,7 @@
 		)
 		(uuid "4a9588e2-b752-432a-b793-49253c03daf3")
 	)
-	(label "HDMI_UTIL"
+	(label "DVI_UTIL"
 		(at 44.45 86.36 0)
 		(fields_autoplaced yes)
 		(effects
@@ -5131,7 +5185,7 @@
 		)
 		(uuid "4d3970c5-2928-407d-a707-1e5c98420491")
 	)
-	(label "HDMI_D0+"
+	(label "DVI_D0+"
 		(at 44.45 60.96 0)
 		(fields_autoplaced yes)
 		(effects
@@ -5286,7 +5340,7 @@
 		(uuid "86b3557b-c7de-4603-b80a-98139916cfb7")
 	)
 	(label "TCK"
-		(at 166.37 129.54 180)
+		(at 166.37 133.35 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -5318,7 +5372,7 @@
 		)
 		(uuid "9b156368-ef0b-4694-af2a-af160e530000")
 	)
-	(label "HDMI_SDA"
+	(label "DVI_SDA"
 		(at 44.45 81.28 0)
 		(fields_autoplaced yes)
 		(effects
@@ -5363,7 +5417,7 @@
 		(uuid "9f509891-c6da-46cf-98fd-0810eed2e7e6")
 	)
 	(label "TDI"
-		(at 166.37 124.46 180)
+		(at 166.37 128.27 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -5384,7 +5438,18 @@
 		)
 		(uuid "a076c5a7-f494-4ba3-8e43-a06952e2aca0")
 	)
-	(label "HDMI_D2+"
+	(label "BL_PWM"
+		(at 127 120.65 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "a686b54a-f259-4e4e-9802-74e8dfa3e5df")
+	)
+	(label "DVI_D2+"
 		(at 44.45 50.8 0)
 		(fields_autoplaced yes)
 		(effects
@@ -5395,7 +5460,7 @@
 		)
 		(uuid "a72499f9-22bc-4c36-9366-1bb63bf42e98")
 	)
-	(label "HDMI_D2-"
+	(label "DVI_D2-"
 		(at 44.45 53.34 0)
 		(fields_autoplaced yes)
 		(effects
@@ -5406,7 +5471,7 @@
 		)
 		(uuid "a93f09ad-a22e-48d4-9dce-f34184bab4b1")
 	)
-	(label "HDMI_D1-"
+	(label "DVI_D1-"
 		(at 44.45 58.42 0)
 		(fields_autoplaced yes)
 		(effects
@@ -5450,7 +5515,7 @@
 		)
 		(uuid "b6da649e-a136-42a8-bcd6-21e5e5e71040")
 	)
-	(label "HDMI_D1+"
+	(label "DVI_D1+"
 		(at 44.45 55.88 0)
 		(fields_autoplaced yes)
 		(effects
@@ -5549,7 +5614,7 @@
 		)
 		(uuid "c34c32f2-9658-4112-824b-9aabf9cc4402")
 	)
-	(label "HDMI_SCL"
+	(label "DVI_SCL"
 		(at 44.45 78.74 0)
 		(fields_autoplaced yes)
 		(effects
@@ -5560,7 +5625,7 @@
 		)
 		(uuid "c42e7ed8-c37c-4121-932e-cd5e7a1f561e")
 	)
-	(label "HDMI_HPD"
+	(label "DVI_HPD"
 		(at 44.45 88.9 0)
 		(fields_autoplaced yes)
 		(effects
@@ -5593,7 +5658,7 @@
 		)
 		(uuid "d3177e60-099d-442b-b792-905639e1253f")
 	)
-	(label "HDMI_CK+"
+	(label "DVI_CK+"
 		(at 44.45 66.04 0)
 		(fields_autoplaced yes)
 		(effects
@@ -5604,7 +5669,7 @@
 		)
 		(uuid "d8e3596a-0cce-402f-904a-fdaa2993e9e7")
 	)
-	(label "HDMI_D0-"
+	(label "DVI_D0-"
 		(at 44.45 63.5 0)
 		(fields_autoplaced yes)
 		(effects
@@ -5615,7 +5680,7 @@
 		)
 		(uuid "dbbeafb9-f4b4-4036-98ee-90fbb9f0f418")
 	)
-	(label "HDMI_CK-"
+	(label "DVI_CK-"
 		(at 44.45 68.58 0)
 		(fields_autoplaced yes)
 		(effects
@@ -5736,7 +5801,7 @@
 		)
 		(uuid "fe4a5dcd-1242-4c91-9852-a10fe2edbf40")
 	)
-	(hierarchical_label "HDMI_D0+"
+	(hierarchical_label "DVI_D0+"
 		(shape bidirectional)
 		(at 29.21 -33.02 0)
 		(fields_autoplaced yes)
@@ -5784,7 +5849,7 @@
 		)
 		(uuid "36b178e5-2812-490f-bd72-590af6e86881")
 	)
-	(hierarchical_label "HDMI_SDA"
+	(hierarchical_label "DVI_SDA"
 		(shape bidirectional)
 		(at 29.21 -12.7 0)
 		(fields_autoplaced yes)
@@ -5808,7 +5873,7 @@
 		)
 		(uuid "52b8045e-b9fb-4511-b5aa-63eb9a0e801c")
 	)
-	(hierarchical_label "HDMI_D2+"
+	(hierarchical_label "DVI_D2+"
 		(shape bidirectional)
 		(at 29.21 -43.18 0)
 		(fields_autoplaced yes)
@@ -5832,7 +5897,7 @@
 		)
 		(uuid "5f55471f-0b09-4975-b2c4-396c4f9f9aa6")
 	)
-	(hierarchical_label "HDMI_CEC"
+	(hierarchical_label "DVI_CEC"
 		(shape bidirectional)
 		(at 29.21 -20.32 0)
 		(fields_autoplaced yes)
@@ -5844,7 +5909,7 @@
 		)
 		(uuid "6b8bdb7b-ba25-4aa7-8bd4-2d2a7ac911a4")
 	)
-	(hierarchical_label "HDMI_HPD"
+	(hierarchical_label "DVI_HPD"
 		(shape bidirectional)
 		(at 29.21 -5.08 0)
 		(fields_autoplaced yes)
@@ -5856,7 +5921,7 @@
 		)
 		(uuid "73f3cc57-0085-4476-8927-bb107b3073f8")
 	)
-	(hierarchical_label "HDMI_SCL"
+	(hierarchical_label "DVI_SCL"
 		(shape bidirectional)
 		(at 29.21 -15.24 0)
 		(fields_autoplaced yes)
@@ -5880,7 +5945,7 @@
 		)
 		(uuid "7f7d9739-97bf-421e-a38b-ba74e89d87e6")
 	)
-	(hierarchical_label "HDMI_D0-"
+	(hierarchical_label "DVI_D0-"
 		(shape bidirectional)
 		(at 29.21 -30.48 0)
 		(fields_autoplaced yes)
@@ -5892,7 +5957,7 @@
 		)
 		(uuid "80382f54-163e-48db-8cf3-6c921ad32e6b")
 	)
-	(hierarchical_label "HDMI_UTIL"
+	(hierarchical_label "DVI_UTIL"
 		(shape bidirectional)
 		(at 29.21 -7.62 0)
 		(fields_autoplaced yes)
@@ -5904,7 +5969,7 @@
 		)
 		(uuid "95aca45f-ebc0-42ac-a645-870d296db5fa")
 	)
-	(hierarchical_label "HDMI_D2-"
+	(hierarchical_label "DVI_D2-"
 		(shape bidirectional)
 		(at 29.21 -40.64 0)
 		(fields_autoplaced yes)
@@ -5952,7 +6017,7 @@
 		)
 		(uuid "c407fc8e-6328-41a9-ade2-6fe73ff40b5f")
 	)
-	(hierarchical_label "HDMI_CK-"
+	(hierarchical_label "DVI_CK-"
 		(shape bidirectional)
 		(at 29.21 -25.4 0)
 		(fields_autoplaced yes)
@@ -5976,7 +6041,7 @@
 		)
 		(uuid "d6a2e234-6e40-4e5a-a758-4b9e8a338706")
 	)
-	(hierarchical_label "HDMI_D1+"
+	(hierarchical_label "DVI_D1+"
 		(shape bidirectional)
 		(at 29.21 -38.1 0)
 		(fields_autoplaced yes)
@@ -6000,7 +6065,7 @@
 		)
 		(uuid "e6ebf35e-40f1-46be-bc8c-37a9a5d7c452")
 	)
-	(hierarchical_label "HDMI_D1-"
+	(hierarchical_label "DVI_D1-"
 		(shape bidirectional)
 		(at 29.21 -35.56 0)
 		(fields_autoplaced yes)
@@ -6012,7 +6077,7 @@
 		)
 		(uuid "f5065d72-eb14-4798-a64b-3025fc049d23")
 	)
-	(hierarchical_label "HDMI_CK+"
+	(hierarchical_label "DVI_CK+"
 		(shape bidirectional)
 		(at 29.21 -27.94 0)
 		(fields_autoplaced yes)
@@ -6152,72 +6217,6 @@
 			(project "integrated_1"
 				(path "/5cc60e42-d666-4a43-b4f0-3784ee4bf951"
 					(reference "#PWR09")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:+5V")
-		(at 33.02 40.64 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "50078fed-a541-49f4-8fde-41ca978e7538")
-		(property "Reference" "#PWR024"
-			(at 33.02 44.45 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "+5V"
-			(at 33.02 35.56 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 33.02 40.64 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 33.02 40.64 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"+5V\""
-			(at 33.02 40.64 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "0b0e2445-e986-4a9e-993e-c817057a66d4")
-		)
-		(instances
-			(project "integrated_1"
-				(path "/5cc60e42-d666-4a43-b4f0-3784ee4bf951"
-					(reference "#PWR024")
 					(unit 1)
 				)
 			)
@@ -7318,8 +7317,8 @@
 		)
 	)
 	(sheet
-		(at 82.55 121.92)
-		(size 43.18 58.42)
+		(at 82.55 116.84)
+		(size 43.18 63.5)
 		(fields_autoplaced yes)
 		(stroke
 			(width 0.1524)
@@ -7330,7 +7329,7 @@
 		)
 		(uuid "19012e16-7cd6-4497-8667-921149ac83fb")
 		(property "Sheetname" "RP2040"
-			(at 82.55 121.2084 0)
+			(at 82.55 116.1284 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7348,7 +7347,7 @@
 			)
 		)
 		(property "Field2" ""
-			(at 82.55 121.92 0)
+			(at 82.55 116.84 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7606,6 +7605,16 @@
 			)
 			(uuid "bacda194-3266-4629-8f67-5a94a5cf499c")
 		)
+		(pin "BL_PWM" output
+			(at 125.73 120.65 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+			(uuid "3bdbea30-3e10-4d87-9e53-a49594e7d77a")
+		)
 		(instances
 			(project "integrated_1"
 				(path "/5cc60e42-d666-4a43-b4f0-3784ee4bf951"
@@ -7615,7 +7624,7 @@
 		)
 	)
 	(sheet
-		(at 167.64 120.65)
+		(at 167.64 124.46)
 		(size 33.02 15.24)
 		(fields_autoplaced yes)
 		(stroke
@@ -7627,7 +7636,7 @@
 		)
 		(uuid "2ba587f6-8240-4a2e-8589-8fa4b3d4679c")
 		(property "Sheetname" "FPGA JTAG"
-			(at 167.64 119.9384 0)
+			(at 167.64 123.7484 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7636,7 +7645,7 @@
 			)
 		)
 		(property "Sheetfile" "sheets/fpga_jtag.kicad_sch"
-			(at 167.64 136.4746 0)
+			(at 167.64 140.2846 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7645,7 +7654,7 @@
 			)
 		)
 		(property "Field2" ""
-			(at 167.64 120.65 0)
+			(at 167.64 124.46 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7654,7 +7663,7 @@
 			)
 		)
 		(pin "TDO" input
-			(at 167.64 127 180)
+			(at 167.64 130.81 180)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7664,7 +7673,7 @@
 			(uuid "2b30a2df-6b3c-4e1b-b030-a904c68a84f3")
 		)
 		(pin "TCK" input
-			(at 167.64 129.54 180)
+			(at 167.64 133.35 180)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7674,7 +7683,7 @@
 			(uuid "e011214b-300f-4b5d-9142-20616c031b9d")
 		)
 		(pin "TDI" output
-			(at 167.64 124.46 180)
+			(at 167.64 128.27 180)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7684,7 +7693,7 @@
 			(uuid "208003bb-e608-44ac-b955-4e25d3e11604")
 		)
 		(pin "TMS" input
-			(at 167.64 132.08 180)
+			(at 167.64 135.89 180)
 			(effects
 				(font
 					(size 1.27 1.27)
