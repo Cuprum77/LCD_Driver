@@ -2,6 +2,8 @@
 
 This is a PCB that integrates everything needed to drive the display. It is designed to sit on the back of the display without interfering with the display frame. It is specifically designed for the pinout of the newer non-standard displays that have come out of China in the recent years. Specifically those that support the RGB666 interface.
 
+This design utilizes a Spartan 6 FPGA to drive the display. This was chosen over dedicated ASICs due to cost and adaptability. This should allow me to add features such as a splash screen or other custom features that are not possible with a dedicated ASIC.
+
 ## Features
 - Spartan 6 FPGA [^1]
 - DVI Input [^2]
