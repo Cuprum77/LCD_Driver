@@ -1360,7 +1360,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "0ef9b3ce-ed87-4582-8300-ca089c21b7e0")
-		(property "Reference" "#PWR026"
+		(property "Reference" "#PWR041"
 			(at 336.55 217.17 0)
 			(effects
 				(font
@@ -1410,7 +1410,7 @@
 		(instances
 			(project "integrated_1"
 				(path "/5cc60e42-d666-4a43-b4f0-3784ee4bf951/7e4f175d-d60a-4b23-9cf2-ca90d4a48e7e"
-					(reference "#PWR026")
+					(reference "#PWR041")
 					(unit 1)
 				)
 			)
@@ -1494,7 +1494,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "3993b97f-ce08-48a6-b4cd-24f2dfc04e8f")
-		(property "Reference" "C18"
+		(property "Reference" "C27"
 			(at 116.84 93.9862 0)
 			(effects
 				(font
@@ -1548,7 +1548,7 @@
 		(instances
 			(project "integrated_1"
 				(path "/5cc60e42-d666-4a43-b4f0-3784ee4bf951/7e4f175d-d60a-4b23-9cf2-ca90d4a48e7e"
-					(reference "C18")
+					(reference "C27")
 					(unit 1)
 				)
 			)
@@ -1564,7 +1564,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "49c1166e-9255-4288-94c0-d7db4d2e56ef")
-		(property "Reference" "R7"
+		(property "Reference" "R9"
 			(at 157.48 102.8699 0)
 			(effects
 				(font
@@ -1582,7 +1582,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
+		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
 			(at 154.94 104.14 0)
 			(effects
 				(font
@@ -1618,7 +1618,7 @@
 		(instances
 			(project "integrated_1"
 				(path "/5cc60e42-d666-4a43-b4f0-3784ee4bf951/7e4f175d-d60a-4b23-9cf2-ca90d4a48e7e"
-					(reference "R7")
+					(reference "R9")
 					(unit 1)
 				)
 			)
@@ -1634,7 +1634,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "7d8c7aa9-a063-48a2-9693-64f9223ceb5e")
-		(property "Reference" "#PWR025"
+		(property "Reference" "#PWR039"
 			(at 114.3 82.55 0)
 			(effects
 				(font
@@ -1684,7 +1684,7 @@
 		(instances
 			(project "integrated_1"
 				(path "/5cc60e42-d666-4a43-b4f0-3784ee4bf951/7e4f175d-d60a-4b23-9cf2-ca90d4a48e7e"
-					(reference "#PWR025")
+					(reference "#PWR039")
 					(unit 1)
 				)
 			)
@@ -1700,7 +1700,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "a96b2ec7-742d-4f8b-8c04-2e8f1d98b138")
-		(property "Reference" "#PWR027"
+		(property "Reference" "#PWR040"
 			(at 171.45 118.11 0)
 			(effects
 				(font
@@ -1750,7 +1750,7 @@
 		(instances
 			(project "integrated_1"
 				(path "/5cc60e42-d666-4a43-b4f0-3784ee4bf951/7e4f175d-d60a-4b23-9cf2-ca90d4a48e7e"
-					(reference "#PWR027")
+					(reference "#PWR040")
 					(unit 1)
 				)
 			)
@@ -1766,7 +1766,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "b1772271-1089-48bd-b9b0-c37f8f4b7d0d")
-		(property "Reference" "L2"
+		(property "Reference" "L1"
 			(at 142.24 76.2 90)
 			(effects
 				(font
@@ -1818,7 +1818,7 @@
 		(instances
 			(project "integrated_1"
 				(path "/5cc60e42-d666-4a43-b4f0-3784ee4bf951/7e4f175d-d60a-4b23-9cf2-ca90d4a48e7e"
-					(reference "L2")
+					(reference "L1")
 					(unit 1)
 				)
 			)
@@ -1834,7 +1834,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "bc192a82-9458-44ed-8789-40f2360dc12c")
-		(property "Reference" "C19"
+		(property "Reference" "C28"
 			(at 173.99 93.9862 0)
 			(effects
 				(font
@@ -1888,7 +1888,7 @@
 		(instances
 			(project "integrated_1"
 				(path "/5cc60e42-d666-4a43-b4f0-3784ee4bf951/7e4f175d-d60a-4b23-9cf2-ca90d4a48e7e"
-					(reference "C19")
+					(reference "C28")
 					(unit 1)
 				)
 			)
@@ -1904,7 +1904,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "cc8680fd-e03b-4797-9aa2-6d10c1e0d9a8")
-		(property "Reference" "U3"
+		(property "Reference" "U4"
 			(at 133.35 94.142 0)
 			(effects
 				(font
@@ -1968,7 +1968,7 @@
 		(instances
 			(project "integrated_1"
 				(path "/5cc60e42-d666-4a43-b4f0-3784ee4bf951/7e4f175d-d60a-4b23-9cf2-ca90d4a48e7e"
-					(reference "U3")
+					(reference "U4")
 					(unit 1)
 				)
 			)
