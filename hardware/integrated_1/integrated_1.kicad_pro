@@ -37,9 +37,9 @@
         "other_text_thickness": 0.15,
         "other_text_upright": false,
         "pads": {
-          "drill": 0.762,
-          "height": 1.524,
-          "width": 1.524
+          "drill": 0.0,
+          "height": 1.0,
+          "width": 1.0
         },
         "silk_line_width": 0.09999999999999999,
         "silk_text_italic": false,
@@ -426,8 +426,12 @@
     }
   },
   "libraries": {
-    "pinned_footprint_libs": [],
-    "pinned_symbol_libs": []
+    "pinned_footprint_libs": [
+      "KiCAD Library"
+    ],
+    "pinned_symbol_libs": [
+      "Cuprum"
+    ]
   },
   "meta": {
     "filename": "integrated_1.kicad_pro",
@@ -437,7 +441,7 @@
     "classes": [
       {
         "bus_width": 12,
-        "clearance": 0.2,
+        "clearance": 0.25,
         "diff_pair_gap": 0.25,
         "diff_pair_via_gap": 0.25,
         "diff_pair_width": 0.2,
@@ -600,6 +604,10 @@
     [
       "7e4f175d-d60a-4b23-9cf2-ca90d4a48e7e",
       "Backlight"
+    ],
+    [
+      "b31ef56e-e56f-49fc-b7d7-d1f43d8c5f5f",
+      "Buck Converter"
     ]
   ],
   "text_variables": {}
