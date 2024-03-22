@@ -33,6 +33,8 @@ fp-info-cache
 
 # KiCad lck files
 *.lck
+# This plugin needs a config file for some reason?
+*.round-tracks-config
 
 # temporary!!!!
 docs/*
