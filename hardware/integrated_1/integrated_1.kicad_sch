@@ -10392,7 +10392,7 @@
 			(uuid "b422d97a-9bc6-4d33-871e-28840a4ad236")
 		)
 		(pin "FPGA_RD" input
-			(at 105.41 66.04 180)
+			(at 105.41 63.5 180)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10402,7 +10402,7 @@
 			(uuid "1450c2da-9492-47d1-af01-e548c36154a7")
 		)
 		(pin "FPGA_CLK" input
-			(at 105.41 63.5 180)
+			(at 105.41 66.04 180)
 			(effects
 				(font
 					(size 1.27 1.27)
