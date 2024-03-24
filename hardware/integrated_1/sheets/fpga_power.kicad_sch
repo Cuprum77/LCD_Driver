@@ -4080,7 +4080,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "06956c50-645a-46cb-a211-e9c852d43034")
-		(property "Reference" "C54"
+		(property "Reference" "C1"
 			(at 77.47 79.3813 0)
 			(effects
 				(font
@@ -4098,7 +4098,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
+		(property "Footprint" "KiCAD Library:C_0402_1005Metric"
 			(at 74.93 80.01 0)
 			(effects
 				(font
@@ -4134,7 +4134,7 @@
 		(instances
 			(project "integrated_1"
 				(path "/5cc60e42-d666-4a43-b4f0-3784ee4bf951/de200a54-0217-4ad2-b54c-599540b200bb"
-					(reference "C54")
+					(reference "C1")
 					(unit 1)
 				)
 			)
@@ -4150,7 +4150,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "2d583030-4e9d-4bc1-9a37-8ac604d52154")
-		(property "Reference" "C56"
+		(property "Reference" "C3"
 			(at 95.25 79.3813 0)
 			(effects
 				(font
@@ -4168,7 +4168,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
+		(property "Footprint" "KiCAD Library:C_0402_1005Metric"
 			(at 92.71 80.01 0)
 			(effects
 				(font
@@ -4204,7 +4204,7 @@
 		(instances
 			(project "integrated_1"
 				(path "/5cc60e42-d666-4a43-b4f0-3784ee4bf951/de200a54-0217-4ad2-b54c-599540b200bb"
-					(reference "C56")
+					(reference "C3")
 					(unit 1)
 				)
 			)
@@ -4220,7 +4220,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "7c58cda2-c955-4767-aff0-b2c6d4123806")
-		(property "Reference" "C55"
+		(property "Reference" "C2"
 			(at 86.36 79.3813 0)
 			(effects
 				(font
@@ -4238,7 +4238,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
+		(property "Footprint" "KiCAD Library:C_0402_1005Metric"
 			(at 83.82 80.01 0)
 			(effects
 				(font
@@ -4274,7 +4274,7 @@
 		(instances
 			(project "integrated_1"
 				(path "/5cc60e42-d666-4a43-b4f0-3784ee4bf951/de200a54-0217-4ad2-b54c-599540b200bb"
-					(reference "C55")
+					(reference "C2")
 					(unit 1)
 				)
 			)
@@ -4290,7 +4290,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "81c4736e-d951-4f59-89b9-cf3fe7c8d87f")
-		(property "Reference" "C59"
+		(property "Reference" "C6"
 			(at 189.23 79.3813 0)
 			(effects
 				(font
@@ -4308,7 +4308,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
+		(property "Footprint" "KiCAD Library:C_0402_1005Metric"
 			(at 186.69 80.01 0)
 			(effects
 				(font
@@ -4344,7 +4344,7 @@
 		(instances
 			(project "integrated_1"
 				(path "/5cc60e42-d666-4a43-b4f0-3784ee4bf951/de200a54-0217-4ad2-b54c-599540b200bb"
-					(reference "C59")
+					(reference "C6")
 					(unit 1)
 				)
 			)
@@ -4360,7 +4360,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "8afc9dc2-1725-4b1b-ba98-eb6d319ffc2f")
-		(property "Reference" "C61"
+		(property "Reference" "C8"
 			(at 207.01 79.3813 0)
 			(effects
 				(font
@@ -4378,7 +4378,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
+		(property "Footprint" "KiCAD Library:C_0402_1005Metric"
 			(at 204.47 80.01 0)
 			(effects
 				(font
@@ -4414,7 +4414,7 @@
 		(instances
 			(project "integrated_1"
 				(path "/5cc60e42-d666-4a43-b4f0-3784ee4bf951/de200a54-0217-4ad2-b54c-599540b200bb"
-					(reference "C61")
+					(reference "C8")
 					(unit 1)
 				)
 			)
@@ -4431,7 +4431,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "a874f7be-caca-4cce-9914-6fc273f9209c")
-		(property "Reference" "#PWR058"
+		(property "Reference" "#PWR016"
 			(at 222.25 91.44 0)
 			(effects
 				(font
@@ -4481,7 +4481,7 @@
 		(instances
 			(project "integrated_1"
 				(path "/5cc60e42-d666-4a43-b4f0-3784ee4bf951/de200a54-0217-4ad2-b54c-599540b200bb"
-					(reference "#PWR058")
+					(reference "#PWR016")
 					(unit 1)
 				)
 			)
@@ -4497,7 +4497,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "a950aa1e-0017-4a78-908b-ef40cbb8ab90")
-		(property "Reference" "C63"
+		(property "Reference" "C10"
 			(at 224.79 79.3813 0)
 			(effects
 				(font
@@ -4515,7 +4515,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
+		(property "Footprint" "KiCAD Library:C_0402_1005Metric"
 			(at 222.25 80.01 0)
 			(effects
 				(font
@@ -4551,7 +4551,7 @@
 		(instances
 			(project "integrated_1"
 				(path "/5cc60e42-d666-4a43-b4f0-3784ee4bf951/de200a54-0217-4ad2-b54c-599540b200bb"
-					(reference "C63")
+					(reference "C10")
 					(unit 1)
 				)
 			)
@@ -4567,7 +4567,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "a9a8509e-6290-4e52-ad9a-fe05504a0062")
-		(property "Reference" "C58"
+		(property "Reference" "C5"
 			(at 113.03 79.3813 0)
 			(effects
 				(font
@@ -4585,7 +4585,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
+		(property "Footprint" "KiCAD Library:C_0402_1005Metric"
 			(at 110.49 80.01 0)
 			(effects
 				(font
@@ -4621,7 +4621,7 @@
 		(instances
 			(project "integrated_1"
 				(path "/5cc60e42-d666-4a43-b4f0-3784ee4bf951/de200a54-0217-4ad2-b54c-599540b200bb"
-					(reference "C58")
+					(reference "C5")
 					(unit 1)
 				)
 			)
@@ -4637,7 +4637,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "ae49f4aa-1196-4115-a430-28e22941987d")
-		(property "Reference" "#PWR057"
+		(property "Reference" "#PWR013"
 			(at 74.93 91.44 0)
 			(effects
 				(font
@@ -4687,7 +4687,7 @@
 		(instances
 			(project "integrated_1"
 				(path "/5cc60e42-d666-4a43-b4f0-3784ee4bf951/de200a54-0217-4ad2-b54c-599540b200bb"
-					(reference "#PWR057")
+					(reference "#PWR013")
 					(unit 1)
 				)
 			)
@@ -4703,7 +4703,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "befe1ee8-3a35-49ba-90b4-f5a575b43ef7")
-		(property "Reference" "#PWR020"
+		(property "Reference" "#PWR015"
 			(at 176.53 115.57 0)
 			(effects
 				(font
@@ -4753,7 +4753,7 @@
 		(instances
 			(project "integrated_1"
 				(path "/5cc60e42-d666-4a43-b4f0-3784ee4bf951/de200a54-0217-4ad2-b54c-599540b200bb"
-					(reference "#PWR020")
+					(reference "#PWR015")
 					(unit 1)
 				)
 			)
@@ -4769,7 +4769,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "d1118ae8-2ee0-4944-b385-a6eb2c6e64c6")
-		(property "Reference" "C57"
+		(property "Reference" "C4"
 			(at 104.14 79.3813 0)
 			(effects
 				(font
@@ -4787,7 +4787,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
+		(property "Footprint" "KiCAD Library:C_0402_1005Metric"
 			(at 101.6 80.01 0)
 			(effects
 				(font
@@ -4823,7 +4823,7 @@
 		(instances
 			(project "integrated_1"
 				(path "/5cc60e42-d666-4a43-b4f0-3784ee4bf951/de200a54-0217-4ad2-b54c-599540b200bb"
-					(reference "C57")
+					(reference "C4")
 					(unit 1)
 				)
 			)
@@ -5332,7 +5332,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "e457df1a-1b54-4429-a8cd-eb9094b97114")
-		(property "Reference" "C60"
+		(property "Reference" "C7"
 			(at 198.12 79.3813 0)
 			(effects
 				(font
@@ -5350,7 +5350,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
+		(property "Footprint" "KiCAD Library:C_0402_1005Metric"
 			(at 195.58 80.01 0)
 			(effects
 				(font
@@ -5386,7 +5386,7 @@
 		(instances
 			(project "integrated_1"
 				(path "/5cc60e42-d666-4a43-b4f0-3784ee4bf951/de200a54-0217-4ad2-b54c-599540b200bb"
-					(reference "C60")
+					(reference "C7")
 					(unit 1)
 				)
 			)
@@ -5402,7 +5402,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "e8be2b2b-58d1-4c5c-885d-f772779a29a9")
-		(property "Reference" "#PWR019"
+		(property "Reference" "#PWR014"
 			(at 120.65 115.57 0)
 			(effects
 				(font
@@ -5452,7 +5452,7 @@
 		(instances
 			(project "integrated_1"
 				(path "/5cc60e42-d666-4a43-b4f0-3784ee4bf951/de200a54-0217-4ad2-b54c-599540b200bb"
-					(reference "#PWR019")
+					(reference "#PWR014")
 					(unit 1)
 				)
 			)
@@ -5468,7 +5468,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "ee313a65-fba8-4ab0-bad6-805183f31246")
-		(property "Reference" "C62"
+		(property "Reference" "C9"
 			(at 215.9 79.3813 0)
 			(effects
 				(font
@@ -5486,7 +5486,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
+		(property "Footprint" "KiCAD Library:C_0402_1005Metric"
 			(at 213.36 80.01 0)
 			(effects
 				(font
@@ -5522,7 +5522,7 @@
 		(instances
 			(project "integrated_1"
 				(path "/5cc60e42-d666-4a43-b4f0-3784ee4bf951/de200a54-0217-4ad2-b54c-599540b200bb"
-					(reference "C62")
+					(reference "C9")
 					(unit 1)
 				)
 			)
