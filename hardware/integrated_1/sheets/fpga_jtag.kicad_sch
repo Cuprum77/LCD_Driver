@@ -3076,10 +3076,6 @@
 		)
 	)
 	(no_connect
-		(at 173.99 87.63)
-		(uuid "1663383e-7568-43d9-9a9c-6ac7ff01ddf8")
-	)
-	(no_connect
 		(at 173.99 100.33)
 		(uuid "90af2ed4-67b6-466b-93ec-b34e3a696c85")
 	)
@@ -3173,6 +3169,16 @@
 		)
 		(uuid "ce44baee-85c2-405f-bd21-ca1d122f6e9b")
 	)
+	(wire
+		(pts
+			(xy 176.53 87.63) (xy 173.99 87.63)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f124258c-8334-4e94-a0e8-f767e7cfa3cc")
+	)
 	(text "SUSPEND should be kept LOW"
 		(exclude_from_sim no)
 		(at 193.548 95.25 0)
@@ -3237,6 +3243,18 @@
 			(justify left)
 		)
 		(uuid "31ca33c2-bc7e-4aac-bb32-712b4785b535")
+	)
+	(hierarchical_label "DONE"
+		(shape output)
+		(at 176.53 87.63 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "c916d8f7-6629-4172-9800-0193ab5570e6")
 	)
 	(hierarchical_label "TDI"
 		(shape output)

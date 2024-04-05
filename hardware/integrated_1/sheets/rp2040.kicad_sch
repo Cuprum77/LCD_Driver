@@ -2010,8 +2010,8 @@
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
-			(property "Reference" "U6"
-				(at 6.35 10.16 0)
+			(property "Reference" "U3"
+				(at 6.35 8.89 0)
 				(effects
 					(font
 						(size 1.27 1.27)
@@ -2028,7 +2028,7 @@
 					(justify left)
 				)
 			)
-			(property "Footprint" "Package_SO:SOIC-8_5.23x5.23mm_P1.27mm"
+			(property "Footprint" "KiCAD Library:W25Q16JVUXIQ TR"
 				(at 1.27 -19.05 0)
 				(effects
 					(font
@@ -2046,7 +2046,7 @@
 					(hide yes)
 				)
 			)
-			(property "Description" "32Mb Serial Flash Memory, Standard/Dual/Quad SPI, SOIC-8"
+			(property "Description" ""
 				(at 0 0 0)
 				(effects
 					(font
@@ -2224,6 +2224,24 @@
 						)
 					)
 					(number "8"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin power_in line
+					(at 0 -10.16 90)
+					(length 2.54) hide
+					(name "GND"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "9"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -2877,10 +2895,6 @@
 		(at 173.99 142.24)
 		(uuid "64816cb3-bb3c-472a-bee2-073c34729737")
 	)
-	(no_connect
-		(at 173.99 121.92)
-		(uuid "d7c8664a-894b-4261-bfd0-55aaf82e2fd3")
-	)
 	(wire
 		(pts
 			(xy 176.53 111.76) (xy 173.99 111.76)
@@ -3420,6 +3434,16 @@
 			(type default)
 		)
 		(uuid "444b1e34-e73a-4801-ad48-c29318ab7c25")
+	)
+	(wire
+		(pts
+			(xy 173.99 121.92) (xy 176.53 121.92)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "448f0885-4bce-4057-9d43-8a81b6fb6830")
 	)
 	(wire
 		(pts
@@ -5088,6 +5112,18 @@
 		)
 		(uuid "8b249964-bff5-4e58-84cc-bd40dc1ea0db")
 	)
+	(hierarchical_label "DONE"
+		(shape input)
+		(at 176.53 121.92 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "ab4a9ddf-551f-4244-9f43-1a9caf6dec60")
+	)
 	(hierarchical_label "FPGA_D6"
 		(shape bidirectional)
 		(at 176.53 101.6 0)
@@ -6017,6 +6053,9 @@
 		)
 		(pin "8"
 			(uuid "c6d1c5c0-3f73-4975-9265-61779acfe66c")
+		)
+		(pin "9"
+			(uuid "8a165331-b905-490b-8e8f-08f704a4740d")
 		)
 		(instances
 			(project "integrated_1"

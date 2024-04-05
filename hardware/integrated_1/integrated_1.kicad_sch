@@ -4053,7 +4053,7 @@
 	)
 	(wire
 		(pts
-			(xy 166.37 148.59) (xy 166.37 171.45)
+			(xy 167.64 148.59) (xy 167.64 173.99)
 		)
 		(stroke
 			(width 0)
@@ -4203,7 +4203,7 @@
 	)
 	(wire
 		(pts
-			(xy 168.91 151.13) (xy 262.89 151.13)
+			(xy 170.18 151.13) (xy 262.89 151.13)
 		)
 		(stroke
 			(width 0)
@@ -4243,7 +4243,7 @@
 	)
 	(wire
 		(pts
-			(xy 125.73 173.99) (xy 161.29 173.99)
+			(xy 125.73 176.53) (xy 162.56 176.53)
 		)
 		(stroke
 			(width 0)
@@ -4463,6 +4463,16 @@
 	)
 	(wire
 		(pts
+			(xy 158.75 166.37) (xy 158.75 138.43)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "2429267e-8f20-4efe-b425-fd31210e530f")
+	)
+	(wire
+		(pts
 			(xy 243.84 153.67) (xy 262.89 153.67)
 		)
 		(stroke
@@ -4560,6 +4570,16 @@
 			(type default)
 		)
 		(uuid "3071cf7a-9e47-4578-8a37-07064c144852")
+	)
+	(wire
+		(pts
+			(xy 125.73 166.37) (xy 158.75 166.37)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "30807ee8-c95e-48eb-89df-0e9e7ba8ec0a")
 	)
 	(wire
 		(pts
@@ -4710,6 +4730,16 @@
 			(type default)
 		)
 		(uuid "410d8d6d-cb6b-47a4-acbf-716481a80127")
+	)
+	(wire
+		(pts
+			(xy 158.75 138.43) (xy 167.64 138.43)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "44da609e-9552-40c0-b003-cfd25585497f")
 	)
 	(wire
 		(pts
@@ -5353,7 +5383,7 @@
 	)
 	(wire
 		(pts
-			(xy 161.29 143.51) (xy 262.89 143.51)
+			(xy 162.56 143.51) (xy 262.89 143.51)
 		)
 		(stroke
 			(width 0)
@@ -5363,7 +5393,7 @@
 	)
 	(wire
 		(pts
-			(xy 166.37 148.59) (xy 262.89 148.59)
+			(xy 167.64 148.59) (xy 262.89 148.59)
 		)
 		(stroke
 			(width 0)
@@ -5423,7 +5453,7 @@
 	)
 	(wire
 		(pts
-			(xy 161.29 173.99) (xy 161.29 143.51)
+			(xy 162.56 176.53) (xy 162.56 143.51)
 		)
 		(stroke
 			(width 0)
@@ -5443,7 +5473,7 @@
 	)
 	(wire
 		(pts
-			(xy 125.73 176.53) (xy 168.91 176.53)
+			(xy 125.73 179.07) (xy 170.18 179.07)
 		)
 		(stroke
 			(width 0)
@@ -5663,7 +5693,7 @@
 	)
 	(wire
 		(pts
-			(xy 163.83 146.05) (xy 262.89 146.05)
+			(xy 165.1 146.05) (xy 262.89 146.05)
 		)
 		(stroke
 			(width 0)
@@ -6613,7 +6643,7 @@
 	)
 	(wire
 		(pts
-			(xy 163.83 168.91) (xy 125.73 168.91)
+			(xy 165.1 171.45) (xy 125.73 171.45)
 		)
 		(stroke
 			(width 0)
@@ -6653,7 +6683,7 @@
 	)
 	(wire
 		(pts
-			(xy 168.91 176.53) (xy 168.91 151.13)
+			(xy 170.18 179.07) (xy 170.18 151.13)
 		)
 		(stroke
 			(width 0)
@@ -6683,7 +6713,7 @@
 	)
 	(wire
 		(pts
-			(xy 163.83 146.05) (xy 163.83 168.91)
+			(xy 165.1 146.05) (xy 165.1 171.45)
 		)
 		(stroke
 			(width 0)
@@ -6763,7 +6793,7 @@
 	)
 	(wire
 		(pts
-			(xy 166.37 171.45) (xy 125.73 171.45)
+			(xy 167.64 173.99) (xy 125.73 173.99)
 		)
 		(stroke
 			(width 0)
@@ -6883,7 +6913,7 @@
 		)
 		(uuid "a31efc68-3610-422d-ab77-63a030575161")
 	)
-	(text "TODO:\n- Add progmem\n- Finish JTAG interface\n- Add GPIO?\n- Add 50? (200?) MHz oscillator for FPGA\n- HDMI"
+	(text "TODO:\n- Finish JTAG interface\n"
 		(exclude_from_sim no)
 		(at 46.736 255.778 0)
 		(effects
@@ -7178,6 +7208,17 @@
 			(justify right bottom)
 		)
 		(uuid "376d89c1-1078-482e-ad9a-0ebfb0fd77f4")
+	)
+	(label "DONE"
+		(at 127 166.37 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "3d66b433-5448-4680-99f5-f63a4e6e37af")
 	)
 	(label "FPGA_RD"
 		(at 127 128.27 0)
@@ -7510,7 +7551,7 @@
 		(uuid "80b4e540-8d9f-4f1c-ae4e-7547572f6a71")
 	)
 	(label "TP_SCL"
-		(at 127 171.45 0)
+		(at 127.006 173.99 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -7840,7 +7881,7 @@
 		(uuid "c1c1b43c-11d2-42e1-8fd3-1f0cf4fdf837")
 	)
 	(label "TP_RST"
-		(at 127 176.53 0)
+		(at 127.0085 179.07 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -8027,7 +8068,7 @@
 		(uuid "eacf5f9d-9fe5-41f8-ad40-266ba03af1fb")
 	)
 	(label "TP_INT"
-		(at 127 173.99 0)
+		(at 127 176.53 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -8082,7 +8123,7 @@
 		(uuid "f76cd026-d0c5-4754-a9fd-ae10169af147")
 	)
 	(label "TP_SDA"
-		(at 127 168.91 0)
+		(at 127.0032 171.45 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -9653,7 +9694,7 @@
 	)
 	(sheet
 		(at 82.55 116.84)
-		(size 43.18 63.5)
+		(size 43.18 66.04)
 		(fields_autoplaced yes)
 		(stroke
 			(width 0.1524)
@@ -9673,7 +9714,7 @@
 			)
 		)
 		(property "Sheetfile" "sheets/rp2040.kicad_sch"
-			(at 82.55 180.9246 0)
+			(at 82.55 183.4646 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9752,7 +9793,7 @@
 			(uuid "6ef659e5-fba1-46fd-8c89-8103d1b3207f")
 		)
 		(pin "TP_RST" output
-			(at 125.73 176.53 0)
+			(at 125.73 179.07 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9762,7 +9803,7 @@
 			(uuid "b67fca15-ac26-41f3-bd67-747baddaa11b")
 		)
 		(pin "TP_SCL" output
-			(at 125.73 171.45 0)
+			(at 125.73 173.99 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9772,7 +9813,7 @@
 			(uuid "19c08c9a-7a4a-4604-ad62-d0ba095a080f")
 		)
 		(pin "TP_INT" input
-			(at 125.73 173.99 0)
+			(at 125.73 176.53 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9802,7 +9843,7 @@
 			(uuid "800f73b9-1b7e-4c63-a57c-474939dde516")
 		)
 		(pin "TP_SDA" bidirectional
-			(at 125.73 168.91 0)
+			(at 125.73 171.45 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9971,6 +10012,16 @@
 			)
 			(uuid "783e3720-e288-4c2e-b949-ef5ae1ec3bfd")
 		)
+		(pin "DONE" input
+			(at 125.73 166.37 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+			(uuid "26216972-d303-4e69-8b54-0c582270b33f")
+		)
 		(instances
 			(project "integrated_1"
 				(path "/5cc60e42-d666-4a43-b4f0-3784ee4bf951"
@@ -9981,7 +10032,7 @@
 	)
 	(sheet
 		(at 167.64 124.46)
-		(size 24.13 15.24)
+		(size 24.13 17.78)
 		(fields_autoplaced yes)
 		(stroke
 			(width 0.1524)
@@ -10001,7 +10052,7 @@
 			)
 		)
 		(property "Sheetfile" "sheets/fpga_jtag.kicad_sch"
-			(at 167.64 140.2846 0)
+			(at 167.64 142.8246 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10058,6 +10109,16 @@
 				(justify left)
 			)
 			(uuid "108a96ac-a777-4b2c-99b1-aab11f5accf1")
+		)
+		(pin "DONE" output
+			(at 167.64 138.43 180)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+			(uuid "3c2fb5b6-643c-4f01-967a-d4770318a363")
 		)
 		(instances
 			(project "integrated_1"
