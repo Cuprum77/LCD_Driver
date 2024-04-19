@@ -1814,7 +1814,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "KiCAD Library:R_0402_1005Metric"
+		(property "Footprint" "KiCAD Library:R_0603_1608Metric"
 			(at 154.94 104.14 0)
 			(effects
 				(font
