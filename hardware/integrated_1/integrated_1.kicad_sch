@@ -8816,7 +8816,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "KiCAD Library:GCT_FFC2B35-40-G_REVA2"
+		(property "Footprint" "KiCAD Library:GCT_FFC2B35-40-G_REVA2_INV"
 			(at 262.89 74.93 0)
 			(effects
 				(font

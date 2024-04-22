@@ -58,16 +58,7 @@
           "width": 0.0
         }
       ],
-      "drc_exclusions": [
-        "copper_edge_clearance|171182599|108540000|baf14e8e-ae3f-4c22-b1b2-eba7a734a0c5|0ec19613-21cf-4bc3-b04e-114c586aa7db",
-        "courtyards_overlap|190299998|90840001|74662fb2-a88b-48cb-b24e-b62376a89826|d190d57d-c5ee-4825-8af2-f06f964ad882",
-        "hole_clearance|165861199|134803227|99d6cf2d-e1f0-4a88-a4dc-e66c2f75451d|ab035c59-a2d1-452b-ba69-922de121705b",
-        "hole_clearance|168173262|137948925|8871c0b0-47f9-4c1b-b5d4-ac54a31b1c7c|46548eb0-fd6f-48c3-a41b-a353720868d9",
-        "lib_footprint_issues|175418010|51772872|3aaf44ec-0ed1-43b1-9e13-4f561a844343|00000000-0000-0000-0000-000000000000",
-        "lib_footprint_issues|184821783|120038217|8d6d4e5f-cde1-4949-ae08-19b34e2cb528|00000000-0000-0000-0000-000000000000",
-        "lib_footprint_issues|184832457|120037750|1b23b589-1b0f-46fe-b5d3-7d00049f6b50|00000000-0000-0000-0000-000000000000",
-        "lib_footprint_issues|190000000|111400000|db84da58-5204-417c-b5b6-0f0bc13fc1dc|00000000-0000-0000-0000-000000000000"
-      ],
+      "drc_exclusions": [],
       "meta": {
         "version": 2
       },

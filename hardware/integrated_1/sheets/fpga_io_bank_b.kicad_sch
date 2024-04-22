@@ -4313,7 +4313,7 @@
 	)
 	(wire
 		(pts
-			(xy 226.06 96.52) (xy 223.52 96.52)
+			(xy 226.06 124.46) (xy 223.52 124.46)
 		)
 		(stroke
 			(width 0)
@@ -4373,7 +4373,7 @@
 	)
 	(wire
 		(pts
-			(xy 226.06 137.16) (xy 223.52 137.16)
+			(xy 226.06 83.82) (xy 223.52 83.82)
 		)
 		(stroke
 			(width 0)
@@ -4383,7 +4383,7 @@
 	)
 	(wire
 		(pts
-			(xy 226.06 127) (xy 223.52 127)
+			(xy 226.06 93.98) (xy 223.52 93.98)
 		)
 		(stroke
 			(width 0)
@@ -4393,7 +4393,7 @@
 	)
 	(wire
 		(pts
-			(xy 226.06 104.14) (xy 223.52 104.14)
+			(xy 226.06 116.84) (xy 223.52 116.84)
 		)
 		(stroke
 			(width 0)
@@ -4403,7 +4403,7 @@
 	)
 	(wire
 		(pts
-			(xy 226.06 139.7) (xy 223.52 139.7)
+			(xy 226.06 81.28) (xy 223.52 81.28)
 		)
 		(stroke
 			(width 0)
@@ -4493,7 +4493,7 @@
 	)
 	(wire
 		(pts
-			(xy 226.06 116.84) (xy 223.52 116.84)
+			(xy 226.06 104.14) (xy 223.52 104.14)
 		)
 		(stroke
 			(width 0)
@@ -4633,7 +4633,7 @@
 	)
 	(wire
 		(pts
-			(xy 226.06 88.9) (xy 223.52 88.9)
+			(xy 226.06 132.08) (xy 223.52 132.08)
 		)
 		(stroke
 			(width 0)
@@ -4773,7 +4773,7 @@
 	)
 	(wire
 		(pts
-			(xy 226.06 86.36) (xy 223.52 86.36)
+			(xy 226.06 134.62) (xy 223.52 134.62)
 		)
 		(stroke
 			(width 0)
@@ -4873,7 +4873,7 @@
 	)
 	(wire
 		(pts
-			(xy 226.06 132.08) (xy 223.52 132.08)
+			(xy 226.06 88.9) (xy 223.52 88.9)
 		)
 		(stroke
 			(width 0)
@@ -4893,7 +4893,7 @@
 	)
 	(wire
 		(pts
-			(xy 226.06 101.6) (xy 223.52 101.6)
+			(xy 226.06 119.38) (xy 223.52 119.38)
 		)
 		(stroke
 			(width 0)
@@ -4903,7 +4903,7 @@
 	)
 	(wire
 		(pts
-			(xy 226.06 109.22) (xy 223.52 109.22)
+			(xy 226.06 111.76) (xy 223.52 111.76)
 		)
 		(stroke
 			(width 0)
@@ -4943,7 +4943,7 @@
 	)
 	(wire
 		(pts
-			(xy 226.06 121.92) (xy 223.52 121.92)
+			(xy 226.06 99.06) (xy 223.52 99.06)
 		)
 		(stroke
 			(width 0)
@@ -5003,7 +5003,7 @@
 	)
 	(wire
 		(pts
-			(xy 226.06 91.44) (xy 223.52 91.44)
+			(xy 226.06 129.54) (xy 223.52 129.54)
 		)
 		(stroke
 			(width 0)
@@ -5083,7 +5083,7 @@
 	)
 	(wire
 		(pts
-			(xy 226.06 129.54) (xy 223.52 129.54)
+			(xy 226.06 91.44) (xy 223.52 91.44)
 		)
 		(stroke
 			(width 0)
@@ -5093,7 +5093,7 @@
 	)
 	(wire
 		(pts
-			(xy 226.06 78.74) (xy 223.52 78.74)
+			(xy 226.06 142.24) (xy 223.52 142.24)
 		)
 		(stroke
 			(width 0)
@@ -5153,7 +5153,7 @@
 	)
 	(wire
 		(pts
-			(xy 226.06 81.28) (xy 223.52 81.28)
+			(xy 226.06 139.7) (xy 223.52 139.7)
 		)
 		(stroke
 			(width 0)
@@ -5183,7 +5183,7 @@
 	)
 	(wire
 		(pts
-			(xy 226.06 134.62) (xy 223.52 134.62)
+			(xy 226.06 86.36) (xy 223.52 86.36)
 		)
 		(stroke
 			(width 0)
@@ -5223,7 +5223,7 @@
 	)
 	(wire
 		(pts
-			(xy 226.06 119.38) (xy 223.52 119.38)
+			(xy 226.06 101.6) (xy 223.52 101.6)
 		)
 		(stroke
 			(width 0)
@@ -5283,7 +5283,7 @@
 	)
 	(wire
 		(pts
-			(xy 226.06 99.06) (xy 223.52 99.06)
+			(xy 226.06 121.92) (xy 223.52 121.92)
 		)
 		(stroke
 			(width 0)
@@ -5313,7 +5313,7 @@
 	)
 	(wire
 		(pts
-			(xy 226.06 83.82) (xy 223.52 83.82)
+			(xy 226.06 137.16) (xy 223.52 137.16)
 		)
 		(stroke
 			(width 0)
@@ -5443,7 +5443,7 @@
 	)
 	(wire
 		(pts
-			(xy 226.06 111.76) (xy 223.52 111.76)
+			(xy 226.06 109.22) (xy 223.52 109.22)
 		)
 		(stroke
 			(width 0)
@@ -5453,7 +5453,7 @@
 	)
 	(wire
 		(pts
-			(xy 226.06 142.24) (xy 223.52 142.24)
+			(xy 226.06 78.74) (xy 223.52 78.74)
 		)
 		(stroke
 			(width 0)
@@ -5533,7 +5533,7 @@
 	)
 	(wire
 		(pts
-			(xy 226.06 106.68) (xy 223.52 106.68)
+			(xy 226.06 114.3) (xy 223.52 114.3)
 		)
 		(stroke
 			(width 0)
@@ -5563,7 +5563,7 @@
 	)
 	(wire
 		(pts
-			(xy 226.06 93.98) (xy 223.52 93.98)
+			(xy 226.06 127) (xy 223.52 127)
 		)
 		(stroke
 			(width 0)
@@ -5583,7 +5583,7 @@
 	)
 	(wire
 		(pts
-			(xy 226.06 124.46) (xy 223.52 124.46)
+			(xy 226.06 96.52) (xy 223.52 96.52)
 		)
 		(stroke
 			(width 0)
@@ -5593,7 +5593,7 @@
 	)
 	(wire
 		(pts
-			(xy 226.06 114.3) (xy 223.52 114.3)
+			(xy 226.06 106.68) (xy 223.52 106.68)
 		)
 		(stroke
 			(width 0)
@@ -5859,7 +5859,7 @@
 	)
 	(hierarchical_label "DB0"
 		(shape output)
-		(at 226.06 121.92 0)
+		(at 226.06 99.06 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -5871,7 +5871,7 @@
 	)
 	(hierarchical_label "CS"
 		(shape output)
-		(at 226.06 134.62 0)
+		(at 226.06 86.36 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -5883,7 +5883,7 @@
 	)
 	(hierarchical_label "DB15"
 		(shape output)
-		(at 226.06 83.82 0)
+		(at 226.06 137.16 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -5895,7 +5895,7 @@
 	)
 	(hierarchical_label "DB16"
 		(shape output)
-		(at 226.06 81.28 0)
+		(at 226.06 139.7 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -5907,7 +5907,7 @@
 	)
 	(hierarchical_label "DB8"
 		(shape output)
-		(at 226.06 101.6 0)
+		(at 226.06 119.38 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -5919,7 +5919,7 @@
 	)
 	(hierarchical_label "DE"
 		(shape output)
-		(at 226.06 129.54 0)
+		(at 226.06 91.44 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -5931,7 +5931,7 @@
 	)
 	(hierarchical_label "DB10"
 		(shape output)
-		(at 226.06 96.52 0)
+		(at 226.06 124.46 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -5943,7 +5943,7 @@
 	)
 	(hierarchical_label "SDA"
 		(shape output)
-		(at 226.06 139.7 0)
+		(at 226.06 81.28 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -5955,7 +5955,7 @@
 	)
 	(hierarchical_label "DB17"
 		(shape output)
-		(at 226.06 78.74 0)
+		(at 226.06 142.24 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -5967,7 +5967,7 @@
 	)
 	(hierarchical_label "DB7"
 		(shape output)
-		(at 226.06 104.14 0)
+		(at 226.06 116.84 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -5979,7 +5979,7 @@
 	)
 	(hierarchical_label "DB5"
 		(shape output)
-		(at 226.06 109.22 0)
+		(at 226.06 111.76 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -5991,7 +5991,7 @@
 	)
 	(hierarchical_label "DB11"
 		(shape output)
-		(at 226.06 93.98 0)
+		(at 226.06 127 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -6003,7 +6003,7 @@
 	)
 	(hierarchical_label "HS"
 		(shape output)
-		(at 226.06 124.46 0)
+		(at 226.06 96.52 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -6015,7 +6015,7 @@
 	)
 	(hierarchical_label "DB13"
 		(shape output)
-		(at 226.06 88.9 0)
+		(at 226.06 132.08 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -6027,7 +6027,7 @@
 	)
 	(hierarchical_label "DB12"
 		(shape output)
-		(at 226.06 91.44 0)
+		(at 226.06 129.54 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -6039,7 +6039,7 @@
 	)
 	(hierarchical_label "DCLK"
 		(shape output)
-		(at 226.06 132.08 0)
+		(at 226.06 88.9 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -6051,7 +6051,7 @@
 	)
 	(hierarchical_label "~{RST}"
 		(shape output)
-		(at 226.06 142.24 0)
+		(at 226.06 78.74 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -6063,7 +6063,7 @@
 	)
 	(hierarchical_label "VS"
 		(shape output)
-		(at 226.06 127 0)
+		(at 226.06 93.98 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -6075,7 +6075,7 @@
 	)
 	(hierarchical_label "DB6"
 		(shape output)
-		(at 226.06 106.68 0)
+		(at 226.06 114.3 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -6087,7 +6087,7 @@
 	)
 	(hierarchical_label "DB14"
 		(shape output)
-		(at 226.06 86.36 0)
+		(at 226.06 134.62 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -6099,7 +6099,7 @@
 	)
 	(hierarchical_label "DB4"
 		(shape output)
-		(at 226.06 111.76 0)
+		(at 226.06 109.22 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -6111,7 +6111,7 @@
 	)
 	(hierarchical_label "DB1"
 		(shape output)
-		(at 226.06 119.38 0)
+		(at 226.06 101.6 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -6123,7 +6123,7 @@
 	)
 	(hierarchical_label "DB9"
 		(shape output)
-		(at 226.06 99.06 0)
+		(at 226.06 121.92 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -6135,7 +6135,7 @@
 	)
 	(hierarchical_label "DB2"
 		(shape output)
-		(at 226.06 116.84 0)
+		(at 226.06 104.14 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -6147,7 +6147,7 @@
 	)
 	(hierarchical_label "SCL"
 		(shape output)
-		(at 226.06 137.16 0)
+		(at 226.06 83.82 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -6159,7 +6159,7 @@
 	)
 	(hierarchical_label "DB3"
 		(shape output)
-		(at 226.06 114.3 0)
+		(at 226.06 106.68 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
