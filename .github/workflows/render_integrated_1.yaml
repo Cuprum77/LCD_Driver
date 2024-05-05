@@ -12,8 +12,8 @@ jobs:
       - name: render pcb image
         uses: linalinn/kicad-render@main
         with:
-        pcb_file: ./hardware/integrated_1/integrated_1.kicad_pcb
-        output_path: ${{ github.workspace }}/integrated_1
+          pcb_file: hardware/integrated_1/integrated_1.kicad_pcb
+          output_path: ${{ github.workspace }}/integrated_1
         
       - name: Setup Pages
         if: github.ref == 'refs/heads/main'
