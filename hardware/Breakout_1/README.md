@@ -7,8 +7,8 @@ This repo contains the KiCAD files for the first itteration of this project, the
 
 ## Images
 
-![top](Cuprum77.github.io/LCD_Driver/top.png)
-![bottom](Cuprum77.github.io/LCD_Driver/bottom.png)
+![top](https://Cuprum77.github.io/LCD_Driver/top.png)
+![bottom](https://Cuprum77.github.io/LCD_Driver/bottom.png)
 
 ## Known Issues
 
