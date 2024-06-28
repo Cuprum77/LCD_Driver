@@ -9,8 +9,8 @@ The writeup will be available on my website once the project is finished.
 
 ## Project layout
 - [UVVM_Light](https://github.com/UVVM/UVVM_Light) - The UVVM framework
+- [bitfiles](bitfiles/) - FPGA bitfiles
 - [edid](edid/) - EDID files for the LCDs
-- [fpga](fpga/) - The FPGA project files for specific boards
 - [hardware](hardware/) - The KiCad project files for the driver boards
 - [resources](resources/) - Resources for the project, such as datasheets
 - [rom](rom/) - The ROM files for the FPGA projects
@@ -20,3 +20,4 @@ The writeup will be available on my website once the project is finished.
 
 ## License
 This project is licensed under CERN Open Hardware License Version 2 - Strong Reciprocity (CERN-OHL-S-2.0). See [LICENSE](LICENSE) for more details.
+Note that some files in this repository may be licensed under different licenses. Please check the respective files for more information.
