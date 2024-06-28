@@ -3,12 +3,7 @@ Note, this is not a complete project. It lacks the necessary files to properly m
 
 ![Breakout design](img/driver_breakout.png)
 
-This repo contains the KiCAD files for the first itteration of this project, the breakout board.
-
-## Images
-
-![top](https://Cuprum77.github.io/LCD_Driver/top.png)
-![bottom](https://Cuprum77.github.io/LCD_Driver/bottom.png)
+This repo contains the KiCAD files for the first iteration of this project, the breakout board.
 
 ## Known Issues
 

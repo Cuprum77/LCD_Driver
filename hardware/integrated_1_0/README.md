@@ -4,6 +4,8 @@
 
 This design features a nasty error where the internal and IO power rails were accidentally swapped. Do not reproduce this design. A new revision is in the works.
 
+![Integrated](./img/integrated_1.png)
+
 ## Introduction
 
 This is a PCB that integrates everything needed to drive the display. It is designed to sit on the back of the display without interfering with the display frame. It is specifically designed for the pinout of the newer non-standard displays that have come out of China in the recent years. Specifically those that support the RGB666 interface.
