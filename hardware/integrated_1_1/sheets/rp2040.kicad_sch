@@ -2752,10 +2752,6 @@
 		(uuid "28c89079-9569-4964-8345-590b6a454034")
 	)
 	(no_connect
-		(at 123.19 147.32)
-		(uuid "2b4ba83f-69dd-4ff9-b9e8-056762255e17")
-	)
-	(no_connect
 		(at 173.99 106.68)
 		(uuid "3d3325a3-ae00-425f-86b4-b8b2ac0448bf")
 	)
@@ -3359,6 +3355,16 @@
 	)
 	(wire
 		(pts
+			(xy 120.65 147.32) (xy 123.19 147.32)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "5b2ce674-8320-4b13-9757-ed3e6fd3c297")
+	)
+	(wire
+		(pts
 			(xy 154.94 44.45) (xy 154.94 46.99)
 		)
 		(stroke
@@ -3796,6 +3802,16 @@
 			(type default)
 		)
 		(uuid "ac3bba6c-3b88-4530-a8a7-83eea84b8353")
+	)
+	(wire
+		(pts
+			(xy 120.65 149.86) (xy 120.65 147.32)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "aee81d7c-1c81-420c-843a-b0a373583ad3")
 	)
 	(wire
 		(pts
@@ -5894,6 +5910,72 @@
 		)
 	)
 	(symbol
+		(lib_id "power:GND")
+		(at 120.65 149.86 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "65347e51-595a-4091-900f-51fa0d2c2094")
+		(property "Reference" "#PWR031"
+			(at 120.65 156.21 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 120.65 154.4225 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 120.65 149.86 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 120.65 149.86 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 120.65 149.86 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "0e4db56a-7a3a-4f0c-bcf9-c9aa91e01803")
+		)
+		(instances
+			(project "integrated"
+				(path "/5cc60e42-d666-4a43-b4f0-3784ee4bf951/19012e16-7cd6-4497-8667-921149ac83fb"
+					(reference "#PWR031")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Device:C_Small")
 		(at 163.83 49.53 0)
 		(unit 1)
@@ -5970,7 +6052,7 @@
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
-		(dnp no)
+		(dnp yes)
 		(fields_autoplaced yes)
 		(uuid "66320d67-8e11-4bf5-955a-a8a3519e5ef7")
 		(property "Reference" "R14"
@@ -6414,7 +6496,7 @@
 		(fields_autoplaced yes)
 		(uuid "8885841d-8aa4-42c2-9a07-3520f816f37c")
 		(property "Reference" "R13"
-			(at 58.42 100.965 0)
+			(at 58.42 100.3299 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6422,8 +6504,8 @@
 				(justify left)
 			)
 		)
-		(property "Value" "10K"
-			(at 58.42 103.505 0)
+		(property "Value" "1K"
+			(at 58.42 102.8699 0)
 			(effects
 				(font
 					(size 1.27 1.27)
